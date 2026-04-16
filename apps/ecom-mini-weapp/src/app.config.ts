@@ -3,7 +3,12 @@ export default {
     'pages/dynamic/index',
     'pages/detail/index',
     'pages/cart/index',
-    'pages/profile/index'
+    'pages/profile/index',
+    'pages/admin/index',
+    'pages/admin/dashboard',
+    'pages/admin/products',
+    'pages/admin/orders',
+    'pages/admin/settings'
   ],
   window: {
     backgroundTextStyle: 'light',

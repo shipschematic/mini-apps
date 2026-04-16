@@ -1,0 +1,145 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 32px 24px;
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #2A4B7C, #4A6B9C);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .logo-text {
+        font-size: 64px;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+
+    .admin-hint {
+      margin-top: 12px;
+      font-size: 24px;
+      color: #2A4B7C;
+    }
+  }
+
+  .store-name {
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      background: #ddd;
+    }
+
+    .user-name {
+      margin-top: 16px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .login-section {
+    margin-bottom: 32px;
+
+    .login-btn {
+      width: 100%;
+      background: #2A4B7C;
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      font-size: 32px;
+    }
+  }
+
+  .menu-section {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 28px 24px;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .icon {
+        font-size: 40px;
+        margin-right: 20px;
+      }
+
+      .label {
+        flex: 1;
+        font-size: 28px;
+        color: #333;
+      }
+
+      .arrow {
+        font-size: 32px;
+        color: #ccc;
+      }
+    }
+  }
+
+  .purchases-section {
+    margin-top: 32px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+
+    .section-title {
+      display: block;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    .purchase-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .purchase-title {
+        font-size: 26px;
+        color: #333;
+      }
+
+      .purchase-date {
+        font-size: 24px;
+        color: #999;
+      }
+    }
+  }
+}

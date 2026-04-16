@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from './cartSlice'
 import wishlistReducer from './wishlistSlice'
 import userReducer from './userSlice'
+import storeConfigReducer from './storeConfigSlice'
 
 /**
  * GlobalStore - Centralized state management using Redux
@@ -11,7 +12,8 @@ export const store = configureStore({
   reducer: {
     cart: cartReducer,
     wishlist: wishlistReducer,
-    user: userReducer
+    user: userReducer,
+    storeConfig: storeConfigReducer
   },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware({
