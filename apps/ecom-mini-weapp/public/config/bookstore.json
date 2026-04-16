@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "appName": "BookStore",
+    "primaryColor": "#2A4B7C",
+    "secondaryColor": "#4A90E2",
+    "currency": "USD",
+    "locale": "en-US",
+    "features": ["cart", "wishlist", "reviews", "digitalLibrary"]
+  },
+  "navigation": {
+    "defaultPage": "home"
+  },
+  "products": [
+    {
+      "id": "book-1",
+      "title": "The Art of Programming",
+      "author": "Donald Knuth",
+      "price": 59.99,
+      "category": "Computer Science",
+      "rating": 4.8,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "format": ["EPUB", "PDF", "Hardcover"],
+      "description": "The bible of computer programming. This comprehensive work covers fundamental algorithms and data structures that every programmer must know.",
+      "preview": "Chapter 1: Basic Concepts\n\nThis chapter introduces fundamental programming concepts including variables, data types, and control structures. We begin with the mathematical foundations...",
+      "fullContent": "Chapter 1: Basic Concepts\n\nThis chapter introduces fundamental programming concepts including variables, data types, and control structures. We begin with the mathematical foundations...\n\n[Full book content would be here after purchase]",
+      "features": [
+        "Comprehensive algorithm coverage",
+        "Mathematical foundations",
+        "Practical examples",
+        "Industry standard reference"
+      ],
+      "downloadUrl": "https://example.com/downloads/book-1.epub",
+      "inStock": true
+    },
+    {
+      "id": "book-2",
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "price": 44.99,
+      "category": "Software Engineering",
+      "rating": 4.9,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "format": ["EPUB", "PDF"],
+      "description": "A must-read for any developer who wants to write maintainable, readable code. Learn the principles of clean code from the legendary Uncle Bob.",
+      "preview": "Chapter 1: Clean Code\n\nYou are reading this book for two reasons. First, you are a programmer. Second, you want to be a better programmer. Good. We need better programmers...",
+      "fullContent": "Chapter 1: Clean Code\n\nYou are reading this book for two reasons. First, you are a programmer. Second, you want to be a better programmer. Good. We need better programmers...\n\n[Full book content would be here after purchase]",
+      "features": [
+        "Code readability principles",
+        "Refactoring techniques",
+        "Best practices",
+        "Real-world examples"
+      ],
+      "downloadUrl": "https://example.com/downloads/book-2.epub",
+      "inStock": true
+    },
+    {
+      "id": "book-3",
+      "title": "Design Patterns",
+      "author": "Gang of Four",
+      "price": 54.99,
+      "category": "Software Architecture",
+      "rating": 4.7,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "format": ["EPUB", "PDF", "Hardcover"],
+      "description": "The foundational book on software design patterns. Learn the 23 classic patterns that form the vocabulary of object-oriented design.",
+      "preview": "Chapter 1: Introduction\n\nDesigning object-oriented software is hard, and designing reusable object-oriented software is even harder. You must find pertinent objects...",
+      "fullContent": "Chapter 1: Introduction\n\nDesigning object-oriented software is hard, and designing reusable object-oriented software is even harder. You must find pertinent objects...\n\n[Full book content would be here after purchase]",
+      "features": [
+        "23 classic patterns",
+        "UML diagrams",
+        "Implementation examples",
+        "When to use each pattern"
+      ],
+      "downloadUrl": "https://example.com/downloads/book-3.epub",
+      "inStock": true
+    },
+    {
+      "id": "book-4",
+      "title": "Introduction to Algorithms",
+      "author": "Thomas H. Cormen",
+      "price": 89.99,
+      "category": "Computer Science",
+      "rating": 4.6,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "format": ["EPUB", "PDF"],
+      "description": "The standard textbook for algorithms courses worldwide. Comprehensive coverage of algorithms with rigorous analysis.",
+      "preview": "Chapter 1: The Role of Algorithms in Computing\n\nAlgorithms are the heart of computer science, and the subject has countless practical applications as well as intellectual depth...",
+      "fullContent": "Chapter 1: The Role of Algorithms in Computing\n\nAlgorithms are the heart of computer science, and the subject has countless practical applications as well as intellectual depth...\n\n[Full book content would be here after purchase]",
+      "features": [
+        "Comprehensive coverage",
+        "Rigorous analysis",
+        "Pseudocode examples",
+        "Exercise problems"
+      ],
+      "downloadUrl": "https://example.com/downloads/book-4.epub",
+      "inStock": true
+    }
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "type": "grid",
+      "title": "Featured Books",
+      "dataSource": {
+        "type": "static",
+        "data": [
+          { "id": "book-1", "title": "The Art of Programming", "author": "Donald Knuth", "price": 59.99, "cover": "", "rating": 4.8, "type": "digital", "deliveryMethod": "download" },
+          { "id": "book-2", "title": "Clean Code", "author": "Robert C. Martin", "price": 44.99, "cover": "", "rating": 4.9, "type": "digital", "deliveryMethod": "download" },
+          { "id": "book-3", "title": "Design Patterns", "author": "Gang of Four", "price": 54.99, "cover": "", "rating": 4.7, "type": "digital", "deliveryMethod": "download" },
+          { "id": "book-4", "title": "Introduction to Algorithms", "author": "Thomas H. Cormen", "price": 89.99, "cover": "", "rating": 4.6, "type": "digital", "deliveryMethod": "download" }
+        ]
+      },
+      "itemTemplate": "ProductCard",
+      "columns": 2,
+      "actions": {
+        "onItemClick": [
+          { "type": "navigate", "payload": { "target": "detail", "params": { "id": "{{item.id}}" } } }
+        ],
+        "onUnlock": [
+          { "type": "purchase", "payload": { "productId": "{{item.id}}", "price": "{{item.price}}", "title": "{{item.title}}" } },
+          { "type": "showToast", "payload": { "title": "Purchase successful!", "icon": "success" } }
+        ]
+      }
+    },
+    {
+      "id": "detail",
+      "type": "detail",
+      "title": "Book Details",
+      "dataSource": {
+        "type": "function",
+        "function": "getProductById"
+      },
+      "layout": [
+        { "component": "LockedContent", "prop": "product" }
+      ]
+    },
+    {
+      "id": "cart",
+      "type": "detail",
+      "title": "Shopping Cart",
+      "dataSource": {
+        "type": "store",
+        "prop": "cart"
+      },
+      "layout": [
+        { "component": "CartView", "prop": "items" }
+      ]
+    },
+    {
+      "id": "profile",
+      "type": "detail",
+      "title": "My Profile",
+      "dataSource": {
+        "type": "store",
+        "prop": "user"
+      },
+      "layout": [
+        { "component": "UserInfo", "prop": "profile" },
+        { "component": "OrderHistory", "prop": "orders" },
+        { "component": "DigitalLibrary", "prop": "purchases" }
+      ]
+    }
+  ]
+}

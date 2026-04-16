@@ -1,0 +1,62 @@
+# ===========================================
+# Taro E-Commerce Framework - .gitignore
+# ===========================================
+
+# ============ Dependencies ============
+node_modules/
+package-lock.json
+
+# ============ Build Outputs ============
+dist/
+.taro-cache/
+.rn_temp/
+.temp/
+
+# ============ Admin Panel ============
+admin/node_modules/
+admin/dist/
+
+# ============ Backend ============
+backend/node_modules/
+backend/dist/
+
+# ============ Cloud Functions ============
+cloudfunctions/node_modules/
+
+# ============ IDE & Editors ============
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============ Logs ============
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============ Environment ============
+.env
+.env.local
+.env.*.local
+.env.production
+
+# ============ Cache ============
+.cache/
+.swc/
+*.tsbuildinfo
+
+# ============ Coverage ============
+coverage/
+
+# ============ Misc ============
+*.tgz
+.npmrc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

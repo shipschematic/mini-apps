@@ -1,0 +1,35 @@
+{
+  "miniprogramRoot": "dist/",
+  "cloudbaseRoot": "cloudbaserc.json",
+  "projectname": "taro-whitelabel-ecommerce",
+  "description": "Configuration-driven whitelabel e-commerce Mini Program",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false,
+    "minifyWXML": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.25.0",
+  "srcMiniprogramRoot": "dist/",
+  "condition": {}
+}
