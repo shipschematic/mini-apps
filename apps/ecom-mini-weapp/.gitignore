@@ -44,10 +44,16 @@ yarn-error.log*
 .env.*.local
 .env.production
 
+# ============ CodeBuddy ============
+.trae/
+
 # ============ Cache ============
 .cache/
 .swc/
 *.tsbuildinfo
+
+# ============ Backup ============
+BK/
 
 # ============ Coverage ============
 coverage/
