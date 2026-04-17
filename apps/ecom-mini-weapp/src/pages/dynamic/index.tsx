@@ -19,23 +19,28 @@ export default function DynamicPage() {
   const pendingTabParams = useSelector((state: RootState) => state.storeConfig._pendingTabParams)
 
   useEffect(() => {
+    let resolvedPageId = 'home'
+    let resolvedParams: Record<string, any> = {}
+
     // Check for pending tab params (switchTab doesn't support query params)
     if (pendingTabParams) {
-      setPageId(pendingTabParams.target || 'home')
-      setParams(pendingTabParams.params || {})
+      resolvedPageId = pendingTabParams.target || 'home'
+      resolvedParams = pendingTabParams.params || {}
       // Clear pending params
       dispatch({ type: 'storeConfig/update', payload: { _pendingTabParams: undefined } })
     } else {
       // Get page ID from route params using getCurrentInstance
       const instance = getCurrentInstance()
       const routerParams = instance.router?.params || {}
-      const id = (routerParams.id as string) || 'home'
-      setPageId(id)
-      setParams(routerParams as Record<string, any>)
+      resolvedPageId = (routerParams.id as string) || 'home'
+      resolvedParams = routerParams as Record<string, any>
     }
 
+    setPageId(resolvedPageId)
+    setParams(resolvedParams)
+
     // Set navigation bar title from config
-    const pageConfig = ConfigParser.getPage(pageId)
+    const pageConfig = ConfigParser.getPage(resolvedPageId)
     if (pageConfig?.title) {
       Taro.setNavigationBarTitle({
         title: pageConfig.title

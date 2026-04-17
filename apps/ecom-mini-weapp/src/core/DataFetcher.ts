@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { DataSource, DataTransformer } from './types'
+import { ConfigParser } from './ConfigParser'
 import { store } from '../store'
 
 /**
@@ -196,6 +197,21 @@ DataFetcher.registerFunction('getProductById', async (params: Record<string, any
     }
   } catch {
     // Cloud not available, fall through
+  }
+
+  // Fallback: search in local config products
+  try {
+    const config = ConfigParser.getConfig()
+    if (config?.products && Array.isArray(config.products)) {
+      const product = config.products.find((p: any) =>
+        p.id === productId || p._id === productId
+      )
+      if (product) {
+        return { product }
+      }
+    }
+  } catch {
+    // Config not available
   }
 
   throw new Error(`Product "${productId}" not found`)

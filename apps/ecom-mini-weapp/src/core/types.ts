@@ -29,6 +29,7 @@ export interface DataSource {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
   data?: any;
   prop?: string;
+  function?: string;
   transformer?: string;
   headers?: Record<string, string>;
   body?: any;
@@ -90,6 +91,7 @@ export interface ComponentConfig {
 export interface AppConfig {
   meta: MetaConfig;
   pages: PageConfig[];
+  products?: any[];
   components?: ComponentConfig[];
   navigation?: {
     defaultPage: string;

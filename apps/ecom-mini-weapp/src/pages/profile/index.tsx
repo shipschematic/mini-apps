@@ -151,25 +151,28 @@ export default function ProfilePage() {
 
       {/* Menu */}
       <View className="menu-section">
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/pages/admin/orders' })}>
           <Text className="icon">📦</Text>
           <Text className="label">My Orders</Text>
           <Text className="arrow">›</Text>
         </View>
 
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.switchTab({ url: '/pages/cart/index' })}>
           <Text className="icon">❤️</Text>
           <Text className="label">Wishlist</Text>
           <Text className="arrow">›</Text>
         </View>
 
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => {
+          // Navigate to detail page with library pageId (uses RenderEngine)
+          Taro.navigateTo({ url: '/pages/detail/index?pageId=library' })
+        }}>
           <Text className="icon">📚</Text>
           <Text className="label">My Library</Text>
           <Text className="arrow">›</Text>
         </View>
 
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/pages/admin/settings' })}>
           <Text className="icon">⚙️</Text>
           <Text className="label">Settings</Text>
           <Text className="arrow">›</Text>

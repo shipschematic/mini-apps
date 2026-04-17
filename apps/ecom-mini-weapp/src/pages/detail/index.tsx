@@ -7,9 +7,9 @@ export default function Detail() {
   const router = useRouter()
   const params = router.params || {}
   
-  // The pageId is always 'detail' for this page
-  // The product ID is passed as params.id
-  const pageId = 'detail'
+  // Support pageId override for non-detail pages (e.g. library)
+  // Default to 'detail' for product detail view
+  const pageId = (params.pageId as string) || 'detail'
 
   return (
     <View className='detail-page'>

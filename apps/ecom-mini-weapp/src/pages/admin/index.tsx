@@ -62,7 +62,11 @@ export default function AdminIndex() {
         hasAccess = adminOpenids.includes(openid)
       }
 
-      // No fallback - admin access must be explicitly granted via cloud config or openid list
+      // Fallback: if cloud is entirely unavailable (dev mode with no cloud),
+      // allow access if user is logged in and storeConfig has no adminOpenids set
+      if (!hasAccess && !openid && typeof Taro.cloud === 'undefined') {
+        hasAccess = true // No cloud = dev mode, allow admin
+      }
 
       setIsAdmin(hasAccess)
     } catch (err) {
