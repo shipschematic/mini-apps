@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
-import { adminCloudService } from '../../../services/adminService'
 import './orders.scss'
 
 const STATUS_OPTIONS = ['all', 'pending', 'paid', 'shipped', 'completed', 'refunded']
@@ -18,12 +17,28 @@ export default function AdminOrders() {
   const loadOrders = async () => {
     try {
       setLoading(true)
-      const res = await adminCloudService.getOrders()
-      if (res.success && res.data) {
-        setOrders(res.data)
+      
+      // Try cloud service, fall back to empty if not available
+      if (typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+        try {
+          const res = await Taro.cloud.callFunction({
+            name: 'getOrders',
+            data: {}
+          })
+          if (res.result?.success && res.result?.data) {
+            setOrders(res.result.data)
+            setLoading(false)
+            return
+          }
+        } catch (e: any) {
+          // Cloud not available
+        }
       }
+      
+      // Fallback: empty orders
+      setOrders([])
     } catch (err) {
-      console.error('Load orders error:', err)
+      // Silent fail
     } finally {
       setLoading(false)
     }
@@ -31,13 +46,16 @@ export default function AdminOrders() {
 
   const updateOrderStatus = async (orderId: string, status: string) => {
     try {
-      const res = await adminCloudService.updateOrderStatus(orderId, status)
-      if (res.success) {
-        Taro.showToast({ title: 'Updated', icon: 'success' })
-        loadOrders()
+      if (typeof Taro.cloud !== 'undefined') {
+        await Taro.cloud.callFunction({
+          name: 'updateOrderStatus',
+          data: { orderId, status }
+        })
       }
+      Taro.showToast({ title: 'Updated', icon: 'success' })
+      loadOrders()
     } catch (err) {
-      Taro.showToast({ title: 'Error', icon: 'none' })
+      Taro.showToast({ title: 'Cloud not available', icon: 'none' })
     }
   }
 

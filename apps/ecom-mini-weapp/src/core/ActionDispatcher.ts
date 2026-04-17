@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { Action, ActionHandler, ActionRegistry, DispatchContext } from './types'
 import { store } from '../store'
-import { ConfigParser } from './ConfigParser'
+import { paymentService } from '../services/paymentService'
 
 /**
  * ActionDispatcher - Processes action arrays from config
@@ -12,78 +12,79 @@ const actionRegistry: ActionRegistry = {
   // Navigation actions
   navigate: async (payload: any, context: DispatchContext) => {
     const target = payload.target || payload.url
-    console.log('[ActionDispatcher] navigate called:', { target, payload, context })
+    
+    // Handle specific targets
+    if (target === 'checkout') {
+      await Taro.switchTab({ url: '/pages/cart/index' })
+      return
+    }
+    
+    if (target === 'detail') {
+      let productId = payload.id || payload.productId || payload.params?.id
+      
+      if (!productId) {
+        const item = context?.componentContext?.item
+        if (item) {
+          productId = item.id || item._id || item.productId
+        }
+      }
+      
+      const url = productId ? `/pages/detail/index?id=${productId}` : '/pages/detail/index'
+      await Taro.navigateTo({ url })
+      return
+    }
     
     // Check if target is a tabbar page
     const tabbarPages = ['home', 'cart', 'profile']
     const isTabbarPage = tabbarPages.includes(target)
     
     if (isTabbarPage) {
-      // For tabbar pages, use switchTab
       const url = `/pages/${target === 'home' ? 'dynamic' : target}/index`
-      console.log('[ActionDispatcher] Switching to tabbar page:', url)
       await Taro.switchTab({ url })
     } else {
-      // For non-tabbar pages (like detail), use navigateTo
-      // First, interpolate all params
-      const interpolatedParams: Record<string, any> = {}
+      const knownPages: Record<string, string> = {
+        'admin': '/pages/admin/index',
+        'dashboard': '/pages/admin/dashboard',
+        'products': '/pages/admin/products',
+        'orders': '/pages/admin/orders',
+        'settings': '/pages/admin/settings',
+        'detail': '/pages/detail/index',
+        'cart': '/pages/cart/index',
+        'profile': '/pages/profile/index'
+      }
       
-      if (payload.params) {
-        Object.entries(payload.params).forEach(([key, value]) => {
-          if (typeof value === 'string' && value.includes('{{')) {
-            // Extract template variable
-            const match = value.match(/\{\{(.*?)\}\}/)
-            if (match) {
-              const path = match[1].split('.')
-              console.log('[ActionDispatcher] Template path:', path)
-              
-              // Determine which context to use based on first path segment
-              let data: any
-              let remainingPath: string[]
-              
-              if (path[0] === 'item' && context.componentContext?.item) {
-                data = context.componentContext.item
-                remainingPath = path.slice(1) // Skip 'item' since we already have it
-              } else if (path[0] === 'data' && context.componentContext?.data) {
-                data = context.componentContext.data
-                remainingPath = path.slice(1) // Skip 'data'
+      const baseUrl = knownPages[target]
+      
+      if (baseUrl) {
+        const interpolatedParams: Record<string, any> = {}
+        
+        if (payload.params) {
+          Object.entries(payload.params).forEach(([key, value]) => {
+            if (typeof value === 'string' && value.includes('{{')) {
+              const match = value.match(/\{\{(.*?)\}\}/)
+              if (match) {
+                const path = match[1].split('.')
+                let data: any = context?.componentContext?.item || context?.componentContext?.data
+                
+                for (const p of path.slice(1)) {
+                  data = data?.[p]
+                }
+                interpolatedParams[key] = data || value
               } else {
-                // Fallback: try both
-                data = context.componentContext?.item || context.componentContext?.data
-                remainingPath = path
+                interpolatedParams[key] = value
               }
-              
-              console.log('[ActionDispatcher] Extracting:', { data, remainingPath })
-              
-              // Traverse the remaining path
-              for (const p of remainingPath) {
-                data = data?.[p]
-              }
-              
-              interpolatedParams[key] = data || value
-              console.log('[ActionDispatcher] Extracted param:', { key, value: interpolatedParams[key] })
             } else {
               interpolatedParams[key] = value
             }
-          } else {
-            interpolatedParams[key] = value
-          }
-        })
-      }
-      
-      // Build URL with interpolated params
-      // The 'id' param should be the product ID, not the page ID
-      const queryString = new URLSearchParams(interpolatedParams).toString()
-      const url = `/pages/detail/index?${queryString}`
-      
-      console.log('[ActionDispatcher] Navigating to detail page:', url)
-
-      if (payload.type === 'redirectTo') {
-        await Taro.redirectTo({ url })
-      } else if (payload.type === 'reLaunch') {
-        await Taro.reLaunch({ url })
-      } else {
+          })
+        }
+        
+        const queryString = new URLSearchParams(interpolatedParams).toString()
+        const url = queryString ? `${baseUrl}?${queryString}` : baseUrl
+        
         await Taro.navigateTo({ url })
+      } else {
+        Taro.showToast({ title: 'Navigation error', icon: 'none' })
       }
     }
   },
@@ -96,23 +97,41 @@ const actionRegistry: ActionRegistry = {
 
   switchTab: async (payload: any, context: DispatchContext) => {
     const target = payload.target || payload.url
+    const params = payload.params || {}
+    
+    // switchTab does NOT support query params in Mini Program
+    // Store params in Redux so the target page can read them
+    if (Object.keys(params).length > 0) {
+      store.dispatch({
+        type: 'storeConfig/update',
+        payload: { _pendingTabParams: { target, params } }
+      })
+    }
+    
+    const tabMap: Record<string, string> = {
+      home: '/pages/dynamic/index',
+      cart: '/pages/cart/index',
+      profile: '/pages/profile/index'
+    }
+    
     await Taro.switchTab({
-      url: `/pages/dynamic/index?id=${target}`
+      url: tabMap[target] || `/pages/${target}/index`
     })
   },
 
   // Cart actions
   addToCart: async (payload: any, context: DispatchContext) => {
-    console.log('[ActionDispatcher] addToCart called:', { payload, context })
-    const { id, productId, quantity, variant, price, title, cover, author, description, ...rest } = payload
+    const { id, _id, productId, quantity, variant, price, title, cover, author, description, ...rest } = payload
+    
+    const resolvedId = id || _id || productId
     
     const cartItem = {
-      productId: id || productId,
+      productId: resolvedId,
       quantity: quantity || 1,
       variant,
       price,
       data: {
-        id: id || productId,
+        id: resolvedId,
         title,
         price,
         cover,
@@ -122,14 +141,10 @@ const actionRegistry: ActionRegistry = {
       }
     }
     
-    console.log('[ActionDispatcher] Adding to cart:', cartItem)
-    
     store.dispatch({
       type: 'cart/add',
       payload: cartItem
     })
-    
-    console.log('[ActionDispatcher] Cart state after add:', store.getState().cart)
   },
 
   removeFromCart: async (payload: any, context: DispatchContext) => {
@@ -179,33 +194,70 @@ const actionRegistry: ActionRegistry = {
 
   // Purchase actions (for digital products/services)
   purchase: async (payload: any, context: DispatchContext) => {
-    console.log('[ActionDispatcher] purchase called:', { payload, context })
+    // Try to find product data from multiple sources
+    let productId = payload?.productId || payload?.id || payload?._id
+    let title = payload?.title
+    let price = payload?.price
     
-    // In a real app, this would:
-    // 1. Call payment API (WeChat Pay)
-    // 2. Verify payment
-    // 3. Grant access to digital content
-    
-    // For demo, we'll just add to purchased items
-    const { productId, price, title } = payload
-    
-    // Simulate payment processing
-    await Taro.showLoading({ title: 'Processing payment...' })
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    Taro.hideLoading()
-    
-    // Add to user's purchased items
-    store.dispatch({
-      type: 'user/addPurchase',
-      payload: {
-        productId,
-        purchaseDate: new Date().toISOString(),
-        price,
-        title
+    // If not in payload, try context
+    if (!productId) {
+      const item = context?.componentContext?.item
+      if (item) {
+        productId = item.productId || item.id || item._id
+        title = item.title || title
+        price = item.price || price
       }
+      
+      if (!productId) {
+        const pageData = context?.pageContext?.data
+        if (pageData) {
+          productId = pageData.productId || pageData.id || pageData._id
+          title = pageData.title || title
+          price = pageData.price || price
+        }
+      }
+    }
+    
+    if (!productId) {
+      Taro.showToast({ title: 'Product error - try reopening', icon: 'none' })
+      return
+    }
+    
+    // Use payment service (real WeChat Cloud Pay or simulated fallback)
+    const result = await paymentService.quickPurchase({
+      id: String(productId),
+      title: title || 'Product',
+      price: Number(price) || 0
     })
     
-    console.log('[ActionDispatcher] Purchase completed:', { productId, price, title })
+    if (!result.success && result.error !== 'cancelled') {
+      Taro.showToast({ title: result.error || 'Payment failed', icon: 'none' })
+    }
+  },
+
+  // Checkout action (cart -> payment)
+  checkout: async (payload: any, context: DispatchContext) => {
+    const cartState = store.getState().cart
+    
+    if (!cartState?.items || cartState.items.length === 0) {
+      Taro.showToast({ title: 'Cart is empty', icon: 'none' })
+      return
+    }
+    
+    const items = cartState.items.map((item: any) => ({
+      productId: item.productId || item.data?.id,
+      title: item.data?.title || 'Product',
+      price: item.data?.price || 0,
+      quantity: item.quantity || 1
+    }))
+    
+    const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
+    
+    const result = await paymentService.checkout(items, total)
+    
+    if (!result.success && result.error !== 'cancelled') {
+      Taro.showToast({ title: result.error || 'Checkout failed', icon: 'none' })
+    }
   },
 
   // User actions
@@ -253,8 +305,6 @@ const actionRegistry: ActionRegistry = {
         })
       }
     } catch (error) {
-      console.error('API call failed:', error)
-      
       if (onError) {
         await executeActions(onError, {
           ...context,
@@ -344,18 +394,16 @@ const actionRegistry: ActionRegistry = {
  * Execute a single action
  */
 async function executeAction(action: Action, context: DispatchContext): Promise<void> {
-  console.log('[ActionDispatcher] Executing action:', action.type, action)
   const handler = actionRegistry[action.type]
   
   if (!handler) {
-    console.warn(`Action "${action.type}" not found in registry`)
+    Taro.showToast({ title: `Unknown action: ${action.type}`, icon: 'none' })
     return
   }
 
   try {
     await handler(action.payload, context)
   } catch (error) {
-    console.error(`Action "${action.type}" failed:`, error)
     throw error
   }
 }
@@ -365,7 +413,6 @@ async function executeAction(action: Action, context: DispatchContext): Promise<
  */
 export async function executeActions(actions: Action[], context: DispatchContext): Promise<void> {
   if (!actions || !Array.isArray(actions)) {
-    console.warn('No actions to execute')
     return
   }
 
@@ -383,8 +430,6 @@ export function dispatch(
   componentContext?: { componentId: string; data?: any; config?: any; pageContext?: any }
 ): () => Promise<void> {
   return async () => {
-    console.log('[ActionDispatcher] dispatch called:', { actions, pageContext, componentContext })
-    
     const fullComponentContext = componentContext ? {
       ...componentContext,
       pageContext

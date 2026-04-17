@@ -1,75 +1,122 @@
 import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store'
 import './profile.scss'
 
-// Secret: Tap logo 5 times to access admin
-const ADMIN_TAP_COUNT = 5
-
 export default function ProfilePage() {
-  const user = useSelector((state: any) => state.user)
-  const storeConfig = useSelector((state: any) => state.storeConfig)
-  const [logoTapCount, setLogoTapCount] = useState(0)
-  const [showAdminHint, setShowAdminHint] = useState(false)
+  const user = useSelector((state: RootState) => state.user)
+  const storeConfig = useSelector((state: RootState) => state.storeConfig)
+  const dispatch = useDispatch()
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
-    // Check if user is logged in
+    // Auto-silent login: try to restore session silently
     if (!user.isLoggedIn) {
-      Taro.showToast({ title: 'Please login first', icon: 'none' })
+      silentLogin()
     }
-  }, [user.isLoggedIn])
+    // Check admin access
+    checkAdmin()
+  }, [])
 
-  const handleLogoTap = () => {
-    const newCount = logoTapCount + 1
-    setLogoTapCount(newCount)
-
-    if (newCount >= ADMIN_TAP_COUNT) {
-      // Navigate to admin
-      Taro.navigateTo({
-        url: '/pages/admin/index'
+  const silentLogin = async () => {
+    try {
+      if (typeof Taro.cloud === 'undefined' || !Taro.cloud.callFunction) {
+        return
+      }
+      
+      const { result } = await Taro.cloud.callFunction({
+        name: 'getUserInfo',
+        data: {}
       })
-      setLogoTapCount(0)
-      setShowAdminHint(false)
-    } else {
-      setShowAdminHint(true)
-      // Hide hint after 2 seconds
-      setTimeout(() => setShowAdminHint(false), 2000)
+      if (result?.openid) {
+        dispatch({
+          type: 'user/login',
+          payload: { id: result.openid }
+        })
+      }
+    } catch (e) {
+      // Silently fail - user can click "Login with WeChat" manually
     }
+  }
+
+  const checkAdmin = async () => {
+    try {
+      if (typeof Taro.cloud === 'undefined' || !Taro.cloud.callFunction) {
+        return
+      }
+      const { result } = await Taro.cloud.callFunction({
+        name: 'checkAdminAccess',
+        data: {}
+      })
+      setIsAdmin(result?.isAdmin || false)
+    } catch (e) {
+      // Not admin or cloud not available
+    }
+  }
+
+  const handleNavigateToAdmin = () => {
+    Taro.navigateTo({
+      url: '/pages/admin/index'
+    })
   }
 
   const handleLogin = async () => {
     try {
-      // WeChat login
+      // Step 1: WeChat login to get code
       const loginRes = await Taro.login()
-      console.log('WeChat login:', loginRes.code)
 
-      // Get user profile
+      // Step 2: Get user profile (avatar, name) - requires user permission
       const profileRes = await Taro.getUserProfile({
-        desc: 'For login'
+        desc: 'Used to display your profile'
+      })
+
+      const { nickName, avatarUrl } = profileRes.userInfo
+
+      // Step 3: Get openid from cloud (if available)
+      let userId = ''
+      try {
+        if (typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+          const { result } = await Taro.cloud.callFunction({
+            name: 'getUserInfo',
+            data: {}
+          })
+          userId = result?.openid || ''
+        }
+      } catch (e) {
+        // Silently fail - use code as fallback
+      }
+
+      // Step 4: Save to Redux
+      dispatch({
+        type: 'user/login',
+        payload: {
+          id: userId || loginRes.code,
+          name: nickName,
+          avatar: avatarUrl
+        }
       })
 
       Taro.showToast({ title: 'Login success', icon: 'success' })
-    } catch (err) {
-      console.error('Login error:', err)
-      Taro.showToast({ title: 'Login failed', icon: 'none' })
+    } catch (err: any) {
+      if (err.errMsg?.includes('cancel')) {
+        Taro.showToast({ title: 'Cancelled', icon: 'none' })
+      } else {
+        Taro.showToast({ title: 'Login failed', icon: 'none' })
+      }
     }
   }
 
   return (
     <View className="profile-page">
-      {/* Logo - Secret Admin Access */}
-      <View className="logo-container" onClick={handleLogoTap}>
+      {/* Logo */}
+      <View className="logo-container">
         <View className="logo">
           <Text className="logo-text">
             {storeConfig?.appName?.charAt(0) || 'S'}
           </Text>
         </View>
-        {showAdminHint && (
-          <Text className="admin-hint">
-            {ADMIN_TAP_COUNT - logoTapCount} more taps for admin
-          </Text>
-        )}
       </View>
 
       <Text className="store-name">{storeConfig?.appName || 'Whitelabel Store'}</Text>
@@ -88,6 +135,17 @@ export default function ProfilePage() {
           <Button className="login-btn" onClick={handleLogin}>
             Login with WeChat
           </Button>
+        </View>
+      )}
+
+      {/* Admin Panel Link (only shown to admins) */}
+      {isAdmin && (
+        <View className="admin-section">
+          <View className="menu-item admin-entry" onClick={handleNavigateToAdmin}>
+            <Text className="icon">🔧</Text>
+            <Text className="label">Admin Panel</Text>
+            <Text className="arrow">›</Text>
+          </View>
         </View>
       )}
 

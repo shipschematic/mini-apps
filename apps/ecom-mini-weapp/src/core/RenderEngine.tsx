@@ -39,11 +39,9 @@ export function RenderEngine({ pageId, params = {} }: RenderEngineProps) {
   const pageConfig = ConfigParser.getPage(pageId)
 
   useEffect(() => {
-    console.log('[RenderEngine] useEffect triggered:', { pageId, params, pageConfig })
     if (pageConfig) {
       loadPageData()
     } else {
-      console.error('[RenderEngine] Page config not found:', pageId)
       setState(prev => ({
         ...prev,
         loading: false,
@@ -58,11 +56,9 @@ export function RenderEngine({ pageId, params = {} }: RenderEngineProps) {
   const loadPageData = async () => {
     if (!pageConfig) return
 
-    console.log('[RenderEngine] Loading page data:', pageConfig.dataSource)
     setState(prev => ({ ...prev, loading: true, error: null }))
 
     try {
-      // Add timeout wrapper
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Data fetch timeout')), 5000)
       })
@@ -71,19 +67,14 @@ export function RenderEngine({ pageId, params = {} }: RenderEngineProps) {
       
       const data = await Promise.race([dataPromise, timeoutPromise])
       
-      console.log('[RenderEngine] Data loaded:', data)
-      
       setState(prev => ({
         ...prev,
         loading: false,
         data
       }))
     } catch (error) {
-      console.error('[RenderEngine] Failed to load page data:', error)
-      
       // Use fallback data if available
       if (pageConfig.dataSource?.type === 'static' && pageConfig.dataSource.data) {
-        console.log('[RenderEngine] Using fallback static data')
         setState(prev => ({
           ...prev,
           loading: false,
@@ -136,7 +127,6 @@ export function RenderEngine({ pageId, params = {} }: RenderEngineProps) {
     }
 
     const handleAction = async (actions: any[], context: any) => {
-      console.log('[RenderEngine] handleAction called:', { actions, context, item })
       await dispatch(actions, pageContext, { componentId: `${pageConfig.itemTemplate}-${index}`, ...context })()
     }
 

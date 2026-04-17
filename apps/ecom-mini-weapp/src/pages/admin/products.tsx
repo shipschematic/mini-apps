@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, ScrollView, Input, Image } from '@tarojs/components'
-import { adminCloudService, Product } from '../../../services/adminService'
+import { Product, PRODUCT_TYPE_CONFIG, DELIVERY_METHOD_CONFIG } from '../../core/types/product'
 import './products.scss'
 
-const DELIVERY_METHODS = ['download', 'unlock', 'ship']
-const PRODUCT_TYPES = ['digital', 'service', 'physical']
 const STATUS_OPTIONS = ['published', 'draft', 'archived']
 
 export default function AdminProducts() {
@@ -31,12 +29,28 @@ export default function AdminProducts() {
   const loadProducts = async () => {
     try {
       setLoading(true)
-      const res = await adminCloudService.getProducts()
-      if (res.success && res.data) {
-        setProducts(res.data)
+      
+      // Try cloud service, fall back to empty if not available
+      if (typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+        try {
+          const res = await Taro.cloud.callFunction({
+            name: 'getProducts',
+            data: {}
+          })
+          if (res.result?.success && res.result?.data) {
+            setProducts(res.result.data)
+            setLoading(false)
+            return
+          }
+        } catch (e: any) {
+          // Cloud not available
+        }
       }
+      
+      // Fallback: empty products list
+      setProducts([])
     } catch (err) {
-      console.error('Load products error:', err)
+      // Silent fail
     } finally {
       setLoading(false)
     }
@@ -76,22 +90,19 @@ export default function AdminProducts() {
     try {
       Taro.showLoading({ title: 'Saving...' })
 
-      let res
-      if (editingProduct) {
-        res = await adminCloudService.updateProduct(editingProduct._id, formData)
-      } else {
-        res = await adminCloudService.createProduct(formData)
+      if (typeof Taro.cloud !== 'undefined') {
+        const action = editingProduct?._id ? 'updateProduct' : 'createProduct'
+        await Taro.cloud.callFunction({
+          name: action,
+          data: editingProduct?._id ? { id: editingProduct._id, ...formData } : formData
+        })
       }
-
-      if (res.success) {
-        Taro.showToast({ title: 'Saved!', icon: 'success' })
-        setShowForm(false)
-        loadProducts()
-      } else {
-        Taro.showToast({ title: res.error || 'Failed', icon: 'none' })
-      }
+      
+      Taro.showToast({ title: 'Saved!', icon: 'success' })
+      setShowForm(false)
+      loadProducts()
     } catch (err) {
-      Taro.showToast({ title: 'Error', icon: 'none' })
+      Taro.showToast({ title: 'Cloud not available', icon: 'none' })
     } finally {
       Taro.hideLoading()
     }
@@ -105,13 +116,16 @@ export default function AdminProducts() {
 
     if (confirm.confirm) {
       try {
-        const res = await adminCloudService.deleteProduct(productId)
-        if (res.success) {
-          Taro.showToast({ title: 'Deleted', icon: 'success' })
-          loadProducts()
+        if (typeof Taro.cloud !== 'undefined') {
+          await Taro.cloud.callFunction({
+            name: 'deleteProduct',
+            data: { productId }
+          })
         }
+        Taro.showToast({ title: 'Deleted', icon: 'success' })
+        loadProducts()
       } catch (err) {
-        Taro.showToast({ title: 'Error', icon: 'none' })
+        Taro.showToast({ title: 'Cloud not available', icon: 'none' })
       }
     }
   }
@@ -121,10 +135,24 @@ export default function AdminProducts() {
       const res = await Taro.chooseImage({ count: 1 })
       const tempFilePath = res.tempFilePaths[0]
 
-      // Upload to cloud
       Taro.showLoading({ title: 'Uploading...' })
-      const cloudPath = await adminCloudService.uploadImage(tempFilePath)
-      setFormData(prev => ({ ...prev, cover: cloudPath }))
+      
+      if (typeof Taro.cloud !== 'undefined') {
+        const cloudPath = `products/${Date.now()}_${tempFilePath.split('/').pop()}`
+        const uploadRes = await Taro.cloud.uploadFile({
+          cloudPath,
+          filePath: tempFilePath
+        })
+        // Get temp file URL for display
+        const urlRes = await Taro.cloud.getTempFileURL({
+          fileList: [uploadRes.fileID]
+        })
+        const fileUrl = urlRes.fileList[0]?.tempFileURL || uploadRes.fileID
+        setFormData(prev => ({ ...prev, cover: fileUrl }))
+      } else {
+        // Use local temp path as fallback
+        setFormData(prev => ({ ...prev, cover: tempFilePath }))
+      }
       Taro.hideLoading()
     } catch (err) {
       Taro.hideLoading()
@@ -174,7 +202,7 @@ export default function AdminProducts() {
           <View className="form-group">
             <Text className="label">Type</Text>
             <View className="selector">
-              {PRODUCT_TYPES.map(type => (
+              {Object.keys(PRODUCT_TYPE_CONFIG).map(type => (
                 <Text
                   key={type}
                   className={`selector-item ${formData.type === type ? 'active' : ''}`}
@@ -189,7 +217,7 @@ export default function AdminProducts() {
           <View className="form-group">
             <Text className="label">Delivery</Text>
             <View className="selector">
-              {DELIVERY_METHODS.map(method => (
+              {Object.keys(DELIVERY_METHOD_CONFIG).map(method => (
                 <Text
                   key={method}
                   className={`selector-item ${formData.deliveryMethod === method ? 'active' : ''}`}

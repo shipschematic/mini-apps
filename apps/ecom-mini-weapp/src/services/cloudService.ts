@@ -1,32 +1,12 @@
 import Taro from '@tarojs/taro'
+import { Product } from '../core/types/product'
+
+export type { Product } from '../core/types/product'
 
 interface CloudResult<T = any> {
   success: boolean
   data?: T
   error?: string
-}
-
-interface Product {
-  _id: string
-  title: string
-  description: string
-  price: number
-  type: 'digital' | 'service' | 'physical'
-  deliveryMethod: 'download' | 'unlock' | 'ship'
-  preview: string
-  fullContent?: string
-  downloadUrl?: string
-  cover: string
-  author: string
-  category: string
-  tags: string[]
-  rating: number
-  reviewCount: number
-  purchaseCount: number
-  viewCount: number
-  status: 'published' | 'draft' | 'archived'
-  createdAt: string
-  updatedAt: string
 }
 
 interface Order {
@@ -67,6 +47,9 @@ class CloudService {
     category?: string
   }): Promise<CloudResult<Product[]>> {
     try {
+      if (typeof Taro.cloud === 'undefined' || !Taro.cloud.callFunction) {
+        return { success: false, error: 'Cloud not available' }
+      }
       const result = await Taro.cloud.callFunction({
         name: 'getProducts',
         data: filters || {}
@@ -74,11 +57,7 @@ class CloudService {
       
       return result.result as CloudResult<Product[]>
     } catch (error: any) {
-      console.error('Get products error:', error)
-      return {
-        success: false,
-        error: error.message
-      }
+      return { success: false, error: error.message }
     }
   }
   
@@ -89,6 +68,9 @@ class CloudService {
     quantity: number
   }>, total?: number, discount?: number): Promise<CloudResult<{ orderId: string; order: Order }>> {
     try {
+      if (typeof Taro.cloud === 'undefined' || !Taro.cloud.callFunction) {
+        return { success: false, error: 'Cloud not available' }
+      }
       const result = await Taro.cloud.callFunction({
         name: 'createOrder',
         data: { items, total, discount }
@@ -96,16 +78,15 @@ class CloudService {
       
       return result.result as CloudResult<{ orderId: string; order: Order }>
     } catch (error: any) {
-      console.error('Create order error:', error)
-      return {
-        success: false,
-        error: error.message
-      }
+      return { success: false, error: error.message }
     }
   }
   
   async getUserPurchases(): Promise<CloudResult<Purchase[]>> {
     try {
+      if (typeof Taro.cloud === 'undefined' || !Taro.cloud.callFunction) {
+        return { success: false, error: 'Cloud not available' }
+      }
       const result = await Taro.cloud.callFunction({
         name: 'getUserPurchases',
         data: {}
@@ -113,16 +94,15 @@ class CloudService {
       
       return result.result as CloudResult<Purchase[]>
     } catch (error: any) {
-      console.error('Get user purchases error:', error)
-      return {
-        success: false,
-        error: error.message
-      }
+      return { success: false, error: error.message }
     }
   }
   
   async uploadFile(filePath: string, cloudPath?: string): Promise<string> {
     try {
+      if (typeof Taro.cloud === 'undefined') {
+        throw new Error('Cloud not available')
+      }
       const finalCloudPath = cloudPath || `uploads/${Date.now()}_${filePath.split('/').pop()}`
       
       const result = await Taro.cloud.uploadFile({
@@ -132,35 +112,38 @@ class CloudService {
       
       return result.fileID
     } catch (error: any) {
-      console.error('Upload file error:', error)
       throw error
     }
   }
   
   async deleteFile(fileList: string[]): Promise<void> {
     try {
+      if (typeof Taro.cloud === 'undefined') {
+        throw new Error('Cloud not available')
+      }
       await Taro.cloud.deleteFile({
         fileList: fileList
       })
     } catch (error: any) {
-      console.error('Delete file error:', error)
       throw error
     }
   }
   
   async getTempFileURL(fileList: string[]): Promise<string[]> {
     try {
+      if (typeof Taro.cloud === 'undefined') {
+        throw new Error('Cloud not available')
+      }
       const result = await Taro.cloud.getTempFileURL({
         fileList: fileList
       })
       
       return result.fileList.map((file: any) => file.tempFileURL)
     } catch (error: any) {
-      console.error('Get temp file URL error:', error)
       throw error
     }
   }
 }
 
 export const cloudService = new CloudService()
-export type { Product, Order, Purchase, CloudResult }
+export type { Order, Purchase, CloudResult }

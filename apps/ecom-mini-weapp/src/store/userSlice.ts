@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Purchase {
   productId: string
@@ -16,6 +16,26 @@ interface UserState {
   purchases: Purchase[]
 }
 
+interface LoginPayload {
+  id: string
+  name?: string
+  avatar?: string
+  phone?: string
+}
+
+interface UpdatePayload {
+  name?: string
+  avatar?: string
+  phone?: string
+}
+
+interface AddPurchasePayload {
+  productId: string
+  purchaseDate: string
+  price: number
+  title?: string
+}
+
 const initialState: UserState = {
   isLoggedIn: false,
   purchases: []
@@ -25,7 +45,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login(state: any, action: any) {
+    login(state, action: PayloadAction<LoginPayload>) {
       const { id, name, avatar, phone } = action.payload
       
       state.id = id
@@ -35,7 +55,7 @@ const userSlice = createSlice({
       state.isLoggedIn = true
     },
 
-    logout(state: any) {
+    logout(state) {
       state.id = undefined
       state.name = undefined
       state.avatar = undefined
@@ -44,7 +64,7 @@ const userSlice = createSlice({
       state.purchases = []
     },
 
-    update(state: any, action: any) {
+    update(state, action: PayloadAction<UpdatePayload>) {
       const { name, avatar, phone } = action.payload
       
       if (name !== undefined) state.name = name
@@ -52,11 +72,10 @@ const userSlice = createSlice({
       if (phone !== undefined) state.phone = phone
     },
 
-    addPurchase(state: any, action: any) {
+    addPurchase(state, action: PayloadAction<AddPurchasePayload>) {
       const { productId, purchaseDate, price, title } = action.payload
       
-      // Check if already purchased
-      const existingPurchase = state.purchases.find((p: Purchase) => p.productId === productId)
+      const existingPurchase = state.purchases.find(p => p.productId === productId)
       if (!existingPurchase) {
         state.purchases.push({
           productId,

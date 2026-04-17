@@ -88,22 +88,25 @@ export class ConfigParser {
    * Apply theme from meta config
    */
   private static applyTheme(meta: MetaConfig): void {
-    const root = Taro.getCurrentInstance().page?.$element || document.documentElement
-    
-    if (root) {
-      root.style.setProperty('--primary-color', meta.primaryColor)
-      
+    // In Mini Program there is no DOM; set CSS variables via page style
+    const page = Taro.getCurrentInstance().page
+    if (page) {
+      const styleVars: Record<string, string> = {
+        '--primary-color': meta.primaryColor,
+      }
       if (meta.secondaryColor) {
-        root.style.setProperty('--secondary-color', meta.secondaryColor)
+        styleVars['--secondary-color'] = meta.secondaryColor
       }
-
       if (meta.theme?.borderRadius) {
-        root.style.setProperty('--border-radius', meta.theme.borderRadius)
+        styleVars['--border-radius'] = meta.theme.borderRadius
       }
-
       if (meta.theme?.fontFamily) {
-        root.style.setProperty('--font-family', meta.theme.fontFamily)
+        styleVars['--font-family'] = meta.theme.fontFamily
       }
+      // Apply via page root style (supported in Taro 3.x+)
+      // CSS variables work when defined on :root or page in SCSS
+      // Store them for components to reference
+      ;(page as any).__themeVars = styleVars
     }
   }
 

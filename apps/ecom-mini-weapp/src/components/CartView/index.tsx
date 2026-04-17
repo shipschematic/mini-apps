@@ -1,33 +1,22 @@
 import { View, Text, Image } from '@tarojs/components'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store'
 import './index.scss'
 
-interface CartItem {
-  id: string
-  productId: string
-  quantity: number
-  price: number
-  data?: {
-    title?: string
-    cover?: string
-    author?: string
-    description?: string
-  }
-}
-
 interface CartViewProps {
-  data?: CartItem[]
   config?: any
   onAction?: (actions: any[], context: any) => void
 }
 
-export default function CartView({ data, config, onAction }: CartViewProps) {
-  const items = Array.isArray(data) ? data : []
-  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+export default function CartView({ config, onAction }: CartViewProps) {
+  const dispatch = useDispatch()
+  const cartItems = useSelector((state: RootState) => state.cart.items)
+  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
   const handleCheckout = () => {
     if (onAction) {
       onAction([
-        { type: 'showToast', payload: { title: 'Proceeding to checkout...', icon: 'loading' } }
+        { type: 'checkout', payload: {} }
       ], {})
     }
   }
@@ -41,7 +30,7 @@ export default function CartView({ data, config, onAction }: CartViewProps) {
     }
   }
 
-  if (items.length === 0) {
+  if (cartItems.length === 0) {
     return (
       <View className="cart-view">
         <View className="cart-empty">
@@ -55,10 +44,10 @@ export default function CartView({ data, config, onAction }: CartViewProps) {
 
   return (
     <View className="cart-view">
-      <Text className="cart-title">Shopping Cart ({items.length} items)</Text>
+      <Text className="cart-title">Shopping Cart ({cartItems.length} items)</Text>
       
       <View className="cart-items">
-        {items.map((item) => (
+        {cartItems.map((item) => (
           <View key={item.id} className="cart-item">
             <View className="item-image">
               {item.data?.cover ? (

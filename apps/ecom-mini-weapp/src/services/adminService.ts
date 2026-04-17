@@ -1,4 +1,6 @@
 import Taro from '@tarojs/taro'
+import { Product } from '../core/types/product'
+import { Order } from './cloudService'
 
 interface CloudResult<T = any> {
   success: boolean
@@ -6,58 +8,18 @@ interface CloudResult<T = any> {
   error?: string
 }
 
-export interface Product {
-  _id: string
-  title: string
-  description: string
-  price: number
-  type: 'digital' | 'service' | 'physical'
-  deliveryMethod: 'download' | 'unlock' | 'ship'
-  cover: string
-  preview?: string
-  fullContent?: string
-  downloadUrl?: string
-  author: string
-  category: string
-  tags: string[]
-  rating: number
-  reviewCount: number
-  purchaseCount: number
-  viewCount: number
-  status: 'published' | 'draft' | 'archived'
-  createdAt: string
-  updatedAt: string
-}
-
-export interface Order {
-  _id: string
-  userId: string
-  items: Array<{
-    productId: string
-    title: string
-    price: number
-    quantity: number
-  }>
-  subtotal: number
-  discount: number
-  total: number
-  payment: {
-    method: string
-    status: 'pending' | 'paid' | 'shipped' | 'completed' | 'refunded' | 'failed'
-    transactionId: string | null
-    paidAt: string | null
-  }
-  shipping?: {
-    address: string
-    phone: string
-    name: string
-  }
-  createdAt: string
-  updatedAt: string
-}
-
 class AdminCloudService {
-  private db = Taro.cloud.database()
+  private _db: any = null
+
+  private get db(): any {
+    if (!this._db) {
+      if (typeof Taro.cloud === 'undefined') {
+        throw new Error('Cloud not initialized')
+      }
+      this._db = Taro.cloud.database()
+    }
+    return this._db
+  }
 
   // ============ Products ============
 
@@ -83,7 +45,6 @@ class AdminCloudService {
         data: res.data as Product[]
       }
     } catch (error: any) {
-      console.error('Get products error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -109,7 +70,6 @@ class AdminCloudService {
         data: { _id: res._id, ...data } as Product
       }
     } catch (error: any) {
-      console.error('Create product error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -125,7 +85,6 @@ class AdminCloudService {
 
       return { success: true }
     } catch (error: any) {
-      console.error('Update product error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -135,7 +94,6 @@ class AdminCloudService {
       await this.db.collection('products').doc(id).remove()
       return { success: true }
     } catch (error: any) {
-      console.error('Delete product error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -163,7 +121,6 @@ class AdminCloudService {
         data: res.data as Order[]
       }
     } catch (error: any) {
-      console.error('Get orders error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -182,7 +139,6 @@ class AdminCloudService {
 
       return { success: true }
     } catch (error: any) {
-      console.error('Update order status error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -197,7 +153,6 @@ class AdminCloudService {
       filePath
     })
 
-    // Get temp URL
     const urlRes = await Taro.cloud.getTempFileURL({
       fileList: [res.fileID]
     })
@@ -216,7 +171,6 @@ class AdminCloudService {
         data: res.data
       }
     } catch (error: any) {
-      console.error('Get store config error:', error)
       return { success: false, error: error.message }
     }
   }
@@ -226,7 +180,6 @@ class AdminCloudService {
       await this.db.collection('config').doc('store').set({ data: config })
       return { success: true }
     } catch (error: any) {
-      console.error('Save store config error:', error)
       return { success: false, error: error.message }
     }
   }

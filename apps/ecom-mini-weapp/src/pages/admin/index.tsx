@@ -1,18 +1,16 @@
 import Taro from '@tarojs/taro'
 import { useEffect, useState } from 'react'
 import { View, Text, Button } from '@tarojs/components'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store'
 import './index.scss'
-
-// Hidden admin access: tap logo 5 times on profile page
-const ADMIN_OPENIDS = [
-  // Add admin openids here, e.g. 'oXXXXXX...'
-]
 
 export default function AdminIndex() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
-  const user = useSelector((state: any) => state.user)
+  const user = useSelector((state: RootState) => state.user)
+  const storeConfig = useSelector((state: RootState) => state.storeConfig)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     checkAdminAccess()
@@ -20,32 +18,63 @@ export default function AdminIndex() {
 
   const checkAdminAccess = async () => {
     try {
-      // Get current user's openid via WeChat cloud
-      const { result } = await Taro.cloud.callFunction({
-        name: 'getUserInfo',
-        data: {}
-      }).catch(() => ({ result: null }))
+      let openid = user.id || ''
 
-      const openid = result?.openid || user.id
+      // Get openid from cloud if not available
+      if (!openid && typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+        try {
+          const { result } = await Taro.cloud.callFunction({
+            name: 'getUserInfo',
+            data: {}
+          }).catch(() => ({ result: null }))
+          openid = result?.openid || ''
+        } catch (e) {
+          // Cloud not available
+        }
+      }
 
-      // Check if user is admin
-      const adminStatus = ADMIN_OPENIDS.includes(openid) || isDevMode()
-      setIsAdmin(adminStatus)
+      // Auto-login if not logged in
+      if (!user.isLoggedIn && openid) {
+        dispatch({
+          type: 'user/login',
+          payload: { id: openid, name: 'User' }
+        })
+      }
+
+      // Check admin access via cloud function (proper auth)
+      let hasAccess = false
+
+      if (typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+        try {
+          const res = await Taro.cloud.callFunction({
+            name: 'checkAdminAccess',
+            data: {}
+          })
+          hasAccess = res.result?.isAdmin || false
+        } catch (e) {
+          // Cloud function not available - check local config
+        }
+      }
+
+      // Fallback: check against locally stored admin OpenIDs
+      if (!hasAccess && openid) {
+        const adminOpenids = storeConfig.adminOpenids || []
+        hasAccess = adminOpenids.includes(openid)
+      }
+
+      // No fallback - admin access must be explicitly granted via cloud config or openid list
+
+      setIsAdmin(hasAccess)
     } catch (err) {
-      console.error('Admin check failed:', err)
+      setIsAdmin(false)
     } finally {
       setLoading(false)
     }
   }
 
-  const isDevMode = () => {
-    // In dev mode, allow access (remove in production)
-    return process.env.NODE_ENV === 'development'
-  }
-
   const navigateTo = (page: string) => {
     Taro.navigateTo({
-      url: `/pages/admin/${page}/index`
+      url: `/pages/admin/${page}`
     })
   }
 
@@ -62,6 +91,7 @@ export default function AdminIndex() {
       <View className="admin-index admin-locked">
         <Text className="title">Admin Access</Text>
         <Text className="subtitle">You don't have permission to access admin panel</Text>
+        <Text className="subtitle hint">Add your OpenID in Settings -> Admin Access</Text>
         <Button onClick={() => Taro.navigateBack()}>Go Back</Button>
       </View>
     )

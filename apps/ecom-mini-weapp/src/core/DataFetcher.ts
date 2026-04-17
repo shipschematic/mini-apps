@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro'
 import { DataSource, DataTransformer } from './types'
 import { store } from '../store'
-import { ConfigParser } from './ConfigParser'
 
 /**
  * DataFetcher - Unified data fetching from multiple sources
@@ -173,19 +172,31 @@ DataFetcher.registerTransformer('lowercase', (data) =>
 )
 
 // Register default functions
-DataFetcher.registerFunction('getProductById', (params: Record<string, any>) => {
+DataFetcher.registerFunction('getProductById', async (params: Record<string, any>) => {
   const productId = params?.id
   if (!productId) {
     throw new Error('Product ID required')
   }
 
-  const config = ConfigParser.getConfig()
-  const products = config?.products || []
-  const product = products.find((p: any) => p.id === productId)
-
-  if (!product) {
-    throw new Error(`Product "${productId}" not found`)
+  // Try cloud database first (products created by admin)
+  try {
+    if (typeof Taro.cloud !== 'undefined' && Taro.cloud.callFunction) {
+      const result = await Taro.cloud.callFunction({
+        name: 'getProducts',
+        data: {}
+      })
+      if (result.result?.success && Array.isArray(result.result.data)) {
+        const product = result.result.data.find((p: any) =>
+          p._id === productId || p.id === productId
+        )
+        if (product) {
+          return { product }
+        }
+      }
+    }
+  } catch {
+    // Cloud not available, fall through
   }
 
-  return { product }
+  throw new Error(`Product "${productId}" not found`)
 })

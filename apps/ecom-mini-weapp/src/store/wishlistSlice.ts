@@ -1,8 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { WishlistItem } from '../core/types'
 
 interface WishlistState {
   items: WishlistItem[]
+}
+
+interface AddPayload {
+  productId: string
+  data?: any
+}
+
+interface RemovePayload {
+  itemId: string
 }
 
 const initialState: WishlistState = {
@@ -13,11 +22,10 @@ const wishlistSlice = createSlice({
   name: 'wishlist',
   initialState,
   reducers: {
-    add(state: any, action: any) {
+    add(state, action: PayloadAction<AddPayload>) {
       const { productId, data } = action.payload
       
-      // Check if item already exists
-      const existingItem = state.items.find((item: any) => item.productId === productId)
+      const existingItem = state.items.find(item => item.productId === productId)
 
       if (!existingItem) {
         state.items.push({
@@ -28,12 +36,12 @@ const wishlistSlice = createSlice({
       }
     },
 
-    remove(state: any, action: any) {
+    remove(state, action: PayloadAction<RemovePayload>) {
       const { itemId } = action.payload
-      state.items = state.items.filter((item: any) => item.id !== itemId)
+      state.items = state.items.filter(item => item.id !== itemId)
     },
 
-    clear(state: any) {
+    clear(state) {
       state.items = []
     }
   }

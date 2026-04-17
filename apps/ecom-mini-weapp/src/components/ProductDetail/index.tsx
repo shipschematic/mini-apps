@@ -45,9 +45,9 @@ export default function ProductDetail({ data, config, onAction }: ProductDetailP
 
   const handleBuyNow = () => {
     if (onAction) {
+      // Use purchase action for direct buy (payment flow)
       onAction([
-        { type: 'addToCart', payload: { ...data, quantity, selectedFormat } },
-        { type: 'navigate', payload: { target: 'cart' } }
+        { type: 'purchase', payload: { ...data, quantity, selectedFormat } }
       ], { item: data })
     }
   }

@@ -12,14 +12,6 @@ dist/
 .rn_temp/
 .temp/
 
-# ============ Admin Panel ============
-admin/node_modules/
-admin/dist/
-
-# ============ Backend ============
-backend/node_modules/
-backend/dist/
-
 # ============ Cloud Functions ============
 cloudfunctions/node_modules/
 
@@ -45,15 +37,13 @@ yarn-error.log*
 .env.production
 
 # ============ CodeBuddy ============
+.codebuddy/
 .trae/
 
 # ============ Cache ============
 .cache/
 .swc/
 *.tsbuildinfo
-
-# ============ Backup ============
-BK/
 
 # ============ Coverage ============
 coverage/
@@ -66,3 +56,5 @@ coverage/
 *.njsproj
 *.sln
 *.sw?
+build_output.txt
+jest.config.js.bak

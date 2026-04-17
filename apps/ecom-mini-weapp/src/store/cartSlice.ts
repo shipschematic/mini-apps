@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CartItem } from '../core/types'
 
 interface CartState {
@@ -9,16 +9,32 @@ const initialState: CartState = {
   items: []
 }
 
+interface AddPayload {
+  productId: string
+  quantity: number
+  variant?: any
+  price: number
+  data?: any
+}
+
+interface RemovePayload {
+  itemId: string
+}
+
+interface UpdatePayload {
+  itemId: string
+  quantity: number
+}
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add(state: any, action: any) {
+    add(state, action: PayloadAction<AddPayload>) {
       const { productId, quantity, variant, price, data } = action.payload
       
-      // Check if item already exists
       const existingItem = state.items.find(
-        (item: any) => item.productId === productId && JSON.stringify(item.variant) === JSON.stringify(variant)
+        item => item.productId === productId && JSON.stringify(item.variant) === JSON.stringify(variant)
       )
 
       if (existingItem) {
@@ -35,25 +51,25 @@ const cartSlice = createSlice({
       }
     },
 
-    remove(state: any, action: any) {
+    remove(state, action: PayloadAction<RemovePayload>) {
       const { itemId } = action.payload
-      state.items = state.items.filter((item: any) => item.id !== itemId)
+      state.items = state.items.filter(item => item.id !== itemId)
     },
 
-    update(state: any, action: any) {
+    update(state, action: PayloadAction<UpdatePayload>) {
       const { itemId, quantity } = action.payload
       
-      const item = state.items.find((item: any) => item.id === itemId)
+      const item = state.items.find(item => item.id === itemId)
       if (item) {
         if (quantity <= 0) {
-          state.items = state.items.filter((i: any) => i.id !== itemId)
+          state.items = state.items.filter(i => i.id !== itemId)
         } else {
           item.quantity = quantity
         }
       }
     },
 
-    clear(state: any) {
+    clear(state) {
       state.items = []
     }
   }

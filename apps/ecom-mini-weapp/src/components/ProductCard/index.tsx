@@ -22,9 +22,6 @@ export default function ProductCard({ data, config = {}, onAction }: ProductCard
   } = config
 
   const handleClick = () => {
-    console.log('[ProductCard] handleClick called')
-    console.log('[ProductCard] data:', data)
-    
     if (onAction) {
       onAction(
         [{ type: 'navigate', payload: { target: 'detail', params: { id: data.id } } }],
@@ -35,30 +32,71 @@ export default function ProductCard({ data, config = {}, onAction }: ProductCard
 
   const handleAction = (e: any) => {
     e.stopPropagation()
-    console.log('[ProductCard] handleAction called for type:', data.deliveryMethod)
     
     if (!onAction) return
 
     const actionType = data.deliveryMethod
     const actions: any[] = []
+    
+    // Resolve product ID - try id, _id, or productId
+    const productId = data.id || data._id || data.productId
+    const productTitle = data.title || 'Product'
+    const productPrice = data.price || 0
 
     switch (actionType) {
       case 'download':
       case 'unlock':
+        // For purchase: pass all required data in payload
+        // Note: paymentService handles success/error toast internally
         actions.push(
-          { type: 'purchase', payload: { productId: data.id, price: data.price, title: data.title } },
-          { type: 'showToast', payload: { title: 'Purchase successful!', icon: 'success' } }
+          { 
+            type: 'purchase', 
+            payload: { 
+              productId: productId,
+              id: productId,
+              _id: productId,
+              title: productTitle,
+              price: productPrice,
+              ...data
+            } 
+          }
         )
         break
       case 'ship':
+        // For cart: pass product data
         actions.push(
-          { type: 'addToCart', payload: { ...data, quantity: 1 } },
+          { 
+            type: 'addToCart', 
+            payload: { 
+              productId: productId,
+              id: productId,
+              _id: productId,
+              title: productTitle,
+              price: productPrice,
+              quantity: 1,
+              ...data
+            } 
+          },
           { type: 'showToast', payload: { title: 'Added to cart', icon: 'success' } }
         )
         break
+      default:
+        // Fallback: try to purchase if no delivery method
+        actions.push(
+          { 
+            type: 'purchase', 
+            payload: { 
+              productId: productId,
+              id: productId,
+              _id: productId,
+              title: productTitle,
+              price: productPrice,
+              ...data
+            } 
+          }
+        )
     }
 
-    console.log('[ProductCard] Executing actions:', actions)
     onAction(actions, { item: data })
   }
 

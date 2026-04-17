@@ -27,8 +27,7 @@ export default function LockedContent({ data, config, onAction }: LockedContentP
   const handlePurchase = () => {
     if (onAction) {
       onAction([
-        { type: 'addToCart', payload: { ...data, quantity: 1 } },
-        { type: 'navigate', payload: { target: 'checkout' } }
+        { type: 'purchase', payload: { ...data, productId: data.id } }
       ], { item: data })
     }
   }
