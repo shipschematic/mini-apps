@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store'
 import { remove, update, clear } from '../../store/cartSlice'
+import { paymentService } from '../../services/paymentService'
 import './index.scss'
 
 export default function CartPage() {
@@ -19,12 +20,23 @@ export default function CartPage() {
     dispatch(update({ itemId, quantity }))
   }
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cartItems.length === 0) {
       Taro.showToast({ title: 'Cart is empty', icon: 'none' })
       return
     }
-    Taro.showToast({ title: 'Checkout coming soon', icon: 'none' })
+    const result = await paymentService.checkout(
+      cartItems.map(item => ({
+        productId: item.productId,
+        title: item.data?.title || 'Product',
+        price: item.price,
+        quantity: item.quantity
+      })),
+      totalPrice
+    )
+    if (!result.success) {
+      Taro.showToast({ title: result.error || 'Checkout failed', icon: 'none' })
+    }
   }
 
   const handleClearCart = () => {
