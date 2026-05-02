@@ -1,72 +1,43 @@
-# Template WeApp - Digital Product Store
+# E-com Mini App
 
-A Taro-based WeChat mini program template for selling digital products.
+A WeChat Mini App for e-commerce, built with Taro.
 
 ## Features
-
-- 🛒 **Product Catalog** - Browse digital products with category filtering and search
-- 🛍️ **Shopping Cart** - Add products, adjust quantities, checkout
-- 📦 **Orders** - View order history and payment status
-- 📚 **Library** - Access and download purchased digital products
-- 👤 **Profile** - User authentication and admin access
+- Product browsing and purchase
+- Digital library access
+- User profile and order management
+- WeChat Pay integration
 
 ## Tech Stack
-
-- **Framework:** Taro 3.x
-- **State Management:** Redux
-- **Cloud:** WeChat Cloud Development (TCB)
-- **Payment:** WeChat Pay (Cloud)
-
-## Cloud Environment
-
-- **Environment ID:** `cloud1-d4gc2e7w9638ce590`
-
-## Cloud Functions
-
-| Function | Purpose |
-|----------|---------|
-| `login` | Silent user authentication |
-| `createOrder` | Create order record |
-| `createPayment` | Initiate WeChat Pay payment |
-| `paymentCallback` | Handle payment result callback |
-| `getOrders` | Get user's order history |
-| `getUserPurchases` | Get user's purchased products |
-| `getUser` | Get/update user info |
-
-## Database Collections
-
-| Collection | Purpose |
-|------------|---------|
-| `orders` | Order and payment records |
-| `userInfo` | User profile and admin info |
+- Taro 3.x
+- React
+- TypeScript
+- WeChat Cloud Development (CloudBase)
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   cd miniprogram
-   npm install
-   ```
-3. Configure cloud environment in `cloudbaserc.json`
-4. Build and test in WeChat DevTools
+### Prerequisites
+- Node.js 16+
+- WeChat DevTools
+- CloudBase CLI (`npm install -g @cloudbase/cli`)
 
-## Project Structure
+### Installation
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Configure CloudBase environment in `cloudbaserc.json`
+4. Deploy cloud functions: `tcb fn deploy --all`
+5. Open in WeChat DevTools and run
 
-```
-miniprogram/
-├── cloudfunctions/     # Cloud functions (deployed to TCB)
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── hooks/          # Custom React hooks
-│   ├── pages/          # Page components
-│   ├── services/       # API and cloud services
-│   ├── store/          # Redux store and slices
-│   └── utils/          # Utility functions
-├── cloudbaserc.json    # Cloud environment config
-└── project.config.json # WeChat project config
-```
+## Cloud Functions
+All cloud functions use the `ecom_` prefix:
+- `ecom_login` - User login
+- `ecom_getUser` - Get user info
+- `ecom_createOrder` - Create order
+- `ecom_createPayment` - Create payment
+- `ecom_paymentCallback` - Payment callback
+- `ecom_updateOrderStatus` - Update order status
+- `ecom_getOrders` - Get orders
+- `ecom_getUserPurchases` - Get user purchases
 
-## Admin Access
-
-Add admin openid to `cloudbaserc.json` to access admin panel.
+## License
+MIT
