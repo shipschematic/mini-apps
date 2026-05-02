@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
       if (ensureCloudInit()) {
         const res: any = await Taro.cloud.callFunction({
-          name: 'getUser',
+          name: 'ecom_getUser',
           data: {}
         })
 
@@ -59,7 +59,7 @@ export default function ProfilePage() {
       if (cloudReady) {
         try {
           const res: any = await Taro.cloud.callFunction({
-            name: 'getUser',
+            name: 'ecom_getUser',
             data: {}
           })
 

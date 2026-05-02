@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
   const { status, limit = 100, skip = 0 } = event
 
   try {
-    let query = db.collection('orders').where({
+    let query = db.collection('ecom_orders').where({
       userId: OPENID
     })
 

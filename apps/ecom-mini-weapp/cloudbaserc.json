@@ -5,56 +5,56 @@
   "functionRoot": "cloudfunctions",
   "functions": [
     {
-      "name": "createPayment",
+      "name": "ecom_createPayment",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "paymentCallback",
+      "name": "ecom_paymentCallback",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "createOrder",
+      "name": "ecom_createOrder",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "getOrders",
+      "name": "ecom_getOrders",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "updateOrderStatus",
+      "name": "ecom_updateOrderStatus",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "getUserPurchases",
+      "name": "ecom_getUserPurchases",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "getUser",
+      "name": "ecom_getUser",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",
       "handler": "index.main"
     },
     {
-      "name": "login",
+      "name": "ecom_login",
       "timeout": 10,
       "envVariables": {},
       "runtime": "Nodejs16.13",

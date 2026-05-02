@@ -32,7 +32,7 @@ exports.main = async (event, context) => {
       updatedAt: db.serverDate()
     }
     
-    const result = await db.collection('orders').add({
+    const result = await db.collection('ecom_orders').add({
       data: order
     })
     

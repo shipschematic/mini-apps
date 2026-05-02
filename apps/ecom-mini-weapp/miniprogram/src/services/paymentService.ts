@@ -93,7 +93,7 @@ class PaymentService {
       Taro.showLoading({ title: 'Creating order...' })
 
       const createRes: any = await Taro.cloud.callFunction({
-        name: 'createPayment',
+        name: 'ecom_createPayment',
         data: { orderId, totalFee, body }
       })
 
@@ -162,7 +162,7 @@ class PaymentService {
 
       // Step 1: Create order in cloud DB
       const orderRes: any = await Taro.cloud.callFunction({
-        name: 'createOrder',
+        name: 'ecom_createOrder',
         data: {
           items: [{
             productId: product.id,
@@ -228,7 +228,7 @@ class PaymentService {
 
       // Step 1: Create order
       const orderRes: any = await Taro.cloud.callFunction({
-        name: 'createOrder',
+        name: 'ecom_createOrder',
         data: { items, total, discount: 0 }
       })
 

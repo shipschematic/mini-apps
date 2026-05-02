@@ -45,13 +45,13 @@ exports.main = async (event) => {
       subMchId: event.subMchId || undefined, // Optional: sub-merchant ID (for multi-merchant)
       totalFee: Math.round(totalFee),        // Amount in fen (分), must be integer
       envId: 'cloud1-d4gc2e7w9638ce590',      // Cloud env ID for payment callback
-      functionName: 'paymentCallback',        // Cloud function name for payment result callback
+      functionName: 'ecom_paymentCallback',   // Cloud function name for payment result callback
       nonceStr: Math.random().toString(36).slice(2),    // Random string
       tradeType: 'JSAPI',                    // Payment type for Mini Program
     })
 
     // Save payment record to database
-    await db.collection('payments').add({
+    await db.collection('ecom_payments').add({
       data: {
         orderId: orderId,
         outTradeNo: outTradeNo,
@@ -66,7 +66,7 @@ exports.main = async (event) => {
 
     // Update order status to pending payment
     try {
-      await db.collection('orders').doc(orderId).update({
+      await db.collection('ecom_orders').doc(orderId).update({
         data: {
           'payment.status': 'pending',
           'payment.outTradeNo': outTradeNo,

@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
   }
 
   try {
-    const userCollection = db.collection('userInfo')
+    const userCollection = db.collection('ecom_userInfo')
 
     const existing = await userCollection.where({ openid: OPENID }).get()
 

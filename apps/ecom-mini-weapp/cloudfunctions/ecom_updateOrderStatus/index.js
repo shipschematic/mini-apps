@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
       updatedAt: db.serverDate()
     }
     
-    const result = await db.collection('orders').doc(orderId).update({
+    const result = await db.collection('ecom_orders').doc(orderId).update({
       data: updates
     })
     

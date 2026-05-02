@@ -42,7 +42,7 @@ export default function LibraryPage() {
       }
 
       const res: any = await Taro.cloud.callFunction({
-        name: 'getUserPurchases',
+        name: 'ecom_getUserPurchases',
         data: {}
       })
 

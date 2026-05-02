@@ -53,7 +53,7 @@ class CloudService {
       }
       console.log('Calling getProducts cloud function...')
       const result = await Taro.cloud.callFunction({
-        name: 'getProducts',
+        name: 'ecom_getProducts',
         data: filters || {}
       })
       console.log('Cloud function result:', result)
@@ -76,7 +76,7 @@ class CloudService {
         return { success: false, error: 'Cloud not available' }
       }
       const result = await Taro.cloud.callFunction({
-        name: 'createOrder',
+        name: 'ecom_createOrder',
         data: { items, total, discount }
       })
       
@@ -92,7 +92,7 @@ class CloudService {
         return { success: false, error: 'Cloud not available' }
       }
       const result = await Taro.cloud.callFunction({
-        name: 'getUserPurchases',
+        name: 'ecom_getUserPurchases',
         data: {}
       })
       

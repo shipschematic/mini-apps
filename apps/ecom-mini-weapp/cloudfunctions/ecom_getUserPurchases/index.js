@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   const { OPENID } = cloud.getWXContext()
   
   try {
-    const ordersResult = await db.collection('orders')
+    const ordersResult = await db.collection('ecom_orders')
       .where({
         userId: OPENID,
         'payment.status': 'paid'

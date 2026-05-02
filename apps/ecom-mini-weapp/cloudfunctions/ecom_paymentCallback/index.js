@@ -24,7 +24,7 @@ exports.main = async (event) => {
 
   try {
     // Find the payment record by outTradeNo
-    const paymentRes = await db.collection('payments')
+    const paymentRes = await db.collection('ecom_payments')
       .where({ outTradeNo: outTradeNo })
       .get()
 
@@ -37,7 +37,7 @@ exports.main = async (event) => {
     const isPaid = resultCode === 'SUCCESS'
 
     // Update payment record
-    await db.collection('payments').doc(payment._id).update({
+    await db.collection('ecom_payments').doc(payment._id).update({
       data: {
         status: isPaid ? 'paid' : 'failed',
         transactionId: transactionId || null,
@@ -48,7 +48,7 @@ exports.main = async (event) => {
 
     // Update order status
     if (payment.orderId) {
-      await db.collection('orders').doc(payment.orderId).update({
+      await db.collection('ecom_orders').doc(payment.orderId).update({
         data: {
           'payment.status': isPaid ? 'paid' : 'failed',
           'payment.transactionId': transactionId || null,

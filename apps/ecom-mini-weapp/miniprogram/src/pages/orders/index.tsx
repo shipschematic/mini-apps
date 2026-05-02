@@ -43,7 +43,7 @@ export default function OrdersPage() {
       }
 
       const res: any = await Taro.cloud.callFunction({
-        name: 'getOrders',
+        name: 'ecom_getOrders',
         data: { limit: 50 }
       })
 
