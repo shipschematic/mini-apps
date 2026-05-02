@@ -57,28 +57,6 @@ exports.main = async (event) => {
           updatedAt: db.serverDate()
         }
       })
-
-      // If paid, update product purchase count
-      if (isPaid) {
-        try {
-          const orderRes = await db.collection('orders').doc(payment.orderId).get()
-          const order = orderRes.data
-          
-          if (order.items && Array.isArray(order.items)) {
-            for (const item of order.items) {
-              // Increment purchase count for each product
-              await db.collection('products').doc(item.productId).update({
-                data: {
-                  purchaseCount: db.command.inc(item.quantity || 1),
-                  updatedAt: db.serverDate()
-                }
-              })
-            }
-          }
-        } catch (e) {
-          // Non-critical: order items update failed
-        }
-      }
     }
 
     // MUST return { errcode: 0 } to acknowledge receipt

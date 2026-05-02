@@ -44,7 +44,7 @@ exports.main = async (event) => {
       spbillCreateIp: '127.0.0.1',          // Terminal IP (cloud function default)
       subMchId: event.subMchId || undefined, // Optional: sub-merchant ID (for multi-merchant)
       totalFee: Math.round(totalFee),        // Amount in fen (分), must be integer
-      envId: cloud.DYNAMIC_CURRENT_ENV,      // Cloud env ID for payment callback
+      envId: 'cloud1-d4gc2e7w9638ce590',      // Cloud env ID for payment callback
       functionName: 'paymentCallback',        // Cloud function name for payment result callback
       nonceStr: Math.random().toString(36).slice(2),    // Random string
       tradeType: 'JSAPI',                    // Payment type for Mini Program

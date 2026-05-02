@@ -38,32 +38,6 @@ exports.main = async (event, context) => {
       })
     })
     
-    if (productIds.length > 0) {
-      const MAX_BATCH_SIZE = 20
-      const batches = []
-      
-      for (let i = 0; i < productIds.length; i += MAX_BATCH_SIZE) {
-        batches.push(productIds.slice(i, i + MAX_BATCH_SIZE))
-      }
-      
-      const products = []
-      for (const batch of batches) {
-        const productsResult = await db.collection('products')
-          .where({
-            _id: _.in(batch)
-          })
-          .get()
-        products.push(...productsResult.data)
-      }
-      
-      purchases.forEach(purchase => {
-        const product = products.find(p => p._id === purchase.productId)
-        if (product) {
-          purchase.product = product
-        }
-      })
-    }
-    
     return {
       success: true,
       data: purchases
