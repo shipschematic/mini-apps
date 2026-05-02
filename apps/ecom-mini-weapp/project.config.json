@@ -1,9 +1,9 @@
 {
   "miniprogramRoot": "dist/",
-  "cloudbaseRoot": "cloudbaserc.json",
+  "cloudbaseRoot": "",
   "projectname": "taro-whitelabel-ecommerce",
   "description": "Configuration-driven whitelabel e-commerce Mini Program",
-  "appid": "touristappid",
+  "appid": "wx0000000000000000",
   "setting": {
     "urlCheck": false,
     "es6": true,

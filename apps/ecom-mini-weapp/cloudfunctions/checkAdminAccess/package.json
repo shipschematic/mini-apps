@@ -1,9 +1,0 @@
-{
-  "name": "checkAdminAccess",
-  "version": "1.0.0",
-  "description": "Check if current user has admin access",
-  "main": "index.js",
-  "dependencies": {
-    "wx-server-sdk": "~2.6.3"
-  }
-}
