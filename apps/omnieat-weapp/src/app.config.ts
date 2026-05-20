@@ -1,0 +1,110 @@
+export default defineAppConfig({
+  entryPagePath: 'pages/onboarding/index',
+  pages: [
+    'pages/onboarding/index',
+    'pages/sign-in/index',
+    'pages/sign-up/index',
+    'pages/home/index',
+    'pages/categories/index',
+    'pages/search/index',
+    'pages/saved/index',
+    'pages/upload/index',
+    'pages/profile/index',
+    'pages/recipe-detail/index',
+    'pages/step-by-step/index',
+    'pages/live-cooking/index',
+    'pages/notifications/index',
+    'pages/settings/index',
+    'pages/account/index',
+    'pages/theme/index',
+    'pages/language/index',
+    'pages/live-collaboration/index',
+    'pages/favorite/index',
+    'pages/finish-cooking/index',
+    'pages/recipe-drafts/index',
+    'pages/my-recipes/index',
+    'pages/recipes-for-you/index',
+    'pages/comments/index',
+    'pages/edit-profile/index',
+    'pages/forgot-password/index',
+    'pages/account-verification/index',
+    'pages/reset-password/index',
+    'pages/reviews/index',
+    'pages/add-reviews/index',
+    'pages/payment-method/index',
+    'pages/add-card/index',
+    'pages/subscribe/index',
+    'pages/privacy/index',
+    'pages/location/index',
+    'pages/help/index',
+    'pages/terms/index',
+    'pages/about/index',
+    'pages/profile-livestream/index',
+    'pages/livestream-watch/index',
+    'pages/livestream-schedule/index',
+    'pages/payment-processing/index',
+    'pages/payment-history/index',
+    'pages/explore/index',
+    'pages/search-result/index',
+    'pages/profile-user/index',
+    'pages/profile-insights/index',
+    'pages/reset-email/index',
+    'pages/account-verification-disabled/index',
+    'pages/edit-recipe/index',
+    'pages/oauth-callback/index',
+    'pages/all-categories/index'
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#FFFFFF',
+    navigationBarTitleText: 'Dapoer',
+    navigationBarTextStyle: 'black',
+    backgroundColor: '#F7F7F7'
+  },
+  tabBar: {
+    color: '#999999',
+    selectedColor: '#FF6B35',
+    backgroundColor: '#FFFFFF',
+    borderStyle: 'black',
+    list: [
+      {
+        pagePath: 'pages/home/index',
+        text: 'Home',
+        iconPath: 'assets/icons/home.png',
+        selectedIconPath: 'assets/icons/home-active.png'
+      },
+      {
+        pagePath: 'pages/search/index',
+        text: 'Search',
+        iconPath: 'assets/icons/search.png',
+        selectedIconPath: 'assets/icons/search-active.png'
+      },
+      {
+        pagePath: 'pages/saved/index',
+        text: 'Saved',
+        iconPath: 'assets/icons/bookmark.png',
+        selectedIconPath: 'assets/icons/bookmark-active.png'
+      },
+      {
+        pagePath: 'pages/upload/index',
+        text: 'Upload',
+        iconPath: 'assets/icons/plus.png',
+        selectedIconPath: 'assets/icons/plus-active.png'
+      },
+      {
+        pagePath: 'pages/profile/index',
+        text: 'Profile',
+        iconPath: 'assets/icons/profile.png',
+        selectedIconPath: 'assets/icons/profile-active.png'
+      }
+    ]
+  },
+  permission: {
+    'scope.userLocation': {
+      desc: 'Your location is used for recipe recommendations'
+    }
+  },
+  requiredPrivateInfos: ['getLocation'],
+  // style: 'v2', // disabled: v2 rendering engine can cause blank screen with Taro 4
+  sitemapLocation: 'sitemap.json'
+})

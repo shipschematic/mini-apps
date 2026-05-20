@@ -1,0 +1,74 @@
+@use '../../config/theme' as *;
+
+.finish {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-xxxl;
+    text-align: center;
+  }
+
+  &__illustration {
+    margin-bottom: $spacing-xxl;
+  }
+
+  &__image {
+    width: 200px;
+    height: 200px;
+    border-radius: $border-radius-xxl;
+    object-fit: cover;
+  }
+
+  &__confetti {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__emoji {
+    font-size: 32px;
+    animation: bounce 1s ease-in-out infinite;
+    
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+
+  &__title {
+    font-size: $typography-font-size-xxl;
+    font-weight: $typography-font-family-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: $typography-font-size-lg;
+    color: $colors-text-secondary;
+    margin-bottom: $spacing-xxxl;
+  }
+
+  &__actions {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

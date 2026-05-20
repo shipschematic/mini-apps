@@ -1,0 +1,210 @@
+@use '../../config/theme' as *;
+
+.profile {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__content {
+    flex: 1;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-xl $spacing-md;
+    background-color: $colors-neutral-50;
+  }
+
+  &__avatar-container {
+    position: relative;
+    margin-bottom: $spacing-md;
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: $border-radius-full;
+    border: 3px solid $colors-primary;
+  }
+
+  &__avatar-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-color: $colors-primary;
+    border-radius: $border-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  &__name {
+    font-size: $typography-font-size-xxl;
+    font-weight: 700;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__handle {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__stats {
+    display: flex;
+    gap: $spacing-xxl;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__stat-value {
+    font-size: $typography-font-size-lg;
+    font-weight: 700;
+    color: $colors-text-primary;
+  }
+
+  &__stat-label {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-md;
+  }
+
+  &__action-gap {
+    width: $spacing-md;
+  }
+
+  &__settings-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-md;
+  }
+
+  &__bio {
+    text-align: center;
+    max-width: 280px;
+  }
+
+  &__bio-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    line-height: $typography-line-height-relaxed;
+  }
+
+  &__tabs {
+    display: flex;
+    border-bottom: 1px solid $colors-neutral-200;
+    background-color: $colors-neutral-50;
+  }
+
+  &__tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+
+    &--active {
+      border-bottom-color: $colors-primary;
+    }
+  }
+
+  &__tab-text {
+    font-size: $typography-font-size-md;
+    font-weight: 500;
+    color: $colors-text-secondary;
+
+    .profile__tab--active & {
+      color: $colors-primary;
+    }
+  }
+
+  &__recipes {
+    padding: $spacing-md;
+  }
+
+  &__recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  &__recipe-item {
+    width: 100%;
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xxl;
+  }
+
+  &__empty-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__livestreams {
+    padding: $spacing-md;
+  }
+
+  &__livestream-card {
+    position: relative;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    height: 200px;
+  }
+
+  &__livestream-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__livestream-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-lg;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: $colors-text-inverse;
+  }
+
+  &__livestream-title {
+    display: block;
+    font-size: $typography-font-size-lg;
+    font-weight: 600;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__livestream-subtitle {
+    display: block;
+    font-size: $typography-font-size-sm;
+    opacity: 0.8;
+  }
+}

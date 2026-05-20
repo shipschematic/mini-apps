@@ -1,0 +1,46 @@
+@use '../../config/theme' as *;
+
+.favorite {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+
+  &__content {
+    padding: $spacing-lg;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px;
+  }
+
+  &__empty-icon {
+    font-size: 64px;
+    color: $colors-neutral-300;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__empty-title {
+    font-size: $typography-font-size-xl;
+    font-weight: $typography-font-family-semi-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__empty-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__item {
+    cursor: pointer;
+  }
+}

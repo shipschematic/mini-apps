@@ -1,0 +1,104 @@
+@use '../../config/theme' as *;
+
+.signup {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  padding: $spacing-xxxl $spacing-lg;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: $spacing-xxxl;
+  }
+
+  &__title {
+    font-size: $typography-font-size-xxl;
+    font-weight: $typography-font-family-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__subtitle {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__label {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    font-weight: $typography-font-family-medium;
+  }
+
+  &__input {
+    padding: $spacing-md $spacing-lg;
+    background-color: $colors-background-paper;
+    border-radius: $border-radius-lg;
+    border: 1px solid $colors-neutral-200;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__placeholder {
+    font-size: $typography-font-size-md;
+    color: $colors-neutral-400;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg $spacing-xxl;
+    min-height: 56px;
+    margin-top: $spacing-lg;
+
+    &--primary {
+      background-color: $colors-primary;
+      color: $colors-text-inverse;
+
+      &:active {
+        background-color: $colors-primary-dark;
+      }
+    }
+  }
+
+  &__btn-text {
+    font-size: $typography-font-size-xl;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: $spacing-xxxl;
+    text-align: center;
+  }
+
+  &__footer-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__footer-link {
+    font-size: $typography-font-size-md;
+    color: $colors-primary;
+    font-weight: $typography-font-family-medium;
+  }
+}

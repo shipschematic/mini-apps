@@ -1,0 +1,122 @@
+@import "../../app.scss";
+
+.reviews-page {
+  min-height: 100vh;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    background-color: #FFFFFF;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F0F0F0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
+
+  &__rating-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__rating-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333333;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__rating-count {
+    font-size: 13px;
+    color: #888888;
+    font-weight: 500;
+  }
+
+  &__list {
+    flex: 1;
+    padding: 20px;
+  }
+
+  &__card {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    border: 1px solid #F6F6F6;
+  }
+
+  &__card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    object-fit: cover;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__user-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  &__user-rating {
+    display: flex;
+    gap: 2px;
+  }
+
+  &__card-text {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+  }
+
+  &__empty {
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  &__empty-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+  }
+
+  &__empty-subtext {
+    font-size: 14px;
+    color: #888888;
+    line-height: 1.5;
+  }
+
+  &__bottom-spacing {
+    height: 80px;
+  }
+}

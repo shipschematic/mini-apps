@@ -1,0 +1,45 @@
+@use '../../config/theme' as *;
+
+.livestream-schedule {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__content {
+    flex: 1;
+    padding: $spacing-lg;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__label {
+    font-size: $typography-font-size-md;
+    font-weight: 600;
+    color: $colors-text-primary;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-md;
+    background-color: $colors-neutral-50;
+    border: 1px solid $colors-neutral-200;
+    border-radius: $border-radius-lg;
+    font-size: $typography-font-size-md;
+    color: $colors-text-primary;
+  }
+
+  &__actions {
+    margin-top: $spacing-lg;
+  }
+}

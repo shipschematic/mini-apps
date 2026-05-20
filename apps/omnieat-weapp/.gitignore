@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+out/
+.next/
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Database files
+*.db
+*.db-journal
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.swc/
+.cache/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# Prisma migrations (keep schema but not generated artifacts)
+# prisma/migrations/ can be committed, but .env should not
+
+# Figma exports (design reference only)
+figma/*.png

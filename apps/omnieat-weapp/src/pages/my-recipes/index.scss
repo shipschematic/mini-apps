@@ -1,0 +1,139 @@
+@use '../../config/theme' as *;
+
+.my-recipes {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  position: relative;
+
+  &__tabs {
+    display: flex;
+    padding: $spacing-md $spacing-lg;
+    gap: $spacing-md;
+    background-color: $colors-background-paper;
+    border-bottom: 1px solid $colors-neutral-200;
+  }
+
+  &__tab {
+    flex: 1;
+    padding: $spacing-md;
+    align-items: center;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+
+    &--active {
+      background-color: $colors-primary;
+
+      .my-recipes__tab-text {
+        color: $colors-white;
+      }
+    }
+  }
+
+  &__tab-text {
+    font-size: $typography-font-size-md;
+    font-weight: $typography-font-family-medium;
+    color: $colors-text-secondary;
+  }
+
+  &__content {
+    padding: $spacing-lg;
+    padding-bottom: 100px;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px;
+  }
+
+  &__empty-icon {
+    font-size: 64px;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__empty-title {
+    font-size: $typography-font-size-xl;
+    font-weight: $typography-font-family-semi-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__empty-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__actions {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    display: flex;
+    gap: $spacing-xs;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+
+    .my-recipes__item:active &,
+    .my-recipes__item:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__action {
+    width: 36px;
+    height: 36px;
+    background-color: $colors-white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $shadows-md;
+    cursor: pointer;
+
+    &:active {
+      background-color: $colors-neutral-100;
+    }
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: $colors-text-secondary;
+  }
+
+  &__fab {
+    position: fixed;
+    bottom: 100px;
+    right: $spacing-lg;
+    width: 56px;
+    height: 56px;
+    background-color: $colors-primary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $shadows-lg;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

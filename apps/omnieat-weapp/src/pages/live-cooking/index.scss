@@ -1,0 +1,234 @@
+@use '../../config/theme' as *;
+
+.live-stream {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__video-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__status-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-md;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent, rgba(0,0,0,0.6));
+    color: white;
+  }
+
+  &__badge-row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__live-badge {
+    background-color: $colors-error;
+    padding: 2px $spacing-sm;
+    border-radius: $border-radius-sm;
+    box-shadow: 0 2px 6px rgba(211, 47, 47, 0.4);
+  }
+
+  &__live-text {
+    font-size: $typography-font-size-xs;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+
+  &__viewers {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px $spacing-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &__viewers-text {
+    font-size: $typography-font-size-xs;
+    font-weight: 600;
+    color: white;
+  }
+
+  &__chef-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__chef-name {
+    font-size: $typography-font-size-md;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  &__recipe-name {
+    font-size: $typography-font-size-sm;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+
+  &__chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: $colors-neutral-50;
+    border-top-left-radius: $border-radius-xl;
+    border-top-right-radius: $border-radius-xl;
+    margin-top: -$border-radius-lg;
+    z-index: 10;
+    padding: $spacing-md;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+  }
+
+  &__chat-title {
+    font-size: $typography-font-size-md;
+    font-weight: 700;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__chat-scroll {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding-bottom: $spacing-md;
+  }
+
+  &__message-item {
+    display: flex;
+    gap: $spacing-sm;
+    animation: slideUp 0.3s ease-out both;
+  }
+
+  &__message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-full;
+    object-fit: cover;
+  }
+
+  &__message-content {
+    background-color: $colors-neutral-100;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-lg;
+    border-top-left-radius: 0;
+    max-width: 80%;
+  }
+
+  &__message-user {
+    font-size: $typography-font-size-xs;
+    font-weight: 700;
+    color: $colors-text-primary;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  &__message-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    line-height: $typography-line-height-normal;
+    display: block;
+  }
+
+  &__footer {
+    background-color: $colors-neutral-50;
+    padding: $spacing-md;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
+    z-index: 10;
+  }
+
+  &__input-row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__input {
+    flex: 1;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-full;
+    padding: $spacing-sm $spacing-lg;
+    font-size: $typography-font-size-md;
+    border: none;
+    outline: none;
+  }
+
+  &__send-btn {
+    width: 40px;
+    height: 40px;
+    background-color: $colors-primary;
+    border-radius: $border-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 79, 33, 0.2);
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__send-icon {
+    font-size: 18px;
+  }
+
+  &__like-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 $spacing-xs;
+
+    &:active {
+      transform: scale(0.9);
+      .live-stream__like-icon {
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  &__like-icon {
+    font-size: 24px;
+    transition: transform 0.2s ease;
+  }
+
+  &__like-count {
+    font-size: 10px;
+    font-weight: 700;
+    color: $colors-text-secondary;
+    margin-top: 2px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
