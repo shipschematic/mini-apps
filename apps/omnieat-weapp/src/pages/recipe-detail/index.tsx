@@ -82,10 +82,22 @@ export default class RecipeDetail extends Component<{}, { activeSection: 'overvi
     const { recipeId } = this.state
     Taro.navigateTo({ url: `/pages/step-by-step/index?id=${recipeId}` })
   }
-  handleToggleLike = () => {
+  handleToggleLike = async () => {
     const { isLiked, recipeId } = this.state
-    const nowLiked = toggleFavorite(recipeId)
+    const nowLiked = !isLiked
+
+    toggleFavorite(recipeId)
     this.setState({ isLiked: nowLiked })
+
+    try {
+      if (nowLiked) {
+        await request({ url: '/api/saved', method: 'POST', data: { recipeId } })
+      } else {
+        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId } })
+      }
+    } catch (err) {
+      console.error('Failed to update saved:', err)
+    }
   }
 
   render() {

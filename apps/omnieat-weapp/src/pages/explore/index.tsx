@@ -80,10 +80,21 @@ export default class Explore extends Component<{}, { selectedTab: string; favori
 
   handleRecipeClick = (id: string) => Taro.navigateTo({ url: `/pages/recipe-detail/index?id=${id}` })
 
-  handleToggleLike = (id: string, e: any) => {
+  handleToggleLike = async (id: string, e: any) => {
     e.stopPropagation()
+    const wasLiked = getFavoriteIds().includes(id)
     toggleFavorite(id)
     this.setState({ favorites: getFavoriteIds() })
+
+    try {
+      if (!wasLiked) {
+        await request({ url: '/api/saved', method: 'POST', data: { recipeId: id } })
+      } else {
+        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
+      }
+    } catch (err) {
+      console.error('Failed to update saved:', err)
+    }
   }
 
   render() {

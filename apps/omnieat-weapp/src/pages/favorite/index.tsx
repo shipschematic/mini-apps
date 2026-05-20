@@ -90,13 +90,24 @@ export default class Favorite extends Component<{}, { favorites: any[]; loading:
 
   handleRecipeClick = (id: string) => Taro.navigateTo({ url: `/pages/recipe-detail/index?id=${id}` })
 
-  handleToggleLike = (id: string, e: any) => {
+  handleToggleLike = async (id: string, e: any) => {
     e.stopPropagation()
+    const wasLiked = getFavoriteIds().includes(id)
     toggleFavorite(id)
     const favoriteIds = getFavoriteIds()
     this.setState((prev: any) => ({
       favorites: prev.favorites.filter((r: any) => favoriteIds.includes(r.id))
     }))
+
+    try {
+      if (!wasLiked) {
+        await request({ url: '/api/saved', method: 'POST', data: { recipeId: id } })
+      } else {
+        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
+      }
+    } catch (err) {
+      console.error('Failed to update saved:', err)
+    }
   }
 
   isFavorited = (id: string) => getFavoriteIds().includes(id)
