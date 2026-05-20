@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { View, Text, Input, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
+import { recipeStore } from '../../utils/recipeStore'
 import './index.scss'
 
 interface SearchRecipe {
@@ -11,27 +12,21 @@ interface SearchRecipe {
   image: string
 }
 
-const SEARCH_RECIPES: SearchRecipe[] = [
-  { id: '1', title: 'Beef Ramen', time: '120 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop' },
-  { id: '2', title: 'Tomato Soup', time: '220 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=400&fit=crop' },
-  { id: '3', title: 'Ribeye Steak', time: '45 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=400&fit=crop' },
-  { id: '4', title: 'Sweet and Sour Pork', time: '45 min', servings: '3 servings', image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=400&fit=crop' },
-  { id: '5', title: 'Baked Gochujang Chicken', time: '35 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=400&fit=crop' },
-  { id: '6', title: 'Steamed Siomay', time: '25 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&h=400&fit=crop' },
-  { id: '7', title: 'Clam Cheese Soup', time: '30 min', servings: '2 servings', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=400&fit=crop' },
-]
-
 interface SearchState {
   searchQuery: string
   recentSearches: string[]
   isSearching: boolean
+  searchResults: any[]
+  loading: boolean
 }
 
 export default class Search extends Component<{}, SearchState> {
   state: SearchState = {
     searchQuery: '',
     recentSearches: ['Ramen', 'Soup', 'Japanese', 'Healthy', 'Quick meals'],
-    isSearching: false
+    isSearching: false,
+    searchResults: [],
+    loading: false
   }
 
   handleSearchInput = (e: any) => {
@@ -40,14 +35,21 @@ export default class Search extends Component<{}, SearchState> {
   }
 
   handleClearSearch = () => {
-    this.setState({ searchQuery: '', isSearching: false })
+    this.setState({ searchQuery: '', isSearching: false, searchResults: [] })
   }
 
-  handleRecentClick = (search: string) => {
-    this.setState({ searchQuery: search, isSearching: true })
+  handleRecentClick = async (search: string) => {
+    this.setState({ searchQuery: search, isSearching: true, loading: true })
+    try {
+      const results = await recipeStore.search(search)
+      this.setState({ searchResults: results, loading: false })
+    } catch (err: any) {
+      Taro.showToast({ title: 'Search failed', icon: 'none' })
+      this.setState({ loading: false })
+    }
   }
 
-  handleRecipeClick = (id: number) => {
+  handleRecipeClick = (id: string) => {
     Taro.navigateTo({ url: `/pages/recipe-detail/index?id=${id}` })
   }
 
@@ -110,21 +112,19 @@ export default class Search extends Component<{}, SearchState> {
           <ScrollView style={{ flex: 1 }} scrollY>
             <View style={{ padding: '16px' }}>
               <Text style={{ fontSize: '16px', fontWeight: '600', color: '#212121', marginBottom: '12px' }}>Search Results</Text>
-              {SEARCH_RECIPES.filter((r) =>
-                r.title.toLowerCase().includes(searchQuery.toLowerCase())
-              ).length === 0 ? (
+              {this.state.loading ? (
+                <Text style={{ fontSize: '14px', color: '#757575', textAlign: 'center', marginTop: '24px' }}>Searching...</Text>
+              ) : this.state.searchResults.length === 0 ? (
                 <Text style={{ fontSize: '14px', color: '#757575', textAlign: 'center', marginTop: '24px' }}>No recipes found for "{searchQuery}"</Text>
               ) : (
-                SEARCH_RECIPES.filter((r) =>
-                  r.title.toLowerCase().includes(searchQuery.toLowerCase())
-                ).map((recipe) => (
-                  <View key={recipe.id} style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px' }} onClick={() => this.handleRecipeClick(Number(recipe.id))}>
+                this.state.searchResults.map((recipe) => (
+                  <View key={recipe.id} style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px' }} onClick={() => this.handleRecipeClick(recipe.id)}>
                     <View style={{ height: '160px', backgroundColor: '#EEEEEE', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Image src={recipe.image} mode='aspectFill' style={{ width: '100%', height: '100%' }} />
+                      <Image src={recipe.imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop'} mode='aspectFill' style={{ width: '100%', height: '100%' }} />
                     </View>
                     <View style={{ padding: '12px' }}>
                       <Text style={{ fontSize: '16px', fontWeight: '600', color: '#212121' }}>{recipe.title}</Text>
-                      <Text style={{ fontSize: '14px', color: '#757575', marginTop: '4px' }}>{recipe.time} * {recipe.servings}</Text>
+                      <Text style={{ fontSize: '14px', color: '#757575', marginTop: '4px' }}>{recipe.estimatedTime || recipe.time} * {recipe.quantity || recipe.servings}</Text>
                     </View>
                   </View>
                 ))

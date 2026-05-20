@@ -1,71 +1,20 @@
 import { Component } from 'react'
-import { View, Text, ScrollView, Image } from '@tarojs/components'
+import { View, Text, ScrollView } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { RecipeCard } from '../../components'
+import { categoryStore } from '../../utils/categoryStore'
+import { recipeStore } from '../../utils/recipeStore'
 
-// Inline favorites helpers to avoid common.js chunk dependency in WeApp
-const FAV_KEY = 'favorite_recipes'
-function getFavoriteIds(): string[] { return Taro.getStorageSync(FAV_KEY) || [] }
-function toggleFavorite(id: string): boolean {
-  const favs = getFavoriteIds()
-  const idx = favs.indexOf(id)
-  const updated = idx > -1 ? favs.filter(f => f !== id) : [...favs, id]
-  Taro.setStorageSync(FAV_KEY, updated)
-  return idx === -1
-}
-
-// Inline request function to avoid common.js chunk dependency in WeApp
-async function request({
-  url,
-  method = 'GET',
-  data = {},
-  headers = {}
-}: {
-  url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  data?: any
-  headers?: Record<string, string>
-}): Promise<any> {
-  const baseUrl = 'http://localhost:3001'
-  const token = Taro.getStorageSync('user_token')
-
-  const finalHeaders: Record<string, string> = {
-    'Content-Type': 'application/json',
-    ...headers,
-    ...(token ? { Authorization: `Bearer ${token}` } : {})
-  }
-
-  try {
-    const res = await Taro.request({
-      url: `${baseUrl}${url}`,
-      method,
-      data,
-      header: finalHeaders,
-    })
-
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return res.data
-    }
-    if (res.statusCode === 401) {
-      Taro.removeStorageSync('user_token')
-      Taro.redirectTo({ url: '/pages/sign-in/index' })
-    }
-    throw new Error(res.data?.error || `Request failed with status ${res.statusCode}`)
-  } catch (err) {
-    console.error('Network request error:', err)
-    throw err
-  }
-}
-
-export default class Categories extends Component<{}, { selectedId: string; favorites: string[]; categories: any[]; recipes: any[]; loading: boolean }> {
-  state = { selectedId: '', favorites: [] as string[], categories: [] as any[], recipes: [] as any[], loading: true }
+export default class Categories extends Component<{}, { selectedId: string; categories: any[]; recipes: any[]; loading: boolean }> {
+  state = { selectedId: '', categories: [] as any[], recipes: [] as any[], loading: true }
 
   async componentDidMount() {
     const params = Taro.getCurrentInstance().router?.params
     const categoryParam = params?.category
 
     try {
-      const cats = await request({ url: '/api/categories' })
+      // Use centralized category store
+      const cats = await categoryStore.getAll()
       const categories = cats || []
       const initialId = categoryParam && categories.find((c: any) => c.id === categoryParam || c.name.toLowerCase() === categoryParam.toLowerCase())
         ? categoryParam
@@ -80,18 +29,13 @@ export default class Categories extends Component<{}, { selectedId: string; favo
       console.error('Failed to load categories:', err)
       this.setState({ loading: false })
     }
-
-    this.setState({ favorites: getFavoriteIds() })
-  }
-
-  onShow = () => {
-    this.setState({ favorites: getFavoriteIds() })
   }
 
   loadRecipes = async (categoryId: string) => {
     this.setState({ loading: true })
     try {
-      const recs = await request({ url: `/api/recipes?categoryId=${categoryId}` })
+      // Use centralized recipe store
+      const recs = await recipeStore.getByCategory(categoryId)
       this.setState({ recipes: recs || [], loading: false })
     } catch (err) {
       console.error('Failed to load recipes:', err)
@@ -108,25 +52,8 @@ export default class Categories extends Component<{}, { selectedId: string; favo
     Taro.navigateTo({ url: `/pages/recipe-detail/index?id=${id}` })
   }
 
-  handleToggleLike = async (id: string, e: any) => {
-    e.stopPropagation()
-    const wasLiked = getFavoriteIds().includes(id)
-    toggleFavorite(id)
-    this.setState({ favorites: getFavoriteIds() })
-
-    try {
-      if (!wasLiked) {
-        await request({ url: '/api/saved', method: 'POST', data: { recipeId: id } })
-      } else {
-        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
-      }
-    } catch (err) {
-      console.error('Failed to update saved:', err)
-    }
-  }
-
   render() {
-    const { selectedId, favorites, categories, recipes, loading } = this.state
+    const { selectedId, categories, recipes, loading } = this.state
     const selectedCategory = categories.find((c: any) => c.id === selectedId)
 
     return (

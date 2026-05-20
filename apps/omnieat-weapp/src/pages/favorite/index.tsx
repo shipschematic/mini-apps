@@ -3,18 +3,6 @@ import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
 
-// Inline favorites helpers to avoid common.js chunk dependency in WeApp
-const FAV_KEY = 'favorite_recipes'
-function getFavoriteIds(): string[] { return Taro.getStorageSync(FAV_KEY) || [] }
-function toggleFavorite(id: string): boolean {
-  const favs = getFavoriteIds()
-  const idx = favs.indexOf(id)
-  const updated = idx > -1 ? favs.filter(f => f !== id) : [...favs, id]
-  Taro.setStorageSync(FAV_KEY, updated)
-  return idx === -1
-}
-
-// Inline request function to avoid common.js chunk dependency in WeApp
 async function request({
   url,
   method = 'GET',
@@ -71,20 +59,11 @@ export default class Favorite extends Component<{}, { favorites: any[]; loading:
   loadFavorites = async () => {
     this.setState({ loading: true })
     try {
-      const favoriteIds = getFavoriteIds()
-      if (favoriteIds.length === 0) {
-        this.setState({ favorites: [], loading: false })
-        return
-      }
-      const recipes = await request({ url: '/api/recipes' })
-      const all = recipes || []
-      const mapped = favoriteIds
-        .map((id) => all.find((r: any) => r.id === id))
-        .filter(Boolean)
-      this.setState({ favorites: mapped, loading: false })
+      const saved = await request({ url: '/api/saved' })
+      this.setState({ favorites: saved || [], loading: false })
     } catch (err) {
       console.error('Failed to load favorites:', err)
-      this.setState({ loading: false })
+      this.setState({ favorites: [], loading: false })
     }
   }
 
@@ -92,25 +71,18 @@ export default class Favorite extends Component<{}, { favorites: any[]; loading:
 
   handleToggleLike = async (id: string, e: any) => {
     e.stopPropagation()
-    const wasLiked = getFavoriteIds().includes(id)
-    toggleFavorite(id)
-    const favoriteIds = getFavoriteIds()
-    this.setState((prev: any) => ({
-      favorites: prev.favorites.filter((r: any) => favoriteIds.includes(r.id))
-    }))
+    const { favorites } = this.state
+    const wasLiked = favorites.some((f: any) => f.recipeId === id)
+
+    this.setState({ favorites: favorites.filter((f: any) => f.recipeId !== id) })
 
     try {
-      if (!wasLiked) {
-        await request({ url: '/api/saved', method: 'POST', data: { recipeId: id } })
-      } else {
-        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
-      }
+      await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
     } catch (err) {
       console.error('Failed to update saved:', err)
+      this.setState({ favorites })
     }
   }
-
-  isFavorited = (id: string) => getFavoriteIds().includes(id)
 
   render() {
     const { favorites, loading } = this.state
@@ -127,18 +99,18 @@ export default class Favorite extends Component<{}, { favorites: any[]; loading:
             ) : favorites.length === 0 ? (
               <Text style={{ fontSize: '14px', color: '#757575', textAlign: 'center', marginTop: '24px' }}>No favorite recipes yet</Text>
             ) : (
-              favorites.map((recipe: any) => (
-                <View key={recipe.id} style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', marginBottom: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'row' }} onClick={() => this.handleRecipeClick(recipe.id)}>
+              favorites.map((item: any) => (
+                <View key={item.recipe?.id || item.recipeId} style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', marginBottom: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'row' }} onClick={() => this.handleRecipeClick(item.recipe?.id || item.recipeId)}>
                   <View style={{ width: '100px', height: '100px', backgroundColor: '#EEEEEE', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Image src={recipe.imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop'} mode='aspectFill' style={{ width: '100%', height: '100%' }} />
+                    <Image src={item.recipe?.imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop'} mode='aspectFill' style={{ width: '100%', height: '100%' }} />
                   </View>
                   <View style={{ flex: 1, padding: '12px', justifyContent: 'center' }}>
                     <View style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <Text style={{ fontSize: '16px', fontWeight: '600', color: '#212121' }}>{recipe.title}</Text>
-                      <Text style={{ fontSize: '14px', color: this.isFavorited(recipe.id) ? '#FF4444' : '#CCCCCC' }} onClick={(e) => this.handleToggleLike(recipe.id, e)}>{this.isFavorited(recipe.id) ? '\u2764' : '\u2661'}</Text>
+                      <Text style={{ fontSize: '16px', fontWeight: '600', color: '#212121' }}>{item.recipe?.title}</Text>
+                      <Text style={{ fontSize: '14px', color: '#FF4444' }} onClick={(e) => this.handleToggleLike(item.recipe?.id || item.recipeId, e)}>{'\u2764'}</Text>
                     </View>
-                    <Text style={{ fontSize: '14px', color: '#757575', marginTop: '4px' }}>by {recipe.authorName}</Text>
-                    <Text style={{ fontSize: '12px', color: '#FF4F21', marginTop: '4px' }}>{recipe.category?.name || 'Recipe'}</Text>
+                    <Text style={{ fontSize: '14px', color: '#757575', marginTop: '4px' }}>by {item.recipe?.authorName || 'Unknown'}</Text>
+                    <Text style={{ fontSize: '12px', color: '#FF4F21', marginTop: '4px' }}>{item.recipe?.category?.name || 'Recipe'}</Text>
                   </View>
                 </View>
               ))

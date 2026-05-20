@@ -1,100 +1,62 @@
 import { Component } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
+import { favoriteStore } from '../../utils/favoriteStore'
+import { recipeStore } from '../../utils/recipeStore'
+import { categoryStore } from '../../utils/categoryStore'
+import { request } from '../../utils/request'
 
-// Inline favorites helpers to avoid common.js chunk dependency in WeApp
-const FAV_KEY = 'favorite_recipes'
-function getFavoriteIds(): string[] { return Taro.getStorageSync(FAV_KEY) || [] }
-function toggleFavorite(id: string): boolean {
-  const favs = getFavoriteIds()
-  const idx = favs.indexOf(id)
-  const updated = idx > -1 ? favs.filter(f => f !== id) : [...favs, id]
-  Taro.setStorageSync(FAV_KEY, updated)
-  return idx === -1
-}
-
-// Inline request function to avoid common.js chunk dependency in WeApp
-async function request({
-  url,
-  method = 'GET',
-  data = {},
-  headers = {}
-}: {
-  url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  data?: any
-  headers?: Record<string, string>
-}): Promise<any> {
-  const baseUrl = 'http://localhost:3001'
-  const token = Taro.getStorageSync('user_token')
-
-  const finalHeaders: Record<string, string> = {
-    'Content-Type': 'application/json',
-    ...headers,
-    ...(token ? { Authorization: `Bearer ${token}` } : {})
-  }
-
-  try {
-    const res = await Taro.request({
-      url: `${baseUrl}${url}`,
-      method,
-      data,
-      header: finalHeaders,
-    })
-
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return res.data
-    }
-    if (res.statusCode === 401) {
-      Taro.removeStorageSync('user_token')
-      Taro.redirectTo({ url: '/pages/sign-in/index' })
-    }
-    throw new Error(res.data?.error || `Request failed with status ${res.statusCode}`)
-  } catch (err) {
-    console.error('Network request error:', err)
-    throw err
-  }
-}
-
-export default class Home extends Component<{}, { displayName: string; favorites: string[]; categories: any[]; recipes: any[]; liveStreams: any[]; loading: boolean; error: string }> {
-  state = { displayName: 'Guest', favorites: [] as string[], categories: [] as any[], recipes: [] as any[], liveStreams: [] as any[], loading: true, error: '' }
+export default class Home extends Component<{}, { displayName: string; favoritedIds: string[]; categories: any[]; recipes: any[]; liveStreams: any[]; loading: boolean; error: string }> {
+  state = { displayName: 'Guest', favoritedIds: favoriteStore.getIds(), categories: [] as any[], recipes: [] as any[], liveStreams: [] as any[], loading: true, error: '' }
+  private unsubscribe?: () => void
 
   async componentDidMount() {
+    console.log('[HOME] componentDidMount')
+    
+    // Subscribe to favorite store updates
+    this.unsubscribe = favoriteStore.subscribe((ids) => {
+      console.log('[HOME] Store notification:', ids.length, 'favorites')
+      this.setState({ favoritedIds: ids })
+    })
+
     const userInfo = Taro.getStorageSync('user_info')
-    if (userInfo?.name) this.setState({ displayName: userInfo.name })
-    this.setState({ favorites: getFavoriteIds() })
+    if (userInfo?.name) {
+      this.setState({ displayName: userInfo.name })
+    }
 
     try {
+      // Use centralized stores for recipes and categories
       const [cats, recs, lives] = await Promise.all([
-        request({ url: '/api/categories' }),
-        request({ url: '/api/recipes' }),
+        categoryStore.getAll(),
+        recipeStore.getAll(),
         request({ url: '/api/livestreams' })
       ])
-      this.setState({ categories: cats || [], recipes: recs || [], liveStreams: lives || [], loading: false, error: '' })
+      
+      // Get fresh favorites from server
+      await favoriteStore.getFresh(true)
+      
+      this.setState({ 
+        categories: cats || [], 
+        recipes: recs || [], 
+        liveStreams: lives || [], 
+        loading: false, 
+        error: '' 
+      })
     } catch (err: any) {
-      console.error('Failed to load home data:', err)
-      this.setState({ loading: false, error: err.message || 'Failed to load data. Please check your connection.' })
+      this.setState({ loading: false, error: err.message || 'Failed to load data' })
     }
   }
 
-  onShow = () => {
-    this.setState({ favorites: getFavoriteIds() })
+  componentWillUnmount() {
+    this.unsubscribe?.()
   }
 
   handleToggleLike = async (id: string, e: any) => {
     e.stopPropagation()
-    const wasLiked = getFavoriteIds().includes(id)
-    toggleFavorite(id)
-    this.setState({ favorites: getFavoriteIds() })
-
     try {
-      if (!wasLiked) {
-        await request({ url: '/api/saved', method: 'POST', data: { recipeId: id } })
-      } else {
-        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId: id } })
-      }
-    } catch (err) {
-      console.error('Failed to update saved:', err)
+      await favoriteStore.toggle(id)
+    } catch (err: any) {
+      Taro.showToast({ title: 'Failed to update', icon: 'none' })
     }
   }
 
@@ -107,7 +69,7 @@ export default class Home extends Component<{}, { displayName: string; favorites
   handleLiveClick = () => Taro.navigateTo({ url: '/pages/live-cooking/index' })
 
   render() {
-    const { displayName, favorites, categories, recipes, liveStreams, loading, error } = this.state
+    const { displayName, favoritedIds, categories, recipes, liveStreams, loading, error } = this.state
 
     return (
       <View style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#FFFFFF' }}>
@@ -206,7 +168,7 @@ export default class Home extends Component<{}, { displayName: string; favorites
                     <View style={{ position: 'relative', height: '160px' }}>
                       <Image src={recipe.imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop'} mode='aspectFill' style={{ width: '100%', height: '100%', borderRadius: '16px' }} />
                       <View style={{ position: 'absolute', top: '10px', right: '10px', width: '32px', height: '32px', borderRadius: '16px', backgroundColor: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={(e) => this.handleToggleLike(recipe.id, e)}>
-                        <Text style={{ fontSize: '14px', color: favorites.includes(recipe.id) ? '#FF4444' : '#999999' }}>{'\u2764'}</Text>
+                        <Text style={{ fontSize: '14px', color: favoritedIds.includes(recipe.id) ? '#FF4444' : '#999999' }}>{'\u2764'}</Text>
                       </View>
                     </View>
                     <View style={{ padding: '10px 4px' }}>

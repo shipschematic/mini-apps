@@ -2,18 +2,6 @@ import { Component } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 
-// Inline favorites helpers to avoid common.js chunk dependency in WeApp
-const FAV_KEY = 'favorite_recipes'
-function getFavoriteIds(): string[] { return Taro.getStorageSync(FAV_KEY) || [] }
-function toggleFavorite(id: string): boolean {
-  const favs = getFavoriteIds()
-  const idx = favs.indexOf(id)
-  const updated = idx > -1 ? favs.filter(f => f !== id) : [...favs, id]
-  Taro.setStorageSync(FAV_KEY, updated)
-  return idx === -1
-}
-
-// Inline request function to avoid common.js chunk dependency in WeApp
 async function request({
   url,
   method = 'GET',
@@ -56,18 +44,26 @@ async function request({
   }
 }
 
-export default class Explore extends Component<{}, { selectedTab: string; favorites: string[]; categories: any[]; recipes: any[]; loading: boolean }> {
-  state = { selectedTab: '', favorites: [] as string[], categories: [] as any[], recipes: [] as any[], loading: true }
+async function loadFavoritedIds(): Promise<string[]> {
+  try {
+    return await request({ url: '/api/saved?ids=true' }) || []
+  } catch {
+    return []
+  }
+}
+
+export default class Explore extends Component<{}, { selectedTab: string; favoritedIds: string[]; categories: any[]; recipes: any[]; loading: boolean }> {
+  state = { selectedTab: '', favoritedIds: [] as string[], categories: [] as any[], recipes: [] as any[], loading: true }
 
   async componentDidMount() {
-    this.setState({ favorites: getFavoriteIds() })
     try {
-      const [cats, recs] = await Promise.all([
+      const [favIds, cats, recs] = await Promise.all([
+        loadFavoritedIds(),
         request({ url: '/api/categories' }),
         request({ url: '/api/recipes' })
       ])
       const categories = cats || []
-      this.setState({ categories, recipes: recs || [], selectedTab: categories[0]?.name || '', loading: false })
+      this.setState({ favoritedIds: favIds, categories, recipes: recs || [], selectedTab: categories[0]?.name || '', loading: false })
     } catch (err) {
       console.error('Failed to load explore data:', err)
       this.setState({ loading: false })
@@ -75,16 +71,17 @@ export default class Explore extends Component<{}, { selectedTab: string; favori
   }
 
   onShow = () => {
-    this.setState({ favorites: getFavoriteIds() })
+    loadFavoritedIds().then(ids => this.setState({ favoritedIds: ids }))
   }
 
   handleRecipeClick = (id: string) => Taro.navigateTo({ url: `/pages/recipe-detail/index?id=${id}` })
 
   handleToggleLike = async (id: string, e: any) => {
     e.stopPropagation()
-    const wasLiked = getFavoriteIds().includes(id)
-    toggleFavorite(id)
-    this.setState({ favorites: getFavoriteIds() })
+    const { favoritedIds } = this.state
+    const wasLiked = favoritedIds.includes(id)
+    const newIds = wasLiked ? favoritedIds.filter((fid: string) => fid !== id) : [...favoritedIds, id]
+    this.setState({ favoritedIds: newIds })
 
     try {
       if (!wasLiked) {
@@ -94,11 +91,12 @@ export default class Explore extends Component<{}, { selectedTab: string; favori
       }
     } catch (err) {
       console.error('Failed to update saved:', err)
+      this.setState({ favoritedIds })
     }
   }
 
   render() {
-    const { selectedTab, favorites, categories, recipes, loading } = this.state
+    const { selectedTab, favoritedIds, categories, recipes, loading } = this.state
     const filteredRecipes = selectedTab
       ? recipes.filter((r: any) => r.category?.name === selectedTab)
       : recipes
@@ -156,7 +154,7 @@ export default class Explore extends Component<{}, { selectedTab: string; favori
                     <View style={{ position: 'relative', height: '160px' }}>
                       <Image src={recipe.imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop'} mode='aspectFill' style={{ width: '100%', height: '100%', borderRadius: '16px' }} />
                       <View style={{ position: 'absolute', top: '10px', right: '10px', width: '28px', height: '28px', borderRadius: '14px', backgroundColor: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={(e) => this.handleToggleLike(recipe.id, e)}>
-                        <Text style={{ fontSize: '12px', color: favorites.includes(recipe.id) ? '#FF4444' : '#999999' }}>{'\u2764'}</Text>
+                        <Text style={{ fontSize: '12px', color: favoritedIds.includes(recipe.id) ? '#FF4444' : '#999999' }}>{'\u2764'}</Text>
                       </View>
                     </View>
                     <View style={{ padding: '10px 4px' }}>

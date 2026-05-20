@@ -8,9 +8,9 @@ export interface InputConfig {
   type: InputType
   state: InputState
   label?: string
-  hasLabel: boolean
+  hasLabel?: boolean
   hintText?: string
-  hasHint: boolean
+  hasHint?: boolean
   placeholder: string
   hasLeftIcon: boolean
   hasRightIcon: boolean

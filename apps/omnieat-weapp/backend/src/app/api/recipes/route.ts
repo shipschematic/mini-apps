@@ -46,7 +46,7 @@ export async function GET(request: Request) {
     if (!searchQuery && !categoryId && !categoryName) {
       const dbCategories = await prisma.category.findMany()
 
-      const sampleRecipesByCategory: Record<string, Omit<typeof sampleRecipes[0], 'categoryId'>[]> = {
+      const sampleRecipesByCategory: Record<string, any[]> = {
         Soup: [
           { title: 'Beef Ramen', subtitle: '62K Views', estimatedTime: '20 Min', quantity: '1 Serving', imageUrl: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&h=600&fit=crop', authorName: 'Chef Adams', ingredients: JSON.stringify(['200g Ramen noodles', '100g Beef tenderloin', '1 Soft-boiled egg', 'Soy sauce broth', 'Scallions']), steps: JSON.stringify(['Boil water and cook ramen noodles for 3 minutes.', 'Sear sliced beef in a hot pan for 2 minutes per side.', 'Heat the soy broth in a separate pot.', 'Assemble noodles and sliced beef in a bowl, pour hot broth, top with boiled egg halves and scallions.']), views: 62000, rating: 4.8 },
           { title: 'Tomato Soup', subtitle: '12K Views', estimatedTime: '15 Min', quantity: '2 Servings', imageUrl: 'https://images.unsplash.com/photo-1547592165-e1d17fed6006?w=800&h=600&fit=crop', authorName: 'Chef Gordon', ingredients: JSON.stringify(['500g Fresh tomatoes', '1 Onion, chopped', '2 Garlic cloves', '200ml Vegetable broth', 'Fresh basil']), steps: JSON.stringify(['Sauté onion and garlic in olive oil until soft.', 'Add chopped tomatoes and vegetable broth, bring to a boil.', 'Simmer for 10 minutes, then blend until smooth.', 'Garnish with fresh basil and black pepper.']), views: 12000, rating: 4.5 }
@@ -137,26 +137,82 @@ export async function POST(request: Request) {
   try {
     const { title, subtitle, estimatedTime, quantity, imageUrl, categoryId, authorName, creatorId, ingredients, steps, status } = await request.json()
 
-    if (!title || !estimatedTime || !quantity || !categoryId || !authorName) {
-      return NextResponse.json(
-        { error: 'Required fields: title, estimatedTime, quantity, categoryId, authorName' },
-        { status: 400 }
-      )
+    if (!title || typeof title !== 'string' || title.trim().length === 0) {
+      return NextResponse.json({ error: 'Recipe name is required' }, { status: 400 })
+    }
+    if (title.trim().length > 100) {
+      return NextResponse.json({ error: 'Recipe name must be 100 characters or less' }, { status: 400 })
+    }
+
+    if (subtitle && typeof subtitle === 'string' && subtitle.length > 500) {
+      return NextResponse.json({ error: 'Description must be 500 characters or less' }, { status: 400 })
+    }
+
+    if (!estimatedTime || typeof estimatedTime !== 'string' || estimatedTime.trim().length === 0) {
+      return NextResponse.json({ error: 'Cook time is required' }, { status: 400 })
+    }
+    const timeMatch = estimatedTime.match(/^(\d+)\s*(min|minute|hour|hr|h)?$/i)
+    if (!timeMatch) {
+      return NextResponse.json({ error: 'Invalid cook time format. Use: 30 min or 1 hour' }, { status: 400 })
+    }
+
+    if (!quantity || typeof quantity !== 'string' || quantity.trim().length === 0) {
+      return NextResponse.json({ error: 'Servings is required' }, { status: 400 })
+    }
+    const servingMatch = quantity.match(/^(\d+)\s*(serving|serves?|person|people|p)?$/i)
+    if (!servingMatch) {
+      return NextResponse.json({ error: 'Invalid servings format. Use: 4 serves or 2 people' }, { status: 400 })
+    }
+
+    if (!categoryId) {
+      return NextResponse.json({ error: 'Category is required' }, { status: 400 })
+    }
+    const category = await prisma.category.findUnique({ where: { id: categoryId } })
+    if (!category) {
+      return NextResponse.json({ error: 'Selected category does not exist' }, { status: 400 })
+    }
+
+    if (!authorName || typeof authorName !== 'string') {
+      return NextResponse.json({ error: 'Author name is required' }, { status: 400 })
+    }
+
+    if (!creatorId) {
+      return NextResponse.json({ error: 'User authentication required' }, { status: 401 })
+    }
+
+    if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
+      return NextResponse.json({ error: 'At least 1 ingredient is required' }, { status: 400 })
+    }
+    const filteredIngredients = ingredients.filter((i: any) => typeof i === 'string' && i.trim().length > 0)
+    if (filteredIngredients.length === 0) {
+      return NextResponse.json({ error: 'At least 1 ingredient with content is required' }, { status: 400 })
+    }
+
+    if (!steps || !Array.isArray(steps) || steps.length === 0) {
+      return NextResponse.json({ error: 'At least 1 step is required' }, { status: 400 })
+    }
+    const filteredSteps = steps.filter((s: any) => typeof s === 'string' && s.trim().length > 0)
+    if (filteredSteps.length === 0) {
+      return NextResponse.json({ error: 'At least 1 step with content is required' }, { status: 400 })
+    }
+
+    if (imageUrl && typeof imageUrl === 'string' && imageUrl.length > 2000) {
+      return NextResponse.json({ error: 'Image URL is too long' }, { status: 400 })
     }
 
     const recipe = await prisma.recipe.create({
       data: {
-        title,
-        subtitle: subtitle || '0 Views',
-        estimatedTime,
-        quantity,
-        imageUrl: imageUrl || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop',
-        authorName,
+        title: title.trim(),
+        subtitle: subtitle?.trim() || `${authorName}'s recipe`,
+        estimatedTime: estimatedTime.trim(),
+        quantity: quantity.trim(),
+        imageUrl: imageUrl?.trim() || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop',
+        authorName: authorName.trim(),
         categoryId,
         creatorId,
-        ingredients: ingredients ? JSON.stringify(ingredients) : '',
-        steps: steps ? JSON.stringify(steps) : '',
-        status: status || 'PUBLISHED'
+        ingredients: JSON.stringify(filteredIngredients),
+        steps: JSON.stringify(filteredSteps),
+        status: status === 'DRAFT' ? 'DRAFT' : 'PUBLISHED'
       },
       include: {
         category: true

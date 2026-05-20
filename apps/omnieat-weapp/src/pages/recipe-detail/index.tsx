@@ -1,102 +1,62 @@
 import { Component } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-
-// Inline favorites helpers to avoid common.js chunk dependency in WeApp
-const FAV_KEY = 'favorite_recipes'
-function getFavoriteIds(): string[] { return Taro.getStorageSync(FAV_KEY) || [] }
-function toggleFavorite(id: string): boolean {
-  const favs = getFavoriteIds()
-  const idx = favs.indexOf(id)
-  const updated = idx > -1 ? favs.filter(f => f !== id) : [...favs, id]
-  Taro.setStorageSync(FAV_KEY, updated)
-  return idx === -1
-}
-
-// Inline request function to avoid common.js chunk dependency in WeApp
-async function request({
-  url,
-  method = 'GET',
-  data = {},
-  headers = {}
-}: {
-  url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  data?: any
-  headers?: Record<string, string>
-}): Promise<any> {
-  const baseUrl = 'http://localhost:3001'
-  const token = Taro.getStorageSync('user_token')
-
-  const finalHeaders: Record<string, string> = {
-    'Content-Type': 'application/json',
-    ...headers,
-    ...(token ? { Authorization: `Bearer ${token}` } : {})
-  }
-
-  try {
-    const res = await Taro.request({
-      url: `${baseUrl}${url}`,
-      method,
-      data,
-      header: finalHeaders,
-    })
-
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return res.data
-    }
-    if (res.statusCode === 401) {
-      Taro.removeStorageSync('user_token')
-      Taro.redirectTo({ url: '/pages/sign-in/index' })
-    }
-    throw new Error(res.data?.error || `Request failed with status ${res.statusCode}`)
-  } catch (err) {
-    console.error('Network request error:', err)
-    throw err
-  }
-}
+import { favoriteStore } from '../../utils/favoriteStore'
+import { request } from '../../utils/request'
 
 export default class RecipeDetail extends Component<{}, { activeSection: 'overview' | 'ingredients' | 'steps'; showShare: boolean; isLiked: boolean; recipeId: string; recipe: any; loading: boolean }> {
   state = { activeSection: 'overview' as 'overview' | 'ingredients' | 'steps', showShare: false, isLiked: false, recipeId: '1', recipe: null as any, loading: true }
+  private unsubscribe?: () => void
 
   async componentDidMount() {
     const id = (Taro.getCurrentInstance().router?.params?.id as string) || '1'
-    this.setState({ recipeId: id, isLiked: getFavoriteIds().includes(id) })
+    
+    // Subscribe to favorite store updates
+    this.unsubscribe = favoriteStore.subscribe((ids) => {
+      const isLiked = ids.includes(id)
+      this.setState({ isLiked })
+    })
+
+    this.setState({ recipeId: id })
     await this.loadRecipe(id)
   }
 
-  loadRecipe = async (id: string) => {
+  componentWillUnmount() {
+    this.unsubscribe?.()
+  }
+
+  handleToggleLike = async () => {
+    const { recipeId } = this.state
     try {
-      const recipe = await request({ url: `/api/recipes/${id}` })
-      this.setState({ recipe, loading: false })
-    } catch (err) {
-      console.error('Failed to load recipe:', err)
-      this.setState({ loading: false })
+      await favoriteStore.toggle(recipeId)
+    } catch (err: any) {
+      Taro.showToast({ title: 'Failed to update', icon: 'none' })
     }
   }
 
-  handleBack = () => Taro.navigateBack()
+  handleBack = () => {
+    const pages = Taro.getCurrentPages()
+    if (pages.length > 1) {
+      Taro.navigateBack()
+    } else {
+      Taro.switchTab({ url: '/pages/home/index' })
+    }
+  }
+
   handleShare = () => this.setState({ showShare: true })
   handleCloseShare = () => this.setState({ showShare: false })
   handleStartCooking = () => {
     const { recipeId } = this.state
     Taro.navigateTo({ url: `/pages/step-by-step/index?id=${recipeId}` })
   }
-  handleToggleLike = async () => {
-    const { isLiked, recipeId } = this.state
-    const nowLiked = !isLiked
 
-    toggleFavorite(recipeId)
-    this.setState({ isLiked: nowLiked })
-
+  loadRecipe = async (id: string) => {
     try {
-      if (nowLiked) {
-        await request({ url: '/api/saved', method: 'POST', data: { recipeId } })
-      } else {
-        await request({ url: '/api/saved', method: 'DELETE', data: { recipeId } })
-      }
-    } catch (err) {
-      console.error('Failed to update saved:', err)
+      const recipe = await request({ url: `/api/recipes/${id}` })
+      this.setState({ recipe, loading: false })
+    } catch (err: any) {
+      console.error('Failed to load recipe:', err)
+      this.setState({ loading: false })
     }
   }
 
@@ -152,7 +112,7 @@ export default class RecipeDetail extends Component<{}, { activeSection: 'overvi
                 <Text style={{ fontSize: '13px', color: '#757575' }}>Medium</Text>
               </View>
               <View style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Text style={{ fontSize: '14px' }}>{'\uD83D\udd25'}</Text>
+                <Text style={{ fontSize: '14px' }}>{'\uD83D\uDD25'}</Text>
                 <Text style={{ fontSize: '13px', color: '#757575' }}>{recipe.quantity}</Text>
               </View>
               <View style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>

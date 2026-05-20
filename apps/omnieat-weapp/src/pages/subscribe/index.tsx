@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 import './index.scss'
 
 export default class Subscribe extends Component<{}, { selectedPlan: 'monthly' | 'yearly' }> {
-  state = { selectedPlan: 'yearly' as const }
+  state: { selectedPlan: 'monthly' | 'yearly' } = { selectedPlan: 'yearly' }
 
   handleSubscribe = () => {
     Taro.showToast({ title: 'Subscribed!', icon: 'success' })
