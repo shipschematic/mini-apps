@@ -1,6 +1,6 @@
 # 星期八果园 (Xingqiba Orchard) — WeChat Mini Program
 
-[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Forchard--weapp-blue?logo=github)](https://github.com/shipblueprint/orchard-weapp)
+[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Forchard--weapp-blue)](https://github.com/shipblueprint/orchard-weapp)
 
 A **WeChat Mini Program (微信小程序)** for **星期八果园** (Xingqiba Orchard), built with **Taro 4.x** + **React** + **TypeScript** + **WeChat CloudBase (Cloud Functions & Database)**.
 
