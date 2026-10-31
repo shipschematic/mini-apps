@@ -1,6 +1,6 @@
 # 星期八果园 (Xingqiba Orchard) — WeChat Mini Program
 
-[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Forchard--weapp-blue)](https://github.com/shipblueprint/orchard-weapp)
+[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Fxingqiba--orchard--weapp-blue)](https://github.com/shipblueprint/xingqiba-orchard-weapp)
 
 A **WeChat Mini Program (微信小程序)** for **星期八果园** (Xingqiba Orchard), built with **Taro 4.x** + **React** + **TypeScript** + **WeChat CloudBase (Cloud Functions & Database)**.
 
@@ -169,8 +169,8 @@ xingqiba-orchard/
 
 ```bash
 # Clone the repository
-git clone https://github.com/shipblueprint/orchard-weapp.git
-cd orchard-weapp/miniprogram
+git clone https://github.com/shipblueprint/xingqiba-orchard-weapp.git
+cd xingqiba-orchard-weapp/miniprogram
 
 # Install dependencies
 npm install
@@ -300,7 +300,7 @@ The repository has two branches:
 ## Contributing
 
 Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/shipblueprint/orchard-weapp/issues).
+Feel free to check the [issues page](https://github.com/shipblueprint/xingqiba-orchard-weapp/issues).
 
 ---
 
