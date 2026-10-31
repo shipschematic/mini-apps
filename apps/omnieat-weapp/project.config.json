@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "dapoer",
+  "projectname": "omnieat-weapp",
   "description": "Dapoer - Food Recipe Apps IOS UI Kit",
   "appid": "wx0000000000000000",
   "setting": {
