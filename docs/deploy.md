@@ -11,6 +11,8 @@
 
 Each app keeps its own `project.config.json`. Confirm `miniprogramRoot` points at the Taro output directory after the first build.
 
+`xingqiba-orchard-weapp` is the exception: its source `project.config.json` has no `miniprogramRoot`, and the generated `miniprogram/dist/project.config.json` previously carried the `ecom` app ID. Check the generated config and app ID before uploading.
+
 `focusboard-weapp` uses `touristappid`. Replace it with the real app ID before upload.
 
 ## App ID collision
@@ -76,3 +78,9 @@ node-linker=hoisted
 ```
 
 This is deliberate for Taro and WeChat DevTools compatibility. If a build still fails on a pnpm symlink, run the app build once with npm to compare, then fix the package list rather than enabling more hoisting flags.
+
+The dependency tree includes an old Puppeteer. Its postinstall can fail while downloading Chromium. `.npmrc` sets `puppeteer_skip_download=true`; if the postinstall still runs, use:
+
+```bash
+PUPPETEER_SKIP_DOWNLOAD=1 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 pnpm install --frozen-lockfile
+```

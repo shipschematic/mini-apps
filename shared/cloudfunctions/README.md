@@ -11,7 +11,7 @@ Generated copies:
 
 Run `pnpm sync:cloudfunctions` after editing a function. Run `pnpm check:cloudfunctions` in CI or before a commit.
 
-The sync script rewrites internal `functionName` references and package names with the target app prefix.
+The sync script rewrites internal `functionName` references and CloudBase collection names with the target app prefix.
 
 Deploy flow:
 

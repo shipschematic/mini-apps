@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceRoot = path.join(root, 'shared', 'cloudfunctions');
 const check = process.argv.includes('--check');
+let outdated = 0;
 
 const apps = [
   { slug: 'ecom-mini-weapp', prefix: 'ecom_' },
@@ -25,25 +26,32 @@ function listFiles(dir, base = dir) {
   return files.sort();
 }
 
-function render(relative, data, functionName, prefix, functionNames) {
+function render(relative, data, prefix, functionNames) {
+  let text = data.toString('utf8').replaceAll('\r\n', '\n');
+
   if (relative === 'package.json') {
-    const pkg = JSON.parse(data.toString('utf8'));
-    if (typeof pkg.name === 'string' && !pkg.name.startsWith(prefix)) {
-      pkg.name = `${prefix}${pkg.name}`;
-    }
+    const pkg = JSON.parse(text);
     return Buffer.from(`${JSON.stringify(pkg, null, 2)}\n`);
   }
 
   if (relative.endsWith('.js') || relative.endsWith('.ts')) {
-    let text = data.toString('utf8');
-    for (const name of functionNames) {
-      text = text.replaceAll(`functionName: '${name}'`, `functionName: '${prefix}${name}'`);
-      text = text.replaceAll(`functionName: "${name}"`, `functionName: "${prefix}${name}"`);
-    }
-    return Buffer.from(text);
+    text = text.replace(
+      /functionName:\s*(['"])([^'"]+)\1/g,
+      (match, quote, value) => {
+        const next = value.startsWith(prefix) ? value : `${prefix}${value}`;
+        return `functionName: ${quote}${next}${quote}`;
+      },
+    );
+    text = text.replace(
+      /db\.collection\((['"])([^'"]+)\1\)/g,
+      (match, quote, value) => {
+        const next = value.startsWith(prefix) ? value : `${prefix}${value}`;
+        return `db.collection(${quote}${next}${quote})`;
+      },
+    );
   }
 
-  return data;
+  return Buffer.from(text);
 }
 
 if (!fs.existsSync(sourceRoot)) {
@@ -80,7 +88,6 @@ for (const app of apps) {
       const rendered = render(
         relative,
         fs.readFileSync(sourceFile),
-        name,
         app.prefix,
         functionNames,
       );
@@ -92,6 +99,7 @@ for (const app of apps) {
       if (!same) {
         const label = path.relative(root, targetFile);
         if (check) {
+          outdated += 1;
           console.error(`OUTDATED ${label}`);
         } else {
           fs.mkdirSync(path.dirname(targetFile), { recursive: true });
@@ -104,7 +112,10 @@ for (const app of apps) {
 }
 
 if (check) {
-  const result = console.error;
-  result('Cloud-function copies are up to date.');
+  if (outdated > 0) {
+    console.error(`${outdated} cloud-function files are outdated.`);
+    process.exit(1);
+  }
+  console.error('Cloud-function copies are up to date.');
   process.exit(0);
 }

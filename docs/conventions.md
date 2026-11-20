@@ -25,6 +25,7 @@ Only `.env.example` files belong in Git. Real credentials stay in local or host 
 - Edit `shared/cloudfunctions`, never the generated `apps/*/cloudfunctions/*` copies.
 - Run `pnpm sync:cloudfunctions` after changing a shared function.
 - Run `pnpm check:cloudfunctions` before committing.
+- The generated copies prefix CloudBase collection names as well as function names.
 - Keep each function self-contained for deployment. `wx-server-sdk` must be installed inside the function folder before upload.
 - Do not add app cloud-function directories to the pnpm workspace.
 
@@ -33,6 +34,7 @@ Only `.env.example` files belong in Git. Real credentials stay in local or host 
 - Add a package under `packages/` only when at least two apps import it.
 - Apps are independently deployable even when they share source.
 - Do not force every app into one root build. `pnpm -r --if-present` runs only scripts that exist.
+- `pnpm-lock.yaml` at the root is canonical. Per-app `package-lock.json` files are retained as source provenance; pnpm ignores them.
 
 ## Versions and tags
 
