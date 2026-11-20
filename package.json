@@ -1,0 +1,17 @@
+{
+  "name": "mini-apps",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "list": "pnpm -r list --depth -1",
+    "build:weapp": "pnpm -r --if-present build:weapp",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "sync:cloudfunctions": "node scripts/sync-cloudfunctions.mjs",
+    "check:cloudfunctions": "node scripts/sync-cloudfunctions.mjs --check"
+  }
+}

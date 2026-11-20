@@ -1,0 +1,5 @@
+app	repository	branch	source_head	source_commits	tags
+ecom-mini-weapp	https://github.com/shipschematic/ecom-mini-weapp.git	main	925fb11c559077e451856c3d2de7727a8960236e	20	ecom-mini-weapp/v1.0.0,ecom-mini-weapp/v2.0.0
+focusboard-weapp	https://github.com/shipschematic/focusboard-weapp.git	main	31b89164f395272eb9f9c368231cd186503d9677	2	
+omnieat-weapp	https://github.com/shipschematic/omnieat-weapp.git	master	7060d5e274667473f65e591d2a897c6e31935cf8	7	
+xingqiba-orchard-weapp	https://github.com/shipschematic/xingqiba-orchard-weapp.git	main	d3079222c9d6d3c9eb551a965587e8c4304d5afb	8	

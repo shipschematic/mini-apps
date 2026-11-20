@@ -1,0 +1,12 @@
+{
+  "name": "brand-apps",
+  "version": "1.0.0",
+  "displayName": "Brand Apps",
+  "description": "Native/cross-platform app theming (Flutter, desktop) mapped from SSOT palette",
+  "source": "custom",
+  "tier": "free",
+  "tokenCount": 32,
+  "componentCount": 0,
+  "aesthetic": "Warm, clean, accessible",
+  "layoutUrl": ""
+}
