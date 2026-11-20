@@ -1,0 +1,130 @@
+@use '../../config/theme' as *;
+
+.search {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__content {
+    flex: 1;
+    padding: $spacing-md;
+  }
+
+  &__input-container {
+    display: flex;
+    align-items: center;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-lg;
+    padding: $spacing-md $spacing-lg;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__input {
+    flex: 1;
+    margin: 0 $spacing-md;
+    font-size: $typography-font-size-md;
+    color: $colors-text-primary;
+  }
+
+  &__placeholder {
+    color: $colors-neutral-500;
+  }
+
+  &__recent {
+    margin-top: $spacing-md;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+  }
+
+  &__section-title {
+    font-size: $typography-font-size-lg;
+    font-weight: 600;
+    color: $colors-text-primary;
+  }
+
+  &__recent-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__recent-item {
+    padding: $spacing-sm $spacing-md;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-full;
+    cursor: pointer;
+
+    &:active {
+      background-color: $colors-neutral-200;
+    }
+  }
+
+  &__recent-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-primary;
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__category-chip {
+    padding: $spacing-sm $spacing-lg;
+    background-color: $colors-primary;
+    color: $colors-text-inverse;
+    border-radius: $border-radius-full;
+    cursor: pointer;
+
+    &:active {
+      background-color: $colors-primary-dark;
+    }
+  }
+
+  &__category-text {
+    font-size: $typography-font-size-sm;
+    font-weight: 500;
+  }
+
+  &__results {
+    margin-top: $spacing-md;
+  }
+
+  &__results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  &__result-item {
+    width: 100%;
+  }
+
+  &__no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xxl;
+  }
+
+  &__no-results-text {
+    font-size: $typography-font-size-lg;
+    font-weight: 500;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__no-results-subtext {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+}

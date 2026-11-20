@@ -1,0 +1,174 @@
+@use '../../config/theme' as *;
+
+.signin {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  padding: $spacing-xxxl $spacing-lg;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: $spacing-xxxl;
+  }
+
+  &__logo-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: $border-radius-xl;
+    margin-bottom: $spacing-lg;
+    background-color: $colors-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo-text {
+    font-size: 32px;
+    font-weight: $typography-font-family-bold;
+    color: $colors-text-inverse;
+  }
+
+  &__title {
+    font-size: $typography-font-size-xxl;
+    font-weight: $typography-font-family-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__subtitle {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__input-group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    background-color: $colors-background-paper;
+    border-radius: $border-radius-lg;
+    border: 1px solid $colors-neutral-200;
+  }
+
+  &__input-icon {
+    font-size: $typography-font-size-lg;
+    color: $colors-neutral-500;
+  }
+
+  &__input-field {
+    flex: 1;
+    font-size: $typography-font-size-md;
+    color: $colors-text-primary;
+  }
+
+  &__placeholder {
+    color: $colors-neutral-400;
+  }
+
+  &__forgot {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: $spacing-md;
+  }
+
+  &__forgot-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-primary;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg $spacing-xxl;
+    min-height: 56px;
+
+    &--primary {
+      background-color: $colors-primary;
+      color: $colors-text-inverse;
+
+      &:active {
+        background-color: $colors-primary-dark;
+      }
+    }
+  }
+
+  &__btn-text {
+    font-size: $typography-font-size-xl;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin: $spacing-xxl 0;
+  }
+
+  &__divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: $colors-neutral-200;
+  }
+
+  &__divider-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+  }
+
+  &__social {
+    display: flex;
+    gap: $spacing-md;
+  }
+
+  &__social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    background-color: $colors-background-paper;
+    border-radius: $border-radius-lg;
+    border: 1px solid $colors-neutral-200;
+  }
+
+  &__social-icon {
+    font-size: $typography-font-size-lg;
+  }
+
+  &__social-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-primary;
+    font-weight: $typography-font-family-medium;
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: $spacing-xxxl;
+    text-align: center;
+  }
+
+  &__footer-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__footer-link {
+    font-size: $typography-font-size-md;
+    color: $colors-primary;
+    font-weight: $typography-font-family-medium;
+  }
+}

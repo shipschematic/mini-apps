@@ -1,0 +1,124 @@
+@use '../../config/theme' as *;
+
+.notifications {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg $spacing-md;
+    background-color: $colors-neutral-50;
+    border-bottom: 1px solid $colors-neutral-200;
+  }
+
+  &__title {
+    font-size: $typography-font-size-xl;
+    font-weight: 700;
+    color: $colors-text-primary;
+  }
+
+  &__badge {
+    background-color: $colors-primary;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-full;
+  }
+
+  &__badge-text {
+    font-size: $typography-font-size-xs;
+    font-weight: 600;
+    color: $colors-text-inverse;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    padding: $spacing-md;
+    background-color: $colors-neutral-50;
+    border-bottom: 1px solid $colors-neutral-100;
+    cursor: pointer;
+
+    &:active {
+      background-color: $colors-neutral-100;
+    }
+
+    &--unread {
+      background-color: rgba($colors-primary, 0.05);
+    }
+  }
+
+  &__avatar {
+    position: relative;
+    margin-right: $spacing-md;
+  }
+
+  &__avatar-image {
+    width: 48px;
+    height: 48px;
+    background-color: $colors-primary;
+    color: $colors-text-inverse;
+    border-radius: $border-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $typography-font-size-lg;
+    font-weight: 600;
+  }
+
+  &__unread-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: $colors-primary;
+    border: 2px solid $colors-neutral-50;
+    border-radius: $border-radius-full;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    line-height: $typography-line-height-normal;
+  }
+
+  &__user {
+    font-weight: 600;
+    color: $colors-text-primary;
+  }
+
+  &__content-text {
+    display: block;
+    font-size: $typography-font-size-sm;
+    color: $colors-text-primary;
+    font-style: italic;
+    margin-top: $spacing-xs;
+  }
+
+  &__timestamp {
+    display: block;
+    font-size: $typography-font-size-xs;
+    color: $colors-neutral-500;
+    margin-top: $spacing-xs;
+  }
+
+  &__action {
+    margin-left: $spacing-sm;
+  }
+
+  &__action-icon {
+    font-size: 24px;
+    color: $colors-neutral-400;
+  }
+}

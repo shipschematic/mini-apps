@@ -1,0 +1,165 @@
+@use '../../config/theme' as *;
+
+.live-collab {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  display: flex;
+  flex-direction: column;
+
+  &__stream {
+    flex: 1;
+    padding-bottom: $spacing-xxxl;
+  }
+
+  &__video {
+    position: relative;
+    width: 100%;
+    height: 220px;
+  }
+
+  &__video-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__live-badge {
+    background-color: $colors-error;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &__live-text {
+    color: $colors-white;
+    font-size: $typography-font-size-xs;
+    font-weight: $typography-font-family-bold;
+  }
+
+  &__viewer-count {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &__viewer-number {
+    color: $colors-white;
+    font-size: $typography-font-size-xs;
+  }
+
+  &__info {
+    padding: $spacing-lg;
+  }
+
+  &__title {
+    font-size: $typography-font-size-xl;
+    font-weight: $typography-font-family-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__host {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__join {
+    padding: 0 $spacing-lg $spacing-lg;
+  }
+
+  &__chat {
+    padding: $spacing-lg;
+    border-top: 1px solid $colors-neutral-200;
+  }
+
+  &__chat-title {
+    font-size: $typography-font-size-md;
+    font-weight: $typography-font-family-semi-bold;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__message {
+    padding: $spacing-sm;
+    background-color: $colors-background-paper;
+    border-radius: $border-radius-md;
+
+    &--host {
+      background-color: rgba($colors-primary, 0.1);
+      border-left: 3px solid $colors-primary;
+    }
+  }
+
+  &__message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__message-user {
+    font-size: $typography-font-size-sm;
+    font-weight: $typography-font-family-semi-bold;
+    color: $colors-text-primary;
+  }
+
+  &__message-time {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__message-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    line-height: $typography-line-height-normal;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    background-color: $colors-background-paper;
+    border-top: 1px solid $colors-neutral-200;
+  }
+
+  &__input-field {
+    flex: 1;
+    padding: $spacing-sm $spacing-md;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-lg;
+    font-size: $typography-font-size-md;
+  }
+
+  &__input-placeholder {
+    color: $colors-text-disabled;
+  }
+
+  &__input-action {
+    width: 40px;
+    height: 40px;
+    background-color: $colors-primary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,108 @@
+@use '../../config/theme' as *;
+
+.livestream-watch {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $colors-background-default;
+
+  &__loading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__player {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: $colors-neutral-900;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__live-badge {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    background-color: $colors-error;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &__live-text {
+    font-size: $typography-font-size-xs;
+    font-weight: 700;
+    color: $colors-text-inverse;
+  }
+
+  &__viewers {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-full;
+  }
+
+  &__viewer-count {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-inverse;
+    font-weight: 600;
+  }
+
+  &__info {
+    flex: 1;
+    padding: $spacing-lg;
+  }
+
+  &__title {
+    font-size: $typography-font-size-xl;
+    font-weight: 700;
+    color: $colors-text-primary;
+    display: block;
+    margin-bottom: $spacing-md;
+  }
+
+  &__host {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__host-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
+  &__host-name {
+    font-size: $typography-font-size-md;
+    font-weight: 600;
+    color: $colors-text-primary;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+  }
+
+  &__share {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-lg;
+  }
+}

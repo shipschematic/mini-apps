@@ -1,0 +1,171 @@
+datasource db {
+  provider = "sqlite" // sqlite is default and extremely easy for local setups, can be changed to mysql/postgresql in env
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  passwordHash    String?   // Nullable for OAuth users
+  name            String
+  avatar          String?
+  bio             String?
+  emailVerified   Boolean   @default(false)
+  verificationCode String?
+  verificationExpires DateTime?
+  region          String    @default("EN")  // "EN" or "CN"
+  authProvider    String    @default("email")  // "email", "google", "wechat"
+  phone           String?   // For WeChat
+  wechatOpenid    String?   @unique  // WeChat user ID
+  googleId        String?   @unique  // Google user ID
+  refreshToken    String?
+  role            String    @default("user")  // "user", "admin", "moderator"
+  isActive        Boolean   @default(true)
+  lastLogin       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  recipes         Recipe[]  @relation("CreatedRecipes")
+  comments        Comment[]
+  reviews         Review[]
+  savedList       Saved[]
+  following       Follow[]  @relation("Following")
+  followers       Follow[]  @relation("Followers")
+  likedRecipes    Like[]
+  notifications   Notification[]
+  liveStreams     LiveStream[]
+  chatMessages    ChatMessage[]
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  icon      String
+  recipes   Recipe[]
+  createdAt DateTime @default(now())
+}
+
+model Recipe {
+  id            String    @id @default(uuid())
+  title         String
+  subtitle      String
+  estimatedTime String
+  quantity      String
+  imageUrl      String?
+  hasCrown      Boolean   @default(false)
+  authorName    String
+  creatorId     String?
+  creator       User?     @relation("CreatedRecipes", fields: [creatorId], references: [id])
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  ingredients   String    @default("") // Serialized JSON string array
+  steps         String    @default("") // Serialized JSON string array
+  status        String    @default("PUBLISHED") // "PUBLISHED" or "DRAFT"
+  views         Int       @default(0)
+  rating        Float     @default(0.0)
+  likes         Like[]
+  comments      Comment[]
+  reviews       Review[]
+  savedBy       Saved[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  text      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  text      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Saved {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, recipeId])
+}
+
+model Follow {
+  id           String   @id @default(uuid())
+  followerId   String
+  follower     User     @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId  String
+  following    User     @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+
+  @@unique([followerId, followingId])
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, recipeId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // "follow", "like", "comment", "review", "system"
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  recipeId  String?
+  actorId   String?  // User who triggered the notification
+  createdAt DateTime @default(now())
+}
+
+model LiveStream {
+  id          String   @id @default(uuid())
+  title       String
+  hostName    String
+  hostAvatar  String?
+  imageUrl    String?
+  status      String   @default("UPCOMING") // "UPCOMING", "LIVE", "ENDED"
+  scheduledAt DateTime?
+  startedAt   DateTime?
+  endedAt     DateTime?
+  viewerCount Int      @default(0)
+  likeCount   Int      @default(0)
+  hostId      String?
+  host        User?    @relation(fields: [hostId], references: [id], onDelete: SetNull)
+  chatMessages ChatMessage[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ChatMessage {
+  id           String     @id @default(uuid())
+  liveStreamId String
+  liveStream   LiveStream @relation(fields: [liveStreamId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  text         String
+  createdAt    DateTime   @default(now())
+}

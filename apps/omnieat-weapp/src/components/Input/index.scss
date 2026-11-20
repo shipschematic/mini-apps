@@ -1,0 +1,87 @@
+@use '../../config/theme' as *;
+
+.input {
+  width: 100%;
+
+  &__label {
+    margin-bottom: $spacing-xs;
+  }
+
+  &__label-text {
+    font-size: $typography-font-size-sm;
+    font-weight: 500;
+    color: $colors-text-primary;
+  }
+
+  &__field {
+    display: flex;
+    align-items: center;
+    background-color: $colors-neutral-100;
+    border: 2px solid transparent;
+    border-radius: $border-radius-md;
+    padding: 0 $spacing-md;
+    min-height: 48px;
+    transition: all 0.2s ease;
+
+    &--focus {
+      border-color: $colors-primary;
+      background-color: $colors-neutral-50;
+    }
+
+    &--disabled {
+      background-color: $colors-neutral-200;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &--error {
+      border-color: $colors-error;
+      background-color: rgba($colors-error, 0.05);
+    }
+  }
+
+  &__native {
+    flex: 1;
+    height: 100%;
+    padding: $spacing-sm 0;
+    font-size: $typography-font-size-md;
+    color: $colors-text-primary;
+  }
+
+  &__placeholder {
+    color: $colors-neutral-400;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $colors-neutral-500;
+
+    &--left {
+      margin-right: $spacing-sm;
+    }
+
+    &--right {
+      margin-left: $spacing-sm;
+    }
+  }
+
+  &__hint {
+    margin-top: $spacing-xs;
+  }
+
+  &__hint-text {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__error {
+    margin-top: $spacing-xs;
+  }
+
+  &__error-text {
+    font-size: $typography-font-size-xs;
+    color: $colors-error;
+  }
+}

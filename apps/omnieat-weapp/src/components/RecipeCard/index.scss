@@ -1,0 +1,110 @@
+@use '../../config/theme' as *;
+
+.recipe-card {
+  background-color: $colors-neutral-50;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadows-sm;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadows-md;
+  }
+
+  &__image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__crown {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    background-color: rgba($colors-warning, 0.9);
+    border-radius: $border-radius-full;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__crown-icon {
+    font-size: 12px;
+  }
+
+  &__category {
+    position: absolute;
+    bottom: $spacing-sm;
+    left: $spacing-sm;
+    background-color: $colors-primary;
+    color: $colors-text-inverse;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &__category-text {
+    font-size: $typography-font-size-xs;
+    font-weight: 600;
+  }
+
+  &__content {
+    padding: $spacing-md;
+  }
+
+  &__title {
+    display: block;
+    font-size: $typography-font-size-lg;
+    font-weight: 600;
+    color: $colors-text-primary;
+    margin-bottom: $spacing-xs;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__creator {
+    display: block;
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__meta-icon {
+    font-size: $typography-font-size-sm;
+  }
+
+  &__meta-text {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__views {
+    margin-left: auto;
+  }
+
+  &__views-text {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+}

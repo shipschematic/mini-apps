@@ -1,0 +1,120 @@
+@use '../../config/theme' as *;
+
+.comments {
+  min-height: 100vh;
+  background-color: $colors-background-default;
+  display: flex;
+  flex-direction: column;
+
+  &__list {
+    flex: 1;
+    padding: $spacing-lg;
+    padding-bottom: 80px;
+  }
+
+  &__item {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__user {
+    font-size: $typography-font-size-sm;
+    font-weight: $typography-font-family-semi-bold;
+    color: $colors-text-primary;
+  }
+
+  &__time {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+    line-height: $typography-line-height-normal;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+
+  &__like {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    cursor: pointer;
+  }
+
+  &__likes {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+  }
+
+  &__reply {
+    cursor: pointer;
+  }
+
+  &__reply-text {
+    font-size: $typography-font-size-sm;
+    color: $colors-primary;
+    font-weight: $typography-font-family-medium;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    background-color: $colors-background-paper;
+    border-top: 1px solid $colors-neutral-200;
+  }
+
+  &__input-field {
+    flex: 1;
+    padding: $spacing-sm $spacing-md;
+    background-color: $colors-neutral-100;
+    border-radius: $border-radius-lg;
+    font-size: $typography-font-size-md;
+  }
+
+  &__input-placeholder {
+    color: $colors-text-disabled;
+  }
+
+  &__input-action {
+    width: 40px;
+    height: 40px;
+    background-color: $colors-primary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

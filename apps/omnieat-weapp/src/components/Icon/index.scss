@@ -1,0 +1,38 @@
+@use '../../config/theme' as *;
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--small {
+    width: 16px;
+    height: 16px;
+
+    .icon__char {
+      font-size: 12px;
+    }
+  }
+
+  &--medium {
+    width: 24px;
+    height: 24px;
+
+    .icon__char {
+      font-size: 18px;
+    }
+  }
+
+  &--large {
+    width: 32px;
+    height: 32px;
+
+    .icon__char {
+      font-size: 24px;
+    }
+  }
+
+  &__char {
+    line-height: 1;
+  }
+}
