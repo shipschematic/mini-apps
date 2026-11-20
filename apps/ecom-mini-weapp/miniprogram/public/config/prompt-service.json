@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "appName": "PromptMarket",
+    "primaryColor": "#7C3AED",
+    "secondaryColor": "#A78BFA",
+    "currency": "USD",
+    "locale": "en-US",
+    "features": ["cart", "library"],
+    "adminIds": []
+  },
+  "navigation": {
+    "defaultPage": "home"
+  },
+  "categories": [
+    { "id": "all", "name": "All", "icon": "📦" },
+    { "id": "productivity", "name": "Productivity", "icon": "💼" },
+    { "id": "health", "name": "Health", "icon": "🏥" },
+    { "id": "digital-products", "name": "Digital Products", "icon": "📱" },
+    { "id": "design", "name": "Design", "icon": "🎨" }
+  ],
+  "products": [
+    {
+      "id": "prod-001",
+      "title": "Digital Productivity Suite",
+      "description": "Complete productivity toolkit for professionals",
+      "price": 99,
+      "originalPrice": 149,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "category": "productivity",
+      "status": "published",
+      "rating": 4.8,
+      "reviewCount": 124
+    },
+    {
+      "id": "prod-002",
+      "title": "Health Tracker Pro",
+      "description": "Advanced health and fitness tracking app",
+      "price": 49,
+      "originalPrice": 79,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "category": "health",
+      "status": "published",
+      "rating": 4.6,
+      "reviewCount": 89
+    },
+    {
+      "id": "prod-003",
+      "title": "E-Book Bundle: Complete Collection",
+      "description": "500+ e-books on business, tech, and self-improvement",
+      "price": 29,
+      "originalPrice": 99,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "category": "digital-products",
+      "status": "published",
+      "rating": 4.9,
+      "reviewCount": 256
+    },
+    {
+      "id": "prod-004",
+      "title": "Premium Icon Pack",
+      "description": "2000+ vector icons for designers and developers",
+      "price": 19,
+      "originalPrice": 39,
+      "type": "digital",
+      "deliveryMethod": "download",
+      "category": "design",
+      "status": "published",
+      "rating": 4.7,
+      "reviewCount": 67
+    }
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "type": "grid",
+      "title": "Featured Prompts",
+      "dataSource": {
+        "type": "static",
+        "data": [
+          {
+            "id": "prod-001",
+            "title": "Digital Productivity Suite",
+            "description": "Complete productivity toolkit for professionals",
+            "price": 99,
+            "originalPrice": 149,
+            "type": "digital",
+            "deliveryMethod": "download",
+            "category": "productivity",
+            "cover": "/assets/images/logo.png",
+            "status": "published",
+            "rating": 4.8,
+            "reviewCount": 124
+          },
+          {
+            "id": "prod-002",
+            "title": "Health Tracker Pro",
+            "description": "Advanced health and fitness tracking app",
+            "price": 49,
+            "originalPrice": 79,
+            "type": "digital",
+            "deliveryMethod": "download",
+            "category": "health",
+            "cover": "/assets/images/logo.png",
+            "status": "published",
+            "rating": 4.6,
+            "reviewCount": 89
+          },
+          {
+            "id": "prod-003",
+            "title": "E-Book Bundle: Complete Collection",
+            "description": "500+ e-books on business, tech, and self-improvement",
+            "price": 29,
+            "originalPrice": 99,
+            "type": "digital",
+            "deliveryMethod": "download",
+            "category": "digital-products",
+            "cover": "/assets/images/logo.png",
+            "status": "published",
+            "rating": 4.9,
+            "reviewCount": 256
+          },
+          {
+            "id": "prod-004",
+            "title": "Premium Icon Pack",
+            "description": "2000+ vector icons for designers and developers",
+            "price": 19,
+            "originalPrice": 39,
+            "type": "digital",
+            "deliveryMethod": "download",
+            "category": "design",
+            "cover": "/assets/images/logo.png",
+            "status": "published",
+            "rating": 4.7,
+            "reviewCount": 67
+          }
+        ]
+      },
+      "itemTemplate": "ProductCard",
+      "columns": 1,
+      "actions": {
+        "onItemClick": [
+          { "type": "navigate", "payload": { "target": "detail", "params": { "id": "{{item.id}}" } } }
+        ],
+        "onUnlock": [
+          { "type": "purchase", "payload": { "productId": "{{item.id}}", "price": "{{item.price}}", "title": "{{item.title}}" } },
+          { "type": "showToast", "payload": { "title": "Purchase successful!", "icon": "success" } }
+        ]
+      }
+    },
+    {
+      "id": "detail",
+      "type": "detail",
+      "title": "Prompt Details",
+      "dataSource": {
+        "type": "function",
+        "function": "getProductById"
+      },
+      "layout": [
+        { "component": "LockedContent", "prop": "product" }
+      ]
+    },
+    {
+      "id": "cart",
+      "type": "detail",
+      "title": "Shopping Cart",
+      "dataSource": {
+        "type": "store",
+        "prop": "cart"
+      },
+      "layout": [
+        { "component": "CartView", "prop": "items" }
+      ]
+    },
+    {
+      "id": "library",
+      "type": "detail",
+      "title": "My Prompts",
+      "dataSource": {
+        "type": "store",
+        "prop": "purchasedPrompts"
+      },
+      "layout": [
+        { "component": "DigitalLibrary", "prop": "prompts" }
+      ]
+    },
+    {
+      "id": "profile",
+      "type": "detail",
+      "title": "My Profile",
+      "dataSource": {
+        "type": "store",
+        "prop": "user"
+      },
+      "layout": [
+        { "component": "UserInfo", "prop": "profile" },
+        { "component": "OrderHistory", "prop": "orders" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# ===========================================
+# Taro E-Commerce Framework - .gitignore
+# ===========================================
+
+# ============ Dependencies ============
+node_modules/
+package-lock.json
+
+# ============ Build Outputs ============
+dist/
+.taro-cache/
+.rn_temp/
+.temp/
+
+# ============ Cloud Functions ============
+cloudfunctions/node_modules/
+
+# ============ IDE & Editors ============
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============ Logs ============
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============ Environment ============
+.env
+.env.local
+.env.*.local
+.env.production
+
+# ============ CodeBuddy ============
+.codebuddy/
+.trae/
+
+# ============ Cache ============
+.cache/
+.swc/
+*.tsbuildinfo
+
+# ============ Coverage ============
+coverage/
+
+# ============ Misc ============
+*.tgz
+.npmrc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+build_output.txt
+jest.config.js.bak

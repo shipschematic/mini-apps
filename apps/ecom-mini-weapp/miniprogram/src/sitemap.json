@@ -1,0 +1,9 @@
+{
+  "desc": "About the document allow/disallow rules.",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

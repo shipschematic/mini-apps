@@ -1,0 +1,112 @@
+.service-card {
+  background-color: var(--background);
+  border-radius: var(--border-radius, 12rpx);
+  padding: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16rpx;
+    margin-bottom: 12rpx;
+  }
+  
+  &__title {
+    flex: 1;
+    font-size: 28rpx;
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  
+  &__usage {
+    display: flex;
+    align-items: center;
+    gap: 8rpx;
+    padding: 8rpx 12rpx;
+    background-color: var(--background-secondary);
+    border-radius: 20rpx;
+    
+    &-icon {
+      font-size: 24rpx;
+    }
+    
+    &-count {
+      font-size: 24rpx;
+      color: var(--text-muted);
+    }
+  }
+  
+  &__preview {
+    padding: 16rpx;
+    background-color: var(--background-secondary);
+    border-radius: 8rpx;
+    margin-bottom: 12rpx;
+    
+    &-text {
+      font-size: 24rpx;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      font-family: monospace;
+    }
+  }
+  
+  &__description {
+    display: block;
+    font-size: 26rpx;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 16rpx;
+  }
+  
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__price {
+    display: flex;
+    align-items: baseline;
+    
+    &-symbol {
+      font-size: 24rpx;
+      color: var(--primary-color);
+      margin-right: 4rpx;
+    }
+    
+    &-value {
+      font-size: 32rpx;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    &-suffix {
+      font-size: 24rpx;
+      color: var(--text-muted);
+      margin-left: 4rpx;
+    }
+  }
+  
+  &__unlock-btn {
+    padding: 12rpx 32rpx;
+    background-color: var(--primary-color);
+    border-radius: 24rpx;
+    
+    &-text {
+      color: var(--background);
+      font-size: 26rpx;
+      font-weight: 500;
+    }
+    
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
