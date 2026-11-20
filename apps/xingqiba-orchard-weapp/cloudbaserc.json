@@ -1,0 +1,63 @@
+{
+  "envId": "cloud1-d4gc2e7w9638ce590",
+  "version": "2.0",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "xingqiba_createPayment",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_paymentCallback",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_createOrder",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_getOrders",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_updateOrderStatus",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_getUserPurchases",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_getUser",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "xingqiba_login",
+      "timeout": 10,
+      "envVariables": {},
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    }
+  ]
+}

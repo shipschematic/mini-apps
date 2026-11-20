@@ -1,0 +1,33 @@
+.order-type-toggle {
+  display: flex;
+  background: #F5F5F5;
+  border-radius: 8rpx;
+  padding: 4rpx;
+  margin: 0 24rpx;
+
+  &__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16rpx 0;
+    border-radius: 6rpx;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  &__item--active {
+    background: #ffffff;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+
+    .order-type-toggle__label {
+      color: #C8A882;
+      font-weight: 600;
+    }
+  }
+
+  &__label {
+    font-size: 28rpx;
+    color: #666666;
+  }
+}

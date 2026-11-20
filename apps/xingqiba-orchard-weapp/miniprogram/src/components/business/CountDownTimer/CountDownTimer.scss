@@ -1,0 +1,11 @@
+.count-down-timer {
+  display: inline-flex;
+  align-items: center;
+
+  &__text {
+    font-size: 28px;
+    color: #E02020;
+    font-weight: 600;
+    font-family: monospace;
+  }
+}

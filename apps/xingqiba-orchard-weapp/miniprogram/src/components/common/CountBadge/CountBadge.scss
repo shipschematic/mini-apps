@@ -1,0 +1,16 @@
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  background: #E02020;
+  border-radius: 16px;
+
+  &__text {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+}
