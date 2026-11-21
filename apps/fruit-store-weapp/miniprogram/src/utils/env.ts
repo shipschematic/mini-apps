@@ -57,7 +57,7 @@ export const getAppId = (): string => {
   } catch (error) {
     console.warn('Unable to get appId from WeChat environment');
   }
-  return 'wx2ae5d48a13601dac'; // Default appId from project config
+  return ''; // AppID must come from TARO_APP_ID or the WeChat runtime
 };
 
 export const validateEnvironment = (): void => {
