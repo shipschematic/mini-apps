@@ -8,7 +8,7 @@ One repository for the WeChat/Taro mini apps and their shared CloudBase function
 | --- | --- | --- | --- | --- |
 | `promptmarket-weapp` | `promptmarket-weapp` | Taro 4.1 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
 | `minimalcove-weapp` | `minimalcove-weapp` | Taro 4.2 + React | None | `wx2ae5d48a13601dac` (test account, preview only) |
-| `gutsynced-weapp` | `gutsynced-weapp` | Taro 4.2 + React | Next.js 14 in `backend/` | `wx0000000000000000` (real, publishable) |
+| `gutsynced-weapp` | `gutsynced-weapp` | Taro 4.2 + React | Next.js 14 in `backend/` | Real AppID kept local (not public) |
 | `fruit-store-weapp` | `fruit-store-weapp` | Taro 4.2 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
 
 `gutsynced-weapp` now implements the GutSynced SIBO food-status flow from the Flutter app: four diets, food search and status filters, favorites, and account settings. The imported recipe pages remain in the app but are no longer in the tab bar.
@@ -17,9 +17,7 @@ One repository for the WeChat/Taro mini apps and their shared CloudBase function
 
 Only one real AppID exists in this workspace:
 
-```text
-wx0000000000000000   gutsynced-weapp   real, publishable
-```
+`gutsynced-weapp` is the only release app. Its real AppID is stored only in the local, ignored `apps/gutsynced-weapp/project.config.json`. The public example file uses a placeholder.
 
 The test account AppID `wx2ae5d48a13601dac` is used by `promptmarket-weapp`, `minimalcove-weapp`, and `fruit-store-weapp`.
 

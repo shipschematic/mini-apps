@@ -46,3 +46,6 @@ temp/
 
 # Figma exports (design reference only)
 figma/*.png
+
+# Local WeChat project identity (contains the real AppID)
+/project.config.json

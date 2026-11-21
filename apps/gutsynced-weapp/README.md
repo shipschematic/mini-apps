@@ -33,11 +33,11 @@ pnpm --filter gutsynced-weapp build:weapp
 pnpm --filter gutsynced-weapp build:h5
 ```
 
-Import `apps/gutsynced-weapp` in WeChat DevTools. Taro writes the mini-program output to `dist/` as configured in `project.config.json`.
+Copy `project.config.example.json` to `project.config.json` and set your real AppID. Then import `apps/gutsynced-weapp` in WeChat DevTools. Taro writes the mini-program output to `dist/` as configured in `project.config.json`.
 
 ## App ID
 
-`wx0000000000000000`. This is the only real AppID in the workspace and the release ID for GutSynced. The other three apps use the test account AppID `wx2ae5d48a13601dac` for preview only.
+GutSynced is the only release app. Its real AppID is stored in the local, ignored `project.config.json` and is not committed. Copy `project.config.example.json` to `project.config.json`, then set your real AppID. The other three apps use the test account AppID `wx2ae5d48a13601dac` for preview only.
 
 ## Local Data
 

@@ -13,7 +13,7 @@
 - `promptmarket-weapp` is the PromptMarket digital-product store, formerly `ecom-mini-weapp`. `fruit-store-weapp` is the 星期八果园 fruit store, formerly `xingqiba-orchard-weapp`.
 - `minimalcove-weapp` has no backend. It uses the test account AppID `wx2ae5d48a13601dac` for preview.
 - `gutsynced-weapp` contains a Taro frontend and a Next.js backend with Prisma. Deploy them separately. The active UI is the GutSynced SIBO food-status flow; the original recipe pages are retained but not tabbed.
-- `gutsynced-weapp` is the only app assigned the real AppID `wx0000000000000000`. Release this app under that ID.
+- `gutsynced-weapp` is the only app with a real AppID. The value is kept in the ignored local `project.config.json`; it is not published in this repository.
 - `promptmarket-weapp`, `minimalcove-weapp`, and `fruit-store-weapp` use the test account AppID `wx2ae5d48a13601dac`. Test AppIDs are preview-only and cannot be published.
 - To release PromptMarket, MinimalCove, or Fruit Store, register a separate real mini program for that app.
 - Taro versions: `promptmarket` 4.1.11, the other three 4.2.0.

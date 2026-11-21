@@ -19,9 +19,7 @@ Each app keeps its own `project.config.json`. Confirm `miniprogramRoot` points a
 
 Only one real AppID is available:
 
-```text
-wx0000000000000000   gutsynced-weapp   real, publishable
-```
+`gutsynced-weapp` is the only release app. Its real AppID is kept outside the public tree in the local, ignored `apps/gutsynced-weapp/project.config.json`.
 
 These apps declare the test account AppID:
 

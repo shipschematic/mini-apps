@@ -90,4 +90,4 @@ Treat this app as a working storefront demo until those items are fixed.
 
 ## App ID
 
-`wx2ae5d48a13601dac`. This is the WeChat test account AppID, shared with `minimalcove-weapp` and `fruit-store-weapp`. It supports preview only. The real AppID `wx0000000000000000` belongs to `gutsynced-weapp`.
+`wx2ae5d48a13601dac`. This is the WeChat test account AppID, shared with `minimalcove-weapp` and `fruit-store-weapp`. It supports preview only. GutSynced has the workspace's real release AppID, which is kept in its ignored local project config and is not published here.
