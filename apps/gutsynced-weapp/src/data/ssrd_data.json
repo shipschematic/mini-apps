@@ -1,0 +1,436 @@
+{
+  "categories": [
+    {
+      "name": "Fruits",
+      "items": [
+        {
+          "name": "Avocado",
+          "status": "green"
+        },
+        {
+          "name": "Blackberries",
+          "status": "green"
+        },
+        {
+          "name": "Blueberries",
+          "status": "green"
+        },
+        {
+          "name": "Boysenberries",
+          "status": "green"
+        },
+        {
+          "name": "Cranberries",
+          "status": "green"
+        },
+        {
+          "name": "Currants",
+          "status": "green"
+        },
+        {
+          "name": "Gooseberries",
+          "status": "green"
+        },
+        {
+          "name": "Grapes",
+          "status": "green"
+        },
+        {
+          "name": "Kiwi",
+          "status": "green"
+        },
+        {
+          "name": "Lemons",
+          "status": "green"
+        },
+        {
+          "name": "Loganberries",
+          "status": "green"
+        },
+        {
+          "name": "Olives",
+          "status": "green"
+        },
+        {
+          "name": "Pears",
+          "status": "green"
+        },
+        {
+          "name": "Prunes",
+          "status": "green"
+        },
+        {
+          "name": "Raspberries",
+          "status": "green"
+        },
+        {
+          "name": "Rhubarb",
+          "status": "green"
+        },
+        {
+          "name": "Strawberries",
+          "status": "green"
+        },
+        {
+          "name": "Persimmons",
+          "status": "yellow"
+        },
+        {
+          "name": "Plums",
+          "status": "yellow"
+        },
+        {
+          "name": "Raisins",
+          "status": "yellow"
+        },
+        {
+          "name": "Watermelon",
+          "status": "yellow"
+        },
+        {
+          "name": "Cherries",
+          "status": "yellow"
+        },
+        {
+          "name": "Grapefruit",
+          "status": "yellow"
+        },
+        {
+          "name": "Guava",
+          "status": "yellow"
+        },
+        {
+          "name": "Mangos",
+          "status": "yellow"
+        },
+        {
+          "name": "Oranges",
+          "status": "yellow"
+        },
+        {
+          "name": "Limes",
+          "status": "yellow"
+        },
+        {
+          "name": "Tangelos",
+          "status": "yellow"
+        },
+        {
+          "name": "Papaya",
+          "status": "yellow"
+        },
+        {
+          "name": "Pomegranates",
+          "status": "yellow"
+        },
+        {
+          "name": "Apples",
+          "status": "red"
+        },
+        {
+          "name": "Apricots",
+          "status": "red"
+        },
+        {
+          "name": "Bananas",
+          "status": "red"
+        },
+        {
+          "name": "Cantaloupe",
+          "status": "red"
+        },
+        {
+          "name": "Dates",
+          "status": "red"
+        },
+        {
+          "name": "Figs",
+          "status": "red"
+        },
+        {
+          "name": "Honeydew melon",
+          "status": "red"
+        },
+        {
+          "name": "Nectarines",
+          "status": "red"
+        },
+        {
+          "name": "Peaches",
+          "status": "red"
+        },
+        {
+          "name": "Pineapple",
+          "status": "red"
+        },
+        {
+          "name": "Tangerines",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Vegetables & Legumes",
+      "items": [
+        {
+          "name": "Alfalfa sprouts",
+          "status": "green"
+        },
+        {
+          "name": "Artichokes",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Arugulas",
+          "status": "green"
+        },
+        {
+          "name": "Asparagus",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Bamboo shoots",
+          "status": "green"
+        },
+        {
+          "name": "Bok choy",
+          "status": "green"
+        },
+        {
+          "name": "Broccoli",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Brussel sprouts",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Cabbage",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Cauliflower",
+          "status": "green",
+          "sidenote": "excess intake can cause bloating/flatulence in all individuals"
+        },
+        {
+          "name": "Celery",
+          "status": "green"
+        },
+        {
+          "name": "Chard",
+          "status": "green"
+        },
+        {
+          "name": "Chicories",
+          "status": "green"
+        },
+        {
+          "name": "Chives",
+          "status": "green"
+        },
+        {
+          "name": "Collard greens",
+          "status": "green"
+        },
+        {
+          "name": "Cress",
+          "status": "green"
+        },
+        {
+          "name": "Cucumber",
+          "status": "green"
+        },
+        {
+          "name": "Eggplant",
+          "status": "green"
+        },
+        {
+          "name": "Endive",
+          "status": "green"
+        },
+        {
+          "name": "Green beans",
+          "status": "green"
+        },
+        {
+          "name": "Kale",
+          "status": "green"
+        },
+        {
+          "name": "Lettuce",
+          "status": "green"
+        },
+        {
+          "name": "Mung bean sprouts",
+          "status": "green"
+        },
+        {
+          "name": "Mushrooms",
+          "status": "green"
+        },
+        {
+          "name": "Mustard green",
+          "status": "green"
+        },
+        {
+          "name": "Peppers",
+          "status": "green"
+        },
+        {
+          "name": "Radishes",
+          "status": "green"
+        },
+        {
+          "name": "Spaghetti squash",
+          "status": "green"
+        },
+        {
+          "name": "Spinach",
+          "status": "green"
+        },
+        {
+          "name": "Tomatoes",
+          "status": "green"
+        },
+        {
+          "name": "Turnips",
+          "status": "green"
+        },
+        {
+          "name": "Yellow squash",
+          "status": "green"
+        },
+        {
+          "name": "Zucchini",
+          "status": "green"
+        },
+        {
+          "name": "Edamame soybeans",
+          "status": "yellow"
+        },
+        {
+          "name": "Jicamas",
+          "status": "yellow"
+        },
+        {
+          "name": "Leeks",
+          "status": "yellow"
+        },
+        {
+          "name": "Okra",
+          "status": "yellow"
+        },
+        {
+          "name": "Pumpkin",
+          "status": "yellow"
+        },
+        {
+          "name": "Snow peas",
+          "status": "yellow"
+        },
+        {
+          "name": "Tempel",
+          "status": "yellow"
+        },
+        {
+          "name": "Tofu",
+          "status": "yellow"
+        },
+        {
+          "name": "Yellow wax beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Green peas",
+          "status": "yellow"
+        },
+        {
+          "name": "Beets",
+          "status": "red"
+        },
+        {
+          "name": "Black beans",
+          "status": "red"
+        },
+        {
+          "name": "Black-eyed peas",
+          "status": "red"
+        },
+        {
+          "name": "Butternut",
+          "status": "red"
+        },
+        {
+          "name": "Carrots",
+          "status": "red"
+        },
+        {
+          "name": "Cassava",
+          "status": "red"
+        },
+        {
+          "name": "Chickpeas",
+          "status": "red"
+        },
+        {
+          "name": "Corn",
+          "status": "red"
+        },
+        {
+          "name": "Garlic",
+          "status": "red"
+        },
+        {
+          "name": "Lentils",
+          "status": "red"
+        },
+        {
+          "name": "Lima beans",
+          "status": "red"
+        },
+        {
+          "name": "Navy beans",
+          "status": "red"
+        },
+        {
+          "name": "Onion",
+          "status": "red"
+        },
+        {
+          "name": "Parsnips",
+          "status": "red"
+        },
+        {
+          "name": "Pinto beans",
+          "status": "red"
+        },
+        {
+          "name": "Potatoes",
+          "status": "red"
+        },
+        {
+          "name": "Soybeans",
+          "status": "red"
+        },
+        {
+          "name": "Split peas",
+          "status": "red"
+        },
+        {
+          "name": "Sweet potatoes",
+          "status": "red"
+        },
+        {
+          "name": "Yams",
+          "status": "red"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1907 @@
+{
+  "categories": [
+    {
+      "name": "Cereals",
+      "items": [
+        {
+          "name": "Arrowroot flour",
+          "status": "green"
+        },
+        {
+          "name": "Brown rice protein powder",
+          "status": "green"
+        },
+        {
+          "name": "Pea protein powder",
+          "status": "green"
+        },
+        {
+          "name": "Tempeh",
+          "status": "green"
+        },
+        {
+          "name": "Hemp protein powder",
+          "status": "yellow"
+        },
+        {
+          "name": "Nutritional yeast flakes",
+          "status": "yellow"
+        },
+        {
+          "name": "Oat bran",
+          "status": "yellow"
+        },
+        {
+          "name": "Oat groats",
+          "status": "yellow"
+        },
+        {
+          "name": "Pretzels",
+          "status": "yellow"
+        },
+        {
+          "name": "Puffed rice cereal",
+          "status": "yellow"
+        },
+        {
+          "name": "Sorghum flour",
+          "status": "yellow"
+        },
+        {
+          "name": "Sourdough spelt bread",
+          "status": "yellow"
+        },
+        {
+          "name": "Soy protein powder",
+          "status": "yellow"
+        },
+        {
+          "name": "Tofu",
+          "status": "yellow"
+        },
+        {
+          "name": "Agar agar",
+          "status": "red"
+        },
+        {
+          "name": "Amaranth",
+          "status": "red"
+        },
+        {
+          "name": "Arrowroot starch",
+          "status": "red"
+        },
+        {
+          "name": "Barley",
+          "status": "red"
+        },
+        {
+          "name": "Cereal (commercial)",
+          "status": "red"
+        },
+        {
+          "name": "Corn",
+          "status": "red"
+        },
+        {
+          "name": "Corn flakes",
+          "status": "red"
+        },
+        {
+          "name": "Corn flour",
+          "status": "red"
+        },
+        {
+          "name": "Corn starch",
+          "status": "red"
+        },
+        {
+          "name": "Cornbread",
+          "status": "red"
+        },
+        {
+          "name": "Couscous",
+          "status": "red"
+        },
+        {
+          "name": "Crisps",
+          "status": "red"
+        },
+        {
+          "name": "Egg replacer",
+          "status": "red"
+        },
+        {
+          "name": "Einkorn",
+          "status": "red"
+        },
+        {
+          "name": "Emmer",
+          "status": "red"
+        },
+        {
+          "name": "Falafel",
+          "status": "red"
+        },
+        {
+          "name": "Freekeh",
+          "status": "red"
+        },
+        {
+          "name": "Gluten-free bread",
+          "status": "red"
+        },
+        {
+          "name": "Khorasan",
+          "status": "red"
+        },
+        {
+          "name": "Lupin flour",
+          "status": "red"
+        },
+        {
+          "name": "Muesli",
+          "status": "red"
+        },
+        {
+          "name": "Naan bread",
+          "status": "red"
+        },
+        {
+          "name": "Polenta",
+          "status": "red"
+        },
+        {
+          "name": "Popcorn",
+          "status": "red"
+        },
+        {
+          "name": "Potato starch",
+          "status": "red"
+        },
+        {
+          "name": "Quinoa",
+          "status": "red"
+        },
+        {
+          "name": "Quinoa flour",
+          "status": "red"
+        },
+        {
+          "name": "Rice starch",
+          "status": "red"
+        },
+        {
+          "name": "Semolina",
+          "status": "red"
+        },
+        {
+          "name": "Soba noodles",
+          "status": "red"
+        },
+        {
+          "name": "Sourdough bread",
+          "status": "red"
+        },
+        {
+          "name": "Soy flour",
+          "status": "red"
+        },
+        {
+          "name": "Soy protein TVP (textured vegetable protein)",
+          "status": "red"
+        },
+        {
+          "name": "Spelt flakes",
+          "status": "red"
+        },
+        {
+          "name": "Spelt flour (organic, sieved)",
+          "status": "red"
+        },
+        {
+          "name": "Spelt flour",
+          "status": "red"
+        },
+        {
+          "name": "Spelt pasta",
+          "status": "red"
+        },
+        {
+          "name": "Starch powder",
+          "status": "red"
+        },
+        {
+          "name": "Sweet corn",
+          "status": "red"
+        },
+        {
+          "name": "Taco shells",
+          "status": "red"
+        },
+        {
+          "name": "Tapioca starch",
+          "status": "red"
+        },
+        {
+          "name": "Vegetarian mince",
+          "status": "red"
+        },
+        {
+          "name": "Vermicelli noodles",
+          "status": "red"
+        },
+        {
+          "name": "Wheat bran",
+          "status": "red"
+        },
+        {
+          "name": "Wheat germ",
+          "status": "red"
+        },
+        {
+          "name": "Wonton wrapper",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Dairy",
+      "items": [
+        {
+          "name": "Butter",
+          "status": "green"
+        },
+        {
+          "name": "Cheese (aged 1 month)",
+          "status": "green"
+        },
+        {
+          "name": "Cheese/labneh",
+          "status": "green"
+        },
+        {
+          "name": "Dry curd cottage cheese",
+          "status": "green"
+        },
+        {
+          "name": "Ghee",
+          "status": "green"
+        },
+        {
+          "name": "Sour Cream (homemade 24 hour)",
+          "status": "green"
+        },
+        {
+          "name": "Whey protein powder",
+          "status": "green"
+        },
+        {
+          "name": "Yogurt cheese",
+          "status": "green"
+        },
+        {
+          "name": "Cream (lactase-treated)",
+          "status": "yellow"
+        },
+        {
+          "name": "Milk (100% lactose-free commercial)",
+          "status": "yellow"
+        },
+        {
+          "name": "Yogurt (lactose-free commercial)",
+          "status": "yellow"
+        },
+        {
+          "name": "Buttermilk",
+          "status": "red"
+        },
+        {
+          "name": "Cheese (fresh)",
+          "status": "red"
+        },
+        {
+          "name": "Cheve cheese",
+          "status": "red"
+        },
+        {
+          "name": "Cottage cheese",
+          "status": "red"
+        },
+        {
+          "name": "Cream",
+          "status": "red"
+        },
+        {
+          "name": "Cream cheese",
+          "status": "red"
+        },
+        {
+          "name": "Feta cheese",
+          "status": "red"
+        },
+        {
+          "name": "Ice cream",
+          "status": "red"
+        },
+        {
+          "name": "Kefir (commercial)",
+          "status": "red"
+        },
+        {
+          "name": "Milk",
+          "status": "red"
+        },
+        {
+          "name": "Mozzarella (fresh)",
+          "status": "red"
+        },
+        {
+          "name": "Sour cream (commercial)",
+          "status": "red"
+        },
+        {
+          "name": "Yogurt (homemade 24 hour)",
+          "status": "red"
+        },
+        {
+          "name": "Yogurt (commercial)",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "items": [
+        {
+          "name": "Chamomile tea",
+          "status": "green"
+        },
+        {
+          "name": "Cranberry juice (pure)",
+          "status": "green"
+        },
+        {
+          "name": "Ginger tea",
+          "status": "green"
+        },
+        {
+          "name": "Hibiscus tea",
+          "status": "green"
+        },
+        {
+          "name": "Lemongrass tea",
+          "status": "green"
+        },
+        {
+          "name": "Macadamia milk",
+          "status": "green"
+        },
+        {
+          "name": "Mate tea",
+          "status": "green"
+        },
+        {
+          "name": "Mint tea",
+          "status": "green"
+        },
+        {
+          "name": "Oolong tea",
+          "status": "green"
+        },
+        {
+          "name": "Rooibos tea",
+          "status": "green"
+        },
+        {
+          "name": "Rose hip tea",
+          "status": "green"
+        },
+        {
+          "name": "Soy milk (from soy protein)",
+          "status": "green"
+        },
+        {
+          "name": "Water",
+          "status": "green"
+        },
+        {
+          "name": "Black tea",
+          "status": "yellow"
+        },
+        {
+          "name": "Bourbon",
+          "status": "yellow"
+        },
+        {
+          "name": "Coffee (weak)",
+          "status": "yellow"
+        },
+        {
+          "name": "Fruit Juice",
+          "status": "yellow"
+        },
+        {
+          "name": "Gin",
+          "status": "yellow"
+        },
+        {
+          "name": "Green tea",
+          "status": "yellow"
+        },
+        {
+          "name": "Hemp milk",
+          "status": "yellow"
+        },
+        {
+          "name": "Kvass",
+          "status": "yellow"
+        },
+        {
+          "name": "Orange juice (fresh)",
+          "status": "yellow"
+        },
+        {
+          "name": "Rice milk",
+          "status": "yellow"
+        },
+        {
+          "name": "Rum (light/gold)",
+          "status": "yellow"
+        },
+        {
+          "name": "Seltzer/Carbonated beverages",
+          "status": "yellow"
+        },
+        {
+          "name": "Brandy",
+          "status": "red"
+        },
+        {
+          "name": "Chicory root tea",
+          "status": "red"
+        },
+        {
+          "name": "Coffee Substitutes",
+          "status": "red"
+        },
+        {
+          "name": "Hard Cider",
+          "status": "red"
+        },
+        {
+          "name": "Kombucha tea",
+          "status": "red"
+        },
+        {
+          "name": "Licorice tea",
+          "status": "red"
+        },
+        {
+          "name": "Liqueurs/Cordials",
+          "status": "red"
+        },
+        {
+          "name": "Oat milk",
+          "status": "red"
+        },
+        {
+          "name": "Pau d'arco tea",
+          "status": "red"
+        },
+        {
+          "name": "Quinoa milk",
+          "status": "red"
+        },
+        {
+          "name": "Rum (dark)",
+          "status": "red"
+        },
+        {
+          "name": "Sherry",
+          "status": "red"
+        },
+        {
+          "name": "Soda",
+          "status": "red"
+        },
+        {
+          "name": "Soy milk (from soy beans)",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Fats/Oils",
+      "items": [
+        {
+          "name": "Bacon fat",
+          "status": "green"
+        },
+        {
+          "name": "Borage oil",
+          "status": "green"
+        },
+        {
+          "name": "Butter",
+          "status": "green"
+        },
+        {
+          "name": "Canola oil",
+          "status": "green"
+        },
+        {
+          "name": "Coconut oil",
+          "status": "green"
+        },
+        {
+          "name": "Cod liver oil & Fish oil",
+          "status": "green"
+        },
+        {
+          "name": "Duck fat",
+          "status": "green"
+        },
+        {
+          "name": "Flax oil",
+          "status": "green"
+        },
+        {
+          "name": "Garlic-infused oil",
+          "status": "green"
+        },
+        {
+          "name": "Ghee",
+          "status": "green"
+        },
+        {
+          "name": "Grapeseed oil",
+          "status": "green"
+        },
+        {
+          "name": "Hemp oil",
+          "status": "green"
+        },
+        {
+          "name": "Lard & Tallow",
+          "status": "green"
+        },
+        {
+          "name": "Macadamia oil",
+          "status": "green"
+        },
+        {
+          "name": "Medium Chain Tri-Glyceride/MCT oil",
+          "status": "green"
+        },
+        {
+          "name": "Olive oil",
+          "status": "green"
+        },
+        {
+          "name": "Palm oil",
+          "status": "green"
+        },
+        {
+          "name": "Pumpkin seed oil",
+          "status": "green"
+        },
+        {
+          "name": "Rapeseed oil",
+          "status": "green"
+        },
+        {
+          "name": "Sesame oil",
+          "status": "green"
+        },
+        {
+          "name": "Sunflower oil",
+          "status": "green"
+        },
+        {
+          "name": "Walnut oil",
+          "status": "green"
+        },
+        {
+          "name": "Margarine",
+          "status": "yellow"
+        },
+        {
+          "name": "Soybean oil",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Fruits",
+      "items": [
+        {
+          "name": "Acai berry",
+          "status": "green"
+        },
+        {
+          "name": "Banana (unripe, fresh, dried)",
+          "status": "green"
+        },
+        {
+          "name": "Boysenberry",
+          "status": "green"
+        },
+        {
+          "name": "Cantaloupe/rock",
+          "status": "green"
+        },
+        {
+          "name": "Carambola",
+          "status": "green"
+        },
+        {
+          "name": "Currants",
+          "status": "green"
+        },
+        {
+          "name": "Dragon Fruit",
+          "status": "green"
+        },
+        {
+          "name": "Durian",
+          "status": "green"
+        },
+        {
+          "name": "Grapes",
+          "status": "green"
+        },
+        {
+          "name": "Guava",
+          "status": "green"
+        },
+        {
+          "name": "Jackfruit",
+          "status": "green"
+        },
+        {
+          "name": "Jam/Jelly (homemade (no pectin, sugar))",
+          "status": "green"
+        },
+        {
+          "name": "Kiwifruit",
+          "status": "green"
+        },
+        {
+          "name": "Kumquats",
+          "status": "green"
+        },
+        {
+          "name": "Lemon",
+          "status": "green"
+        },
+        {
+          "name": "Lime",
+          "status": "green"
+        },
+        {
+          "name": "Oranges",
+          "status": "green"
+        },
+        {
+          "name": "Papaya/Paw Paw",
+          "status": "green"
+        },
+        {
+          "name": "Pineapple",
+          "status": "green"
+        },
+        {
+          "name": "Prickly Pear",
+          "status": "green"
+        },
+        {
+          "name": "Rhubarb",
+          "status": "green"
+        },
+        {
+          "name": "Strawberry",
+          "status": "green"
+        },
+        {
+          "name": "Tangelos",
+          "status": "green"
+        },
+        {
+          "name": "Tangerine",
+          "status": "green"
+        },
+        {
+          "name": "Apple",
+          "status": "yellow"
+        },
+        {
+          "name": "Apricot",
+          "status": "yellow"
+        },
+        {
+          "name": "Avocado",
+          "status": "yellow"
+        },
+        {
+          "name": "Banana (ripe)",
+          "status": "yellow"
+        },
+        {
+          "name": "Blackberry",
+          "status": "yellow"
+        },
+        {
+          "name": "Blueberry",
+          "status": "yellow"
+        },
+        {
+          "name": "Canned fruit (in high Fodmap fruit juice)",
+          "status": "yellow"
+        },
+        {
+          "name": "Cherries",
+          "status": "yellow"
+        },
+        {
+          "name": "Cranberry",
+          "status": "yellow"
+        },
+        {
+          "name": "Current (dried)",
+          "status": "yellow"
+        },
+        {
+          "name": "Custard Apple",
+          "status": "yellow"
+        },
+        {
+          "name": "Date (dried)",
+          "status": "yellow"
+        },
+        {
+          "name": "Grapefruit",
+          "status": "yellow"
+        },
+        {
+          "name": "Honeydew melon",
+          "status": "yellow"
+        },
+        {
+          "name": "Longon",
+          "status": "yellow"
+        },
+        {
+          "name": "Lychee",
+          "status": "yellow"
+        },
+        {
+          "name": "Mango",
+          "status": "yellow"
+        },
+        {
+          "name": "Nashi pear",
+          "status": "yellow"
+        },
+        {
+          "name": "Nectarine",
+          "status": "yellow"
+        },
+        {
+          "name": "Passion fruit",
+          "status": "yellow"
+        },
+        {
+          "name": "Passion fruit pulps",
+          "status": "yellow"
+        },
+        {
+          "name": "Peach",
+          "status": "yellow"
+        },
+        {
+          "name": "Pear",
+          "status": "yellow"
+        },
+        {
+          "name": "Persimmon",
+          "status": "yellow"
+        },
+        {
+          "name": "Pineapple (dried)",
+          "status": "yellow"
+        },
+        {
+          "name": "Plum",
+          "status": "yellow"
+        },
+        {
+          "name": "Pomegranate",
+          "status": "yellow"
+        },
+        {
+          "name": "Prunes",
+          "status": "yellow"
+        },
+        {
+          "name": "Raisons",
+          "status": "yellow"
+        },
+        {
+          "name": "Rambutan",
+          "status": "yellow"
+        },
+        {
+          "name": "Raspberry",
+          "status": "yellow"
+        },
+        {
+          "name": "Sultanas",
+          "status": "yellow"
+        },
+        {
+          "name": "Tamarillo",
+          "status": "yellow"
+        },
+        {
+          "name": "Tamarind",
+          "status": "yellow"
+        },
+        {
+          "name": "Watermelon",
+          "status": "yellow"
+        },
+        {
+          "name": "Carob powder",
+          "status": "red"
+        },
+        {
+          "name": "Feijoa",
+          "status": "red"
+        },
+        {
+          "name": "Figs (fresh, dried)",
+          "status": "red"
+        },
+        {
+          "name": "Goji berries",
+          "status": "red"
+        },
+        {
+          "name": "Jam/Jelly (commercial)",
+          "status": "red"
+        },
+        {
+          "name": "Plantain",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Legumes",
+      "items": [
+        {
+          "name": "Tofu",
+          "status": "green"
+        },
+        {
+          "name": "Tempeh",
+          "status": "green"
+        },
+        {
+          "name": "Canned lentils",
+          "status": "green"
+        },
+        {
+          "name": "Canned chickpeas",
+          "status": "green"
+        },
+        {
+          "name": "Canned butter beans",
+          "status": "green"
+        },
+        {
+          "name": "Adzuki beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Beans (baked)",
+          "status": "yellow"
+        },
+        {
+          "name": "Black beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Borlotti/Cranberry beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Brown lentil",
+          "status": "yellow"
+        },
+        {
+          "name": "Butter beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Cannellini",
+          "status": "yellow"
+        },
+        {
+          "name": "Chickpea/Garbanzo",
+          "status": "yellow"
+        },
+        {
+          "name": "Fava/faba/broad beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Green Beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Green lentil",
+          "status": "yellow"
+        },
+        {
+          "name": "Green peas",
+          "status": "yellow"
+        },
+        {
+          "name": "Kidney/Red beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Lima beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Mung beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Navy/white/haricot beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Pinto beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Red lentil",
+          "status": "yellow"
+        },
+        {
+          "name": "Soy",
+          "status": "yellow"
+        },
+        {
+          "name": "Split pea",
+          "status": "yellow"
+        },
+        {
+          "name": "Yellow peas",
+          "status": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Meats",
+      "items": [
+        {
+          "name": "Beef",
+          "status": "green"
+        },
+        {
+          "name": "Broth (homemade, no cartilage)",
+          "status": "green"
+        },
+        {
+          "name": "Eggs",
+          "status": "green"
+        },
+        {
+          "name": "Fish",
+          "status": "green"
+        },
+        {
+          "name": "Game",
+          "status": "green"
+        },
+        {
+          "name": "Lamb",
+          "status": "green"
+        },
+        {
+          "name": "Organ Meats",
+          "status": "green"
+        },
+        {
+          "name": "Pork",
+          "status": "green"
+        },
+        {
+          "name": "Poultry",
+          "status": "green"
+        },
+        {
+          "name": "Prawns",
+          "status": "green"
+        },
+        {
+          "name": "Seafood",
+          "status": "green"
+        },
+        {
+          "name": "Bacon (with honey)",
+          "status": "yellow"
+        },
+        {
+          "name": "Broth (homemade, bone/cartilage)",
+          "status": "yellow"
+        },
+        {
+          "name": "Caviar",
+          "status": "yellow"
+        },
+        {
+          "name": "Bacon (with sugar)",
+          "status": "red"
+        },
+        {
+          "name": "Bacon (with high fructose corn syrup)",
+          "status": "red"
+        },
+        {
+          "name": "Processed Meat (with additives)",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Nuts/Seeds",
+      "items": [
+        {
+          "name": "Macadamia",
+          "status": "green"
+        },
+        {
+          "name": "Poppy seeds",
+          "status": "green"
+        },
+        {
+          "name": "Pumpkin seeds",
+          "status": "green"
+        },
+        {
+          "name": "Sesame seeds",
+          "status": "green"
+        },
+        {
+          "name": "Walnuts",
+          "status": "green"
+        },
+        {
+          "name": "Almond flour",
+          "status": "yellow"
+        },
+        {
+          "name": "Almonds",
+          "status": "yellow"
+        },
+        {
+          "name": "Caraway seeds",
+          "status": "yellow"
+        },
+        {
+          "name": "Cashews",
+          "status": "yellow"
+        },
+        {
+          "name": "Chestnuts",
+          "status": "yellow"
+        },
+        {
+          "name": "Chia seeds",
+          "status": "yellow"
+        },
+        {
+          "name": "Coconut flour (shredded)",
+          "status": "yellow"
+        },
+        {
+          "name": "Coconut milk (with no thickeners)",
+          "status": "yellow"
+        },
+        {
+          "name": "Coconut milk (with thickeners, guar gum, carageenan)",
+          "status": "yellow"
+        },
+        {
+          "name": "Flaxseed",
+          "status": "yellow"
+        },
+        {
+          "name": "Hazelnuts",
+          "status": "yellow"
+        },
+        {
+          "name": "Hemp seeds",
+          "status": "yellow"
+        },
+        {
+          "name": "Peanut butter",
+          "status": "yellow"
+        },
+        {
+          "name": "Peanuts",
+          "status": "yellow"
+        },
+        {
+          "name": "Pecans",
+          "status": "yellow"
+        },
+        {
+          "name": "Pine nuts",
+          "status": "yellow"
+        },
+        {
+          "name": "Pistachios",
+          "status": "yellow"
+        },
+        {
+          "name": "Seed flour",
+          "status": "yellow"
+        },
+        {
+          "name": "Sunflower seeds",
+          "status": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Seasonings/Condiments",
+      "items": [
+        {
+          "name": "Asafoetida powder",
+          "status": "green"
+        },
+        {
+          "name": "Balsamic vinegar",
+          "status": "green"
+        },
+        {
+          "name": "Bay leaves",
+          "status": "green"
+        },
+        {
+          "name": "Capers",
+          "status": "green"
+        },
+        {
+          "name": "Cardamom",
+          "status": "green"
+        },
+        {
+          "name": "Chives",
+          "status": "green"
+        },
+        {
+          "name": "Cilantro",
+          "status": "green"
+        },
+        {
+          "name": "Cinnamon",
+          "status": "green"
+        },
+        {
+          "name": "Cloves",
+          "status": "green"
+        },
+        {
+          "name": "Coriander",
+          "status": "green"
+        },
+        {
+          "name": "Curry leaves",
+          "status": "green"
+        },
+        {
+          "name": "Dill",
+          "status": "green"
+        },
+        {
+          "name": "Fenugreek",
+          "status": "green"
+        },
+        {
+          "name": "Garlic-infused oil",
+          "status": "green"
+        },
+        {
+          "name": "Galangal (a rhizome, like ginger)",
+          "status": "green"
+        },
+        {
+          "name": "Ginger (fresh and dried)",
+          "status": "green"
+        },
+        {
+          "name": "Mint",
+          "status": "green"
+        },
+        {
+          "name": "Mustard (without garlic)",
+          "status": "green"
+        },
+        {
+          "name": "Olives (botanically a fruit, but often used as a vegetable)",
+          "status": "green"
+        },
+        {
+          "name": "Oregano",
+          "status": "green"
+        },
+        {
+          "name": "Parsley",
+          "status": "green"
+        },
+        {
+          "name": "Rosemary",
+          "status": "green"
+        },
+        {
+          "name": "Saffron",
+          "status": "green"
+        },
+        {
+          "name": "Sage",
+          "status": "green"
+        },
+        {
+          "name": "Salt",
+          "status": "green"
+        },
+        {
+          "name": "Soy Sauce/Tamari",
+          "status": "green"
+        },
+        {
+          "name": "Spices",
+          "status": "green"
+        },
+        {
+          "name": "Tabasco",
+          "status": "green"
+        },
+        {
+          "name": "Thyme",
+          "status": "green"
+        },
+        {
+          "name": "Turmeric",
+          "status": "green"
+        },
+        {
+          "name": "Vanilla",
+          "status": "green"
+        },
+        {
+          "name": "White vinegar",
+          "status": "green"
+        },
+        {
+          "name": "Barbecue sauce",
+          "status": "yellow"
+        },
+        {
+          "name": "Chocolate",
+          "status": "yellow"
+        },
+        {
+          "name": "Cocoa",
+          "status": "yellow"
+        },
+        {
+          "name": "Collard",
+          "status": "yellow"
+        },
+        {
+          "name": "Garlic powder",
+          "status": "yellow"
+        },
+        {
+          "name": "Golden syrup",
+          "status": "yellow"
+        },
+        {
+          "name": "Hummus",
+          "status": "yellow"
+        },
+        {
+          "name": "Kaffir lime leaves",
+          "status": "yellow"
+        },
+        {
+          "name": "Lemongrass",
+          "status": "yellow"
+        },
+        {
+          "name": "Malt vinegar",
+          "status": "yellow"
+        },
+        {
+          "name": "Mayonnaise (homemade, commercial with honey)",
+          "status": "yellow"
+        },
+        {
+          "name": "Mirin",
+          "status": "yellow"
+        },
+        {
+          "name": "Miso",
+          "status": "yellow"
+        },
+        {
+          "name": "Onion powder",
+          "status": "yellow"
+        },
+        {
+          "name": "Oyster sauce",
+          "status": "yellow"
+        },
+        {
+          "name": "Pandan leaves",
+          "status": "yellow"
+        },
+        {
+          "name": "Pasta sauce (commercial)",
+          "status": "yellow"
+        },
+        {
+          "name": "Pesto sauce",
+          "status": "yellow"
+        },
+        {
+          "name": "Pickles",
+          "status": "yellow"
+        },
+        {
+          "name": "Quince paste",
+          "status": "yellow"
+        },
+        {
+          "name": "Rampa leaves",
+          "status": "yellow"
+        },
+        {
+          "name": "Relish (no sweetener or garlic)",
+          "status": "yellow"
+        },
+        {
+          "name": "Sauces (with illegal additives)",
+          "status": "yellow"
+        },
+        {
+          "name": "Carageenan",
+          "status": "red"
+        },
+        {
+          "name": "Chicory leaves",
+          "status": "red"
+        },
+        {
+          "name": "Chicory root",
+          "status": "red"
+        },
+        {
+          "name": "Chutney",
+          "status": "red"
+        },
+        {
+          "name": "Goraka",
+          "status": "red"
+        },
+        {
+          "name": "Gotukala",
+          "status": "red"
+        },
+        {
+          "name": "Gums",
+          "status": "red"
+        },
+        {
+          "name": "Horseradish",
+          "status": "red"
+        },
+        {
+          "name": "Licorice",
+          "status": "red"
+        },
+        {
+          "name": "Marinades (with illegal additives)",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Sweeteners",
+      "items": [
+        {
+          "name": "Aspartame",
+          "status": "green"
+        },
+        {
+          "name": "Maple syrup",
+          "status": "green"
+        },
+        {
+          "name": "Saccharine (pure (no illegal additives))",
+          "status": "green"
+        },
+        {
+          "name": "Stevia (pure (no inulin))",
+          "status": "green"
+        },
+        {
+          "name": "Sugar/Sucrose",
+          "status": "green"
+        },
+        {
+          "name": "Glucose",
+          "status": "yellow"
+        },
+        {
+          "name": "Honey (alfalfa, cotton, clover, raspberry)",
+          "status": "yellow"
+        },
+        {
+          "name": "Sage honey",
+          "status": "yellow"
+        },
+        {
+          "name": "Agave",
+          "status": "red"
+        },
+        {
+          "name": "Coconut sugar",
+          "status": "red"
+        },
+        {
+          "name": "Fructose",
+          "status": "red"
+        },
+        {
+          "name": "High fructose corn syrup",
+          "status": "red"
+        },
+        {
+          "name": "Honey (all other types)",
+          "status": "red"
+        },
+        {
+          "name": "Isomalt",
+          "status": "red"
+        },
+        {
+          "name": "Lactitol",
+          "status": "red"
+        },
+        {
+          "name": "Maltitol",
+          "status": "red"
+        },
+        {
+          "name": "Mannitol",
+          "status": "red"
+        },
+        {
+          "name": "Molasses",
+          "status": "red"
+        },
+        {
+          "name": "Sorbitol",
+          "status": "red"
+        },
+        {
+          "name": "Sucralose",
+          "status": "red"
+        },
+        {
+          "name": "Xylitol",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Veggies",
+      "items": [
+        {
+          "name": "Arugula",
+          "status": "green"
+        },
+        {
+          "name": "Bamboo Shoots",
+          "status": "green"
+        },
+        {
+          "name": "Bean Sprouts",
+          "status": "green"
+        },
+        {
+          "name": "Bok choy",
+          "status": "green"
+        },
+        {
+          "name": "Carrot",
+          "status": "green"
+        },
+        {
+          "name": "Chives",
+          "status": "green"
+        },
+        {
+          "name": "Choi sum",
+          "status": "green"
+        },
+        {
+          "name": "Cucumber",
+          "status": "green"
+        },
+        {
+          "name": "Ginger",
+          "status": "green"
+        },
+        {
+          "name": "Green beans",
+          "status": "green"
+        },
+        {
+          "name": "Kai lan",
+          "status": "green"
+        },
+        {
+          "name": "Lettuce",
+          "status": "green"
+        },
+        {
+          "name": "Mungbeans sprouts",
+          "status": "green"
+        },
+        {
+          "name": "Nori",
+          "status": "green"
+        },
+        {
+          "name": "Olives",
+          "status": "green"
+        },
+        {
+          "name": "Parsnip",
+          "status": "green"
+        },
+        {
+          "name": "Potato (white/all colors)",
+          "status": "green"
+        },
+        {
+          "name": "Radish",
+          "status": "green"
+        },
+        {
+          "name": "Red pepper",
+          "status": "green"
+        },
+        {
+          "name": "Rocket",
+          "status": "green"
+        },
+        {
+          "name": "Scallion (green part)",
+          "status": "green"
+        },
+        {
+          "name": "Seaweeds",
+          "status": "green"
+        },
+        {
+          "name": "Snow Peas",
+          "status": "green"
+        },
+        {
+          "name": "Spinach",
+          "status": "green"
+        },
+        {
+          "name": "Spring onions (green tops)",
+          "status": "green"
+        },
+        {
+          "name": "Sugar Snap Peas",
+          "status": "green"
+        },
+        {
+          "name": "Sweet potato",
+          "status": "green"
+        },
+        {
+          "name": "Swiss chard",
+          "status": "green"
+        },
+        {
+          "name": "Tomato",
+          "status": "green"
+        },
+        {
+          "name": "Turnip",
+          "status": "green"
+        },
+        {
+          "name": "Water chestnuts",
+          "status": "green"
+        },
+        {
+          "name": "Yam",
+          "status": "green"
+        },
+        {
+          "name": "Zucchini",
+          "status": "green"
+        },
+        {
+          "name": "Artichoke",
+          "status": "yellow"
+        },
+        {
+          "name": "Artichoke hearts",
+          "status": "yellow"
+        },
+        {
+          "name": "Asparagus",
+          "status": "yellow"
+        },
+        {
+          "name": "Beet",
+          "status": "yellow"
+        },
+        {
+          "name": "Beetroot (pickled)",
+          "status": "yellow"
+        },
+        {
+          "name": "Beetroot (canned)",
+          "status": "yellow"
+        },
+        {
+          "name": "Beetroot (fresh)",
+          "status": "yellow"
+        },
+        {
+          "name": "Bell peppers",
+          "status": "yellow"
+        },
+        {
+          "name": "Broccoli",
+          "status": "yellow"
+        },
+        {
+          "name": "Brussels sprouts",
+          "status": "yellow"
+        },
+        {
+          "name": "Buckwheat",
+          "status": "yellow"
+        },
+        {
+          "name": "Butternut Squash",
+          "status": "yellow"
+        },
+        {
+          "name": "Cabbage",
+          "status": "yellow"
+        },
+        {
+          "name": "Cabbage (savoy)",
+          "status": "yellow"
+        },
+        {
+          "name": "Canned vegetables",
+          "status": "yellow"
+        },
+        {
+          "name": "Cassava",
+          "status": "yellow"
+        },
+        {
+          "name": "Cauliflower",
+          "status": "yellow"
+        },
+        {
+          "name": "Celery",
+          "status": "yellow"
+        },
+        {
+          "name": "Celery Root/Celeriac",
+          "status": "yellow"
+        },
+        {
+          "name": "Chard",
+          "status": "yellow"
+        },
+        {
+          "name": "Chayote",
+          "status": "yellow"
+        },
+        {
+          "name": "Chilli peppers",
+          "status": "yellow"
+        },
+        {
+          "name": "Collard",
+          "status": "yellow"
+        },
+        {
+          "name": "Courgette",
+          "status": "yellow"
+        },
+        {
+          "name": "Daikon",
+          "status": "yellow"
+        },
+        {
+          "name": "Eggplant",
+          "status": "yellow"
+        },
+        {
+          "name": "Endive",
+          "status": "yellow"
+        },
+        {
+          "name": "Fennel bulb",
+          "status": "yellow"
+        },
+        {
+          "name": "Fennel leaves",
+          "status": "yellow"
+        },
+        {
+          "name": "Galangal",
+          "status": "yellow"
+        },
+        {
+          "name": "Garden peas",
+          "status": "yellow"
+        },
+        {
+          "name": "Garlic",
+          "status": "yellow"
+        },
+        {
+          "name": "Jerusalem artichoke",
+          "status": "yellow"
+        },
+        {
+          "name": "Japanese pumpkin",
+          "status": "yellow"
+        },
+        {
+          "name": "Jicama",
+          "status": "yellow"
+        },
+        {
+          "name": "Kale",
+          "status": "yellow"
+        },
+        {
+          "name": "Kobocha",
+          "status": "yellow"
+        },
+        {
+          "name": "Leek",
+          "status": "yellow"
+        },
+        {
+          "name": "Lotus root",
+          "status": "yellow"
+        },
+        {
+          "name": "Mangetout",
+          "status": "yellow"
+        },
+        {
+          "name": "Mushrooms",
+          "status": "yellow"
+        },
+        {
+          "name": "Okra",
+          "status": "yellow"
+        },
+        {
+          "name": "Onions",
+          "status": "yellow"
+        },
+        {
+          "name": "Pickled onions",
+          "status": "yellow"
+        },
+        {
+          "name": "Radicchio",
+          "status": "yellow"
+        },
+        {
+          "name": "Rutabaga",
+          "status": "yellow"
+        },
+        {
+          "name": "Sauerkraut",
+          "status": "yellow"
+        },
+        {
+          "name": "Scallions (white part)",
+          "status": "yellow"
+        },
+        {
+          "name": "Shallot",
+          "status": "yellow"
+        },
+        {
+          "name": "Shiitake",
+          "status": "yellow"
+        },
+        {
+          "name": "Spirulina",
+          "status": "yellow"
+        },
+        {
+          "name": "Spring onions (bulb)",
+          "status": "yellow"
+        },
+        {
+          "name": "Sunburst",
+          "status": "yellow"
+        },
+        {
+          "name": "Swede",
+          "status": "yellow"
+        },
+        {
+          "name": "Sweet peppers",
+          "status": "yellow"
+        },
+        {
+          "name": "Taro",
+          "status": "yellow"
+        },
+        {
+          "name": "Tomato (sun-dried)",
+          "status": "yellow"
+        },
+        {
+          "name": "Tomato soup/juice",
+          "status": "yellow"
+        },
+        {
+          "name": "Wakame flakes",
+          "status": "yellow"
+        },
+        {
+          "name": "Wheatgrass powder",
+          "status": "yellow"
+        },
+        {
+          "name": "Yellow zucchini",
+          "status": "yellow"
+        },
+        {
+          "name": "Yardlong bean",
+          "status": "yellow"
+        },
+        {
+          "name": "Yucca",
+          "status": "yellow"
+        }
+      ]
+    }
+  ]
+}

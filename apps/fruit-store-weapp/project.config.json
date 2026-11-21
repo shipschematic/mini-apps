@@ -1,0 +1,29 @@
+{
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "uglifyFileName": false,
+    "enhance": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx2ae5d48a13601dac",
+  "editorSetting": {},
+  "projectname": "fruit-store-weapp",
+  "description": "Fruit Store (星期八果园) - WeChat Mini Program",
+  "miniprogramRoot": "miniprogram/dist/",
+  "cloudfunctionRoot": "cloudfunctions/"
+}

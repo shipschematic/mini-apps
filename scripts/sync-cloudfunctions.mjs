@@ -10,8 +10,16 @@ const check = process.argv.includes('--check');
 let outdated = 0;
 
 const apps = [
-  { slug: 'ecom-mini-weapp', prefix: 'ecom_' },
-  { slug: 'xingqiba-orchard-weapp', prefix: 'xingqiba_' },
+  {
+    slug: 'promptmarket-weapp',
+    prefix: 'ecom_',
+    catalog: 'miniprogram/public/config/prompt-service.json',
+  },
+  {
+    slug: 'fruit-store-weapp',
+    prefix: 'xingqiba_',
+    catalog: 'miniprogram/public/config/app.json',
+  },
 ];
 
 function listFiles(dir, base = dir) {
@@ -83,6 +91,7 @@ for (const app of apps) {
     const targetDir = path.join(appRoot, targetName);
 
     for (const relative of listFiles(sourceDir)) {
+      if (relative === 'catalog.json') continue;
       const sourceFile = path.join(sourceDir, relative);
       const targetFile = path.join(targetDir, relative);
       const rendered = render(
@@ -107,6 +116,41 @@ for (const app of apps) {
           console.log(`SYNCED ${label}`);
         }
       }
+    }
+  }
+
+  const catalogPath = path.join(root, 'apps', app.slug, app.catalog);
+  if (!fs.existsSync(catalogPath)) {
+    console.error(`Missing product catalog: ${catalogPath}`);
+    process.exit(1);
+  }
+
+  const appConfig = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  const products = (appConfig.products || []).map((product) => ({
+    id: String(product.id),
+    title: String(product.title || ''),
+    price: Number(product.price),
+    status: product.status || 'published',
+  }));
+  const catalogFile = path.join(
+    appRoot,
+    `${app.prefix}createOrder`,
+    'catalog.json',
+  );
+  const renderedCatalog = Buffer.from(`${JSON.stringify({ products }, null, 2)}\n`);
+  const currentCatalog = fs.existsSync(catalogFile)
+    ? fs.readFileSync(catalogFile)
+    : null;
+
+  if (!currentCatalog || Buffer.compare(currentCatalog, renderedCatalog) !== 0) {
+    const label = path.relative(root, catalogFile);
+    if (check) {
+      outdated += 1;
+      console.error(`OUTDATED ${label}`);
+    } else {
+      fs.mkdirSync(path.dirname(catalogFile), { recursive: true });
+      fs.writeFileSync(catalogFile, renderedCatalog);
+      console.log(`SYNCED ${label}`);
     }
   }
 }

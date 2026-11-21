@@ -1,0 +1,45 @@
+$primary-color: var(--color-primary);
+$primary-container: var(--color-primary-container);
+$primary-light: var(--color-primary-soft);
+$primary-dark: var(--color-primary-strong);
+
+$price-red: var(--color-price);
+
+$text-primary: var(--color-text);
+$text-secondary: var(--color-muted);
+$text-tertiary: var(--color-subtle);
+$text-disabled: var(--color-disabled);
+
+$bg-color: var(--color-background);
+$card-white: var(--color-surface);
+$border-color: var(--color-outline);
+
+$success-color: var(--color-success);
+$warning-color: var(--color-warning);
+$error-color: var(--color-error);
+$info-color: var(--color-info);
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-giant: 32px;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-xxl: 24px;
+$spacing-xxxl: 32px;
+
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+$border-radius-full: 9999px;
+
+$safe-area-top: env(safe-area-inset-top);
+$safe-area-bottom: env(safe-area-inset-bottom);

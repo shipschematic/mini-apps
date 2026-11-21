@@ -12,7 +12,10 @@ coverage/
 
 .env
 .env.local
-.env.*.local
+.env.*
+!.env.example
+!**/.env.example
+project.private.config.json
 
 *.pem
 *.p12

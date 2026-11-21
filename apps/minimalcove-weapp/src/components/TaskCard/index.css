@@ -1,0 +1,80 @@
+.task-card {
+  padding: 12px;
+  margin: 4px;
+  border-radius: 8px;
+  border-left: 3px solid var(--color-outline);
+  background-color: var(--color-surface);
+  position: relative;
+}
+
+.task-card.high-priority {
+  border-left: 3px solid var(--color-warning);
+}
+
+.task-card.completed {
+  opacity: 0.8;
+  background-color: var(--color-surface-container);
+}
+
+.badges {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+
+.badge.completed-badge {
+  background-color: var(--color-primary);
+}
+
+.badge.priority-badge {
+  background-color: var(--color-warning);
+}
+
+.badge-text {
+  font-size: 11px;
+  color: var(--color-on-primary);
+}
+
+.badge.priority-badge .badge-text {
+  color: var(--color-on-warning);
+}
+
+.task-title {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-on-surface);
+  margin-bottom: 8px;
+}
+
+.task-title.strikethrough {
+  text-decoration: line-through;
+  color: var(--color-hint);
+}
+
+.task-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.action-btn {
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.action-icon {
+  font-size: 16px;
+  color: var(--color-primary);
+}
+
+.action-icon.delete {
+  color: var(--color-error-text);
+}

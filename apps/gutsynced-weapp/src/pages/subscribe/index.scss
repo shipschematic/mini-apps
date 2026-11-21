@@ -1,0 +1,145 @@
+@import "../../app.scss";
+
+.subscribe-page {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__crown-container {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-surface)DF0;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #FFE8A0;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(255, 184, 0, 0.15);
+  }
+
+  &__crown-emoji {
+    font-size: 40px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: var(--color-muted);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  &__features {
+    width: 100%;
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--color-outline);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__feature-text {
+    font-size: 14px;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  &__plans {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  &__plan-card {
+    flex: 1;
+    position: relative;
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-outline);
+    border-radius: 20px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--active {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface)8F8;
+    }
+
+    &--gold {
+      &.subscribe-page__plan-card--active {
+        border-color: var(--color-warning);
+        background-color: var(--color-surface)DF0;
+      }
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -12px;
+    background-color: var(--color-warning);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  &__plan-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+
+  &__plan-price {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+
+    .subscribe-page__plan-card--gold & {
+      color: #D4AF37;
+    }
+  }
+
+  &__plan-period {
+    font-size: 11px;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}

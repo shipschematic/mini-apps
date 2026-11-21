@@ -1,0 +1,124 @@
+.food-auth {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+
+.food-auth-scroll {
+  flex: 1;
+  height: 0;
+  padding: 32px 28px 0;
+}
+
+.food-auth-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.food-auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+  background-color: var(--color-primary-container);
+  margin-bottom: 20px;
+}
+
+.food-auth-logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.food-auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.food-auth-subtitle {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.food-auth-error {
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.food-auth-error-text {
+  font-size: 12px;
+  color: var(--color-danger);
+}
+
+.food-auth-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.food-auth-input {
+  height: 46px;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.food-auth-placeholder {
+  color: var(--color-muted);
+}
+
+.food-auth-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 14px;
+  background-color: var(--color-primary-container);
+}
+
+.food-auth-submit--disabled {
+  opacity: 0.6;
+}
+
+.food-auth-submit-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.food-auth-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0 8px;
+}
+
+.food-auth-switch-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.food-auth-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--color-muted);
+  text-align: center;
+}

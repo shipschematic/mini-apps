@@ -6,24 +6,45 @@ One repository for the WeChat/Taro mini apps and their shared CloudBase function
 
 | App | Package | Stack | Backend | WeChat app ID |
 | --- | --- | --- | --- | --- |
-| `ecom-mini-weapp` | `taro-whitelabel-framework` | Taro 4.1 + React | CloudBase functions | `wx0000000000000000` |
-| `focusboard-weapp` | `focusboard-weapp` | Taro 4.2 + React | None | `touristappid` placeholder |
-| `omnieat-weapp` | `omnieat-weapp` | Taro 4.2 + React | Next.js 14 in `backend/` | `wx0000000000000000` |
-| `xingqiba-orchard-weapp` | `xingqiba-orchard` | Taro 4.2 + React | CloudBase functions | `wx2ae5d48a13601dac` |
+| `promptmarket-weapp` | `promptmarket-weapp` | Taro 4.1 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
+| `minimalcove-weapp` | `minimalcove-weapp` | Taro 4.2 + React | None | `wx2ae5d48a13601dac` (test account, preview only) |
+| `gutsynced-weapp` | `gutsynced-weapp` | Taro 4.2 + React | Next.js 14 in `backend/` | `wx0000000000000000` (real, publishable) |
+| `fruit-store-weapp` | `fruit-store-weapp` | Taro 4.2 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
 
-`ecom-mini-weapp` and `omnieat-weapp` both declare `wx0000000000000000`. One must use a different app ID before release.
+`gutsynced-weapp` now implements the GutSynced SIBO food-status flow from the Flutter app: four diets, food search and status filters, favorites, and account settings. The imported recipe pages remain in the app but are no longer in the tab bar.
+
+### App IDs and test accounts
+
+Only one real AppID exists in this workspace:
+
+```text
+wx0000000000000000   gutsynced-weapp   real, publishable
+```
+
+The test account AppID `wx2ae5d48a13601dac` is used by `promptmarket-weapp`, `minimalcove-weapp`, and `fruit-store-weapp`.
+
+Each WeChat account includes two test accounts: one mini program test account and one mini game test account. Use the mini program test account for development.
+
+Rules:
+
+- Keep exactly one real AppID, assigned to `gutsynced-weapp`.
+- All other local projects use the test AppID `wx2ae5d48a13601dac`.
+- A test AppID supports preview only. It cannot upload a production version, submit for review, or publish.
+- Never submit `wx2ae5d48a13601dac` for review as a registered mini program.
+- To release an app, register it at <https://mp.weixin.qq.com>, get its own real AppID, then replace the test AppID in `project.config.json`.
+- Do not assign the real AppID to PromptMarket, MinimalCove, or Fruit Store.
 
 ## Layout
 
 ```text
 apps/
-  ecom-mini-weapp/
+  promptmarket-weapp/
     miniprogram/              Taro source
     cloudfunctions/           generated CloudBase copies
-  focusboard-weapp/           Taro app at app root
-  omnieat-weapp/
+  minimalcove-weapp/         Taro app at app root
+  gutsynced-weapp/
     backend/                  Next.js backend
-  xingqiba-orchard-weapp/
+  fruit-store-weapp/
     miniprogram/              Taro source
     cloudfunctions/           generated CloudBase copies
 shared/
@@ -48,10 +69,10 @@ pnpm check:cloudfunctions
 Build one app:
 
 ```bash
-pnpm --filter focusboard-weapp build:weapp
-pnpm --filter omnieat-weapp build:weapp
-pnpm --filter taro-whitelabel-framework build:weapp
-pnpm --filter xingqiba-orchard build:weapp
+pnpm --filter minimalcove-weapp build:weapp
+pnpm --filter gutsynced-weapp build:weapp
+pnpm --filter promptmarket-weapp build:weapp
+pnpm --filter fruit-store-weapp build:weapp
 ```
 
 ## Cloud functions
@@ -68,7 +89,7 @@ Do not symlink cloud-function directories into the pnpm workspace. CloudBase mus
 
 ## Secrets
 
-Commit `.env.example` files only. Keep real secrets in `.env` or `.env.local`, both ignored. `apps/omnieat-weapp/.env` contains local Google and WeChat credentials and is intentionally untracked.
+Commit `.env.example` files only. Keep real secrets in `.env` or `.env.local`, both ignored. `apps/gutsynced-weapp/.env` contains local Google and WeChat credentials and is intentionally untracked.
 
 ## Documentation
 

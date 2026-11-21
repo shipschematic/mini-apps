@@ -1,0 +1,142 @@
+.product-detail {
+  min-height: 100vh;
+  background: var(--color-background);
+  padding-bottom: 120px;
+
+  &__loading,
+  &__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  &__error {
+    font-size: 28px;
+    color: var(--color-muted);
+  }
+
+  &__content {
+    height: calc(100vh - 120px);
+  }
+
+  &__image {
+    width: 100%;
+    height: 600px;
+    background: var(--color-outline);
+  }
+
+  &__info {
+    background: var(--color-surface);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  &__title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  &__sold {
+    font-size: 24px;
+    color: var(--color-subtle);
+  }
+
+  &__title {
+    display: block;
+    font-size: 30px;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__section {
+    background: var(--color-surface);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  &__section-title {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 20px;
+  }
+
+  &__store {
+    padding: 16px;
+    background: var(--color-background);
+    border-radius: 8px;
+  }
+
+  &__store-name {
+    display: block;
+    font-size: 28px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+
+  &__store-addr {
+    display: block;
+    font-size: 24px;
+    color: var(--color-muted);
+  }
+
+  &__content-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-outline);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__content-name {
+    font-size: 28px;
+    color: var(--color-text);
+  }
+
+  &__content-count {
+    font-size: 28px;
+    color: var(--color-muted);
+  }
+
+  &__rule {
+    display: flex;
+    padding: 12px 0;
+  }
+
+  &__rule-label {
+    width: 140px;
+    font-size: 26px;
+    color: var(--color-subtle);
+  }
+
+  &__rule-value {
+    flex: 1;
+    font-size: 26px;
+    color: var(--color-text);
+  }
+
+  &__desc {
+    margin-bottom: 0;
+  }
+
+  &__desc-text {
+    font-size: 28px;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+}

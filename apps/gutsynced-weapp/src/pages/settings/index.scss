@@ -1,0 +1,150 @@
+.gs-settings {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+
+.gs-settings-scroll {
+  flex: 1;
+  height: 0;
+  padding: 12px 16px 0;
+}
+
+.gs-section-title {
+  display: block;
+  margin: 4px 0 8px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.gs-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  overflow: hidden;
+}
+
+.gs-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 56px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-outline);
+}
+
+.gs-card .gs-row:last-child {
+  border-bottom: none;
+}
+
+.gs-row--danger {
+  justify-content: center;
+}
+
+.gs-row-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gs-row-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.gs-row-subtitle {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.gs-row-value {
+  font-size: 13px;
+  color: var(--color-primary);
+  margin-left: 8px;
+}
+
+.gs-row-chevron {
+  font-size: 20px;
+  color: var(--color-muted);
+  margin-left: 6px;
+}
+
+.gs-row-danger {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-danger);
+}
+
+.gs-settings-spacer {
+  height: 24px;
+}
+
+.gs-modal-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.gs-modal {
+  padding: 18px 16px 28px;
+  border-radius: 18px 18px 0 0;
+  background-color: var(--color-surface);
+}
+
+.gs-modal-title {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.gs-diet-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--color-outline);
+}
+
+.gs-diet-option--active {
+  border-color: var(--color-primary);
+  background-color: rgba(103, 80, 164, 0.1);
+}
+
+.gs-diet-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gs-diet-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.gs-diet-desc {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.gs-diet-check {
+  font-size: 18px;
+  color: var(--color-primary);
+}

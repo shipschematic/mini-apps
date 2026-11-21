@@ -1,0 +1,151 @@
+@import "../../app.scss";
+
+.profile-insights {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-background);
+
+  &__content {
+    flex: 1;
+    padding: spacing(3);
+  }
+
+  &__section {
+    margin-bottom: spacing(4);
+  }
+
+  &__section-title {
+    display: block;
+    font-size: $typography-font-size-lg;
+    font-weight: 700;
+    color: $colors-text-primary;
+    margin-bottom: spacing(3);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: spacing(3);
+  }
+
+  &__stat-card {
+    background-color: $colors-white;
+    padding: spacing(3);
+    border-radius: $border-radius-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: spacing(2);
+  }
+
+  &__stat-value {
+    font-size: $typography-font-size-xl;
+    font-weight: 700;
+    color: $colors-text-primary;
+  }
+
+  &__stat-label {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+    margin-top: spacing(1);
+  }
+
+  &__trending {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__trending-item {
+    display: flex;
+    align-items: center;
+    gap: spacing(3);
+    padding: spacing(3);
+    background-color: $colors-white;
+    border-radius: $border-radius-xl;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+
+  &__trending-rank {
+    font-size: $typography-font-size-lg;
+    font-weight: 700;
+    color: $colors-primary;
+    min-width: 32px;
+  }
+
+  &__trending-info {
+    flex: 1;
+  }
+
+  &__trending-title {
+    display: block;
+    font-size: $typography-font-size-md;
+    font-weight: 500;
+    color: $colors-text-primary;
+    margin-bottom: spacing(1);
+  }
+
+  &__trending-stats {
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+  }
+
+  &__trending-stat {
+    font-size: $typography-font-size-xs;
+    color: $colors-text-secondary;
+  }
+
+  &__empty {
+    padding: spacing(6);
+    text-align: center;
+    background-color: $colors-white;
+    border-radius: $border-radius-xl;
+  }
+
+  &__empty-text {
+    font-size: $typography-font-size-md;
+    color: $colors-text-secondary;
+  }
+
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(3);
+  }
+
+  &__tip {
+    display: flex;
+    align-items: flex-start;
+    gap: spacing(3);
+    padding: spacing(3);
+    background-color: $colors-white;
+    border-radius: $border-radius-xl;
+  }
+
+  &__tip-text {
+    flex: 1;
+    font-size: $typography-font-size-sm;
+    color: $colors-text-primary;
+    line-height: 1.5;
+  }
+}
+
+
+
+

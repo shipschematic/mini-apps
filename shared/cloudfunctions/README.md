@@ -6,8 +6,8 @@ Generated copies:
 
 | App | Prefix |
 | --- | --- |
-| `ecom-mini-weapp` | `ecom_` |
-| `xingqiba-orchard-weapp` | `xingqiba_` |
+| `promptmarket-weapp` | `ecom_` |
+| `fruit-store-weapp` | `xingqiba_` |
 
 Run `pnpm sync:cloudfunctions` after editing a function. Run `pnpm check:cloudfunctions` in CI or before a commit.
 

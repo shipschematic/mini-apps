@@ -1,0 +1,305 @@
+{
+  "categories": [
+    {
+      "name": "Grains & Starches",
+      "items": [
+        {
+          "name": "White rice",
+          "status": "green"
+        },
+        {
+          "name": "White rice noodles",
+          "status": "green"
+        },
+        {
+          "name": "Refined white pasta",
+          "status": "green",
+          "sidenote": "Ingredients MUST say only: 'Durum wheat flour' and 'Water'. NO eggs, NO spinach, NO soy lecithin."
+        },
+        {
+          "name": "White potatoes",
+          "status": "green",
+          "sidenote": "Must be peeled"
+        },
+        {
+          "name": "Sweet potatoes / Yams",
+          "status": "green",
+          "sidenote": "Must be peeled"
+        },
+        {
+          "name": "Plain pureed pumpkin",
+          "status": "green",
+          "sidenote": "Canned, NOT pie filling"
+        },
+        {
+          "name": "Eggs in pasta",
+          "status": "red"
+        },
+        {
+          "name": "Spinach in pasta",
+          "status": "red"
+        },
+        {
+          "name": "Soy lecithin in pasta",
+          "status": "red"
+        },
+        {
+          "name": "Unpeeled potatoes or yams",
+          "status": "red"
+        },
+        {
+          "name": "Pumpkin pie filling",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Proteins",
+      "items": [
+        {
+          "name": "Chicken breast",
+          "status": "green"
+        },
+        {
+          "name": "Turkey breast",
+          "status": "green"
+        },
+        {
+          "name": "Extra-lean beef",
+          "status": "green",
+          "sidenote": "e.g., sirloin"
+        },
+        {
+          "name": "Seafood/fish",
+          "status": "red"
+        },
+        {
+          "name": "Eggs",
+          "status": "red"
+        },
+        {
+          "name": "Dairy",
+          "status": "red"
+        },
+        {
+          "name": "Soy/tofu",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Fruits",
+      "items": [
+        {
+          "name": "Very ripe bananas",
+          "status": "green",
+          "sidenote": "No green spots, slice off the hard bottom tip"
+        },
+        {
+          "name": "Smooth applesauce",
+          "status": "green",
+          "sidenote": "No added sugar or spices"
+        },
+        {
+          "name": "Cantaloupe",
+          "status": "green",
+          "sidenote": "ONLY the soft inner orange flesh; strictly discard all rind and seeds"
+        },
+        {
+          "name": "Pears (fresh)",
+          "status": "green",
+          "sidenote": "Peeled, and cooked/microwaved until completely mushy"
+        },
+        {
+          "name": "Canned peaches",
+          "status": "green",
+          "sidenote": "Packed in water or natural juice ONLY; no syrup"
+        },
+        {
+          "name": "Canned pears",
+          "status": "green",
+          "sidenote": "Packed in water or natural juice ONLY; no syrup"
+        },
+        {
+          "name": "Bananas with green spots",
+          "status": "red"
+        },
+        {
+          "name": "Banana bottom tip",
+          "status": "red"
+        },
+        {
+          "name": "Applesauce with added sugar or spices",
+          "status": "red"
+        },
+        {
+          "name": "Cantaloupe rind and seeds",
+          "status": "red"
+        },
+        {
+          "name": "Unpeeled or uncooked fresh pears",
+          "status": "red"
+        },
+        {
+          "name": "Canned fruits in syrup",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Vegetables",
+      "items": [
+        {
+          "name": "Carrots",
+          "status": "green",
+          "sidenote": "Peeled, cooked until fork-mashable"
+        },
+        {
+          "name": "Zucchini",
+          "status": "green",
+          "sidenote": "Peeled, cooked until fork-mashable"
+        },
+        {
+          "name": "Yellow squash",
+          "status": "green",
+          "sidenote": "Peeled, cooked until fork-mashable"
+        },
+        {
+          "name": "Green beans",
+          "status": "green",
+          "sidenote": "Ends trimmed, cooked until completely limp and tender"
+        },
+        {
+          "name": "Asparagus",
+          "status": "green",
+          "sidenote": "Peel the bottom stems if thick, boil the tips until very soft"
+        },
+        {
+          "name": "Raw vegetables",
+          "status": "red"
+        },
+        {
+          "name": "Tomatoes",
+          "status": "red"
+        },
+        {
+          "name": "Onions or garlic",
+          "status": "red"
+        },
+        {
+          "name": "Spinach",
+          "status": "red"
+        },
+        {
+          "name": "Leafy greens",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Fats",
+      "items": [
+        {
+          "name": "Olive oil",
+          "status": "green",
+          "sidenote": "Use sparingly just to cook your meats/veggies or lightly coat potatoes"
+        },
+        {
+          "name": "Avocado oil",
+          "status": "green",
+          "sidenote": "Use sparingly just to cook your meats/veggies or lightly coat potatoes"
+        },
+        {
+          "name": "Coconut oil",
+          "status": "green",
+          "sidenote": "Use sparingly just to cook your meats/veggies or lightly coat potatoes"
+        },
+        {
+          "name": "Heavy or excessive oil use",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Beverages",
+      "items": [
+        {
+          "name": "Water (still)",
+          "status": "green",
+          "sidenote": "Not carbonated"
+        },
+        {
+          "name": "Chamomile tea",
+          "status": "green",
+          "sidenote": "Pure, no added flavors"
+        },
+        {
+          "name": "Peppermint tea",
+          "status": "green",
+          "sidenote": "Pure, no added flavors"
+        },
+        {
+          "name": "Carbonated water",
+          "status": "red"
+        },
+        {
+          "name": "Coffee",
+          "status": "red"
+        },
+        {
+          "name": "Alcohol",
+          "status": "red"
+        },
+        {
+          "name": "Plant milks",
+          "status": "red"
+        },
+        {
+          "name": "Soda/carbonation",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Flavorings & Sweeteners",
+      "items": [
+        {
+          "name": "Salt",
+          "status": "green"
+        },
+        {
+          "name": "Pure maple syrup",
+          "status": "green"
+        },
+        {
+          "name": "Honey",
+          "status": "green"
+        },
+        {
+          "name": "Mild soft herbs (basil)",
+          "status": "green"
+        },
+        {
+          "name": "Mild soft herbs (parsley)",
+          "status": "green"
+        },
+        {
+          "name": "Black pepper",
+          "status": "red"
+        },
+        {
+          "name": "Chili/spices",
+          "status": "red"
+        },
+        {
+          "name": "Soy sauce",
+          "status": "red"
+        },
+        {
+          "name": "Artificial sweeteners",
+          "status": "red"
+        }
+      ]
+    }
+  ]
+}

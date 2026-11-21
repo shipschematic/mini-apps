@@ -1,0 +1,590 @@
+{
+  "categories": [
+    {
+      "name": "Proteins",
+      "items": [
+        {
+          "name": "Egg whites",
+          "status": "green"
+        },
+        {
+          "name": "Chicken breast",
+          "status": "green"
+        },
+        {
+          "name": "Turkey breast",
+          "status": "green"
+        },
+        {
+          "name": "White fish",
+          "status": "green"
+        },
+        {
+          "name": "Very lean beef",
+          "status": "yellow"
+        },
+        {
+          "name": "Egg yolk",
+          "status": "red"
+        },
+        {
+          "name": "Dark meat poultry",
+          "status": "red"
+        },
+        {
+          "name": "Fatty fish",
+          "status": "red"
+        },
+        {
+          "name": "Red meat",
+          "status": "red"
+        },
+        {
+          "name": "Pork",
+          "status": "red"
+        },
+        {
+          "name": "Processed meats",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Grains & Starches",
+      "items": [
+        {
+          "name": "White rice",
+          "status": "green"
+        },
+        {
+          "name": "Plain oatmeal",
+          "status": "green"
+        },
+        {
+          "name": "White pasta",
+          "status": "green"
+        },
+        {
+          "name": "White bread",
+          "status": "green"
+        },
+        {
+          "name": "Plain crackers",
+          "status": "green"
+        },
+        {
+          "name": "Cream of Wheat",
+          "status": "green"
+        },
+        {
+          "name": "Polenta / grits",
+          "status": "green"
+        },
+        {
+          "name": "Mashed potatoes",
+          "status": "green"
+        },
+        {
+          "name": "Cornstarch",
+          "status": "green"
+        },
+        {
+          "name": "Brown rice",
+          "status": "red"
+        },
+        {
+          "name": "Whole wheat bread / pasta",
+          "status": "red"
+        },
+        {
+          "name": "Bran cereals",
+          "status": "red"
+        },
+        {
+          "name": "Granola",
+          "status": "red"
+        },
+        {
+          "name": "Quinoa",
+          "status": "red"
+        },
+        {
+          "name": "Barley",
+          "status": "red"
+        },
+        {
+          "name": "Corn kernels",
+          "status": "red"
+        },
+        {
+          "name": "Popcorn",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Vegetables",
+      "items": [
+        {
+          "name": "Carrots",
+          "status": "green"
+        },
+        {
+          "name": "Potatoes",
+          "status": "green"
+        },
+        {
+          "name": "Zucchini",
+          "status": "green"
+        },
+        {
+          "name": "Pumpkin",
+          "status": "green"
+        },
+        {
+          "name": "Butternut squash",
+          "status": "green"
+        },
+        {
+          "name": "Green beans",
+          "status": "yellow"
+        },
+        {
+          "name": "Asparagus tips",
+          "status": "yellow"
+        },
+        {
+          "name": "Mushrooms",
+          "status": "yellow"
+        },
+        {
+          "name": "Peas",
+          "status": "red"
+        },
+        {
+          "name": "Broccoli",
+          "status": "red"
+        },
+        {
+          "name": "Cauliflower",
+          "status": "red"
+        },
+        {
+          "name": "Cabbage",
+          "status": "red"
+        },
+        {
+          "name": "Onions",
+          "status": "red"
+        },
+        {
+          "name": "Garlic",
+          "status": "red"
+        },
+        {
+          "name": "Bell peppers",
+          "status": "red"
+        },
+        {
+          "name": "Cucumber",
+          "status": "red"
+        },
+        {
+          "name": "Celery",
+          "status": "red"
+        },
+        {
+          "name": "Spinach",
+          "status": "red"
+        },
+        {
+          "name": "Kale",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Fruits",
+      "items": [
+        {
+          "name": "Bananas",
+          "status": "green"
+        },
+        {
+          "name": "Applesauce",
+          "status": "green"
+        },
+        {
+          "name": "Apples (peeled)",
+          "status": "green"
+        },
+        {
+          "name": "Pears (peeled)",
+          "status": "green"
+        },
+        {
+          "name": "Cantaloupe",
+          "status": "green"
+        },
+        {
+          "name": "Honeydew melon",
+          "status": "green"
+        },
+        {
+          "name": "Watermelon",
+          "status": "green"
+        },
+        {
+          "name": "Peaches (peeled)",
+          "status": "yellow"
+        },
+        {
+          "name": "Nectarines (peeled)",
+          "status": "yellow"
+        },
+        {
+          "name": "Plums (peeled)",
+          "status": "yellow"
+        },
+        {
+          "name": "Mango",
+          "status": "yellow"
+        },
+        {
+          "name": "Papaya",
+          "status": "yellow"
+        },
+        {
+          "name": "Grapes (peeled)",
+          "status": "yellow"
+        },
+        {
+          "name": "Dates",
+          "status": "yellow"
+        },
+        {
+          "name": "Pomegranate",
+          "status": "red"
+        },
+        {
+          "name": "Oranges",
+          "status": "red"
+        },
+        {
+          "name": "Grapefruit",
+          "status": "red"
+        },
+        {
+          "name": "Lemons / Limes",
+          "status": "red"
+        },
+        {
+          "name": "Pineapple",
+          "status": "red"
+        },
+        {
+          "name": "Tomatoes",
+          "status": "red"
+        },
+        {
+          "name": "Strawberries",
+          "status": "red"
+        },
+        {
+          "name": "Raspberries",
+          "status": "red"
+        },
+        {
+          "name": "Blackberries",
+          "status": "red"
+        },
+        {
+          "name": "Blueberries",
+          "status": "red"
+        },
+        {
+          "name": "Kiwi",
+          "status": "red"
+        },
+        {
+          "name": "Figs",
+          "status": "red"
+        },
+        {
+          "name": "Avocado",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Dairy & Milk Alternatives",
+      "items": [
+        {
+          "name": "Skim milk",
+          "status": "green"
+        },
+        {
+          "name": "Oat milk",
+          "status": "green"
+        },
+        {
+          "name": "Almond milk",
+          "status": "green"
+        },
+        {
+          "name": "Rice milk",
+          "status": "green"
+        },
+        {
+          "name": "Non-fat plain yogurt",
+          "status": "green"
+        },
+        {
+          "name": "Non-fat cottage cheese",
+          "status": "yellow"
+        },
+        {
+          "name": "Low-fat yogurt",
+          "status": "yellow"
+        },
+        {
+          "name": "Soy milk",
+          "status": "yellow"
+        },
+        {
+          "name": "Whole milk",
+          "status": "red"
+        },
+        {
+          "name": "Cheese",
+          "status": "red"
+        },
+        {
+          "name": "Cream",
+          "status": "red"
+        },
+        {
+          "name": "Butter",
+          "status": "red"
+        },
+        {
+          "name": "Full-fat yogurt",
+          "status": "red"
+        },
+        {
+          "name": "Ice cream",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Beverages",
+      "items": [
+        {
+          "name": "Water",
+          "status": "green"
+        },
+        {
+          "name": "Chamomile tea",
+          "status": "green"
+        },
+        {
+          "name": "Fennel tea",
+          "status": "green"
+        },
+        {
+          "name": "Peppermint tea",
+          "status": "yellow"
+        },
+        {
+          "name": "Warm skim milk",
+          "status": "green"
+        },
+        {
+          "name": "Green tea",
+          "status": "red"
+        },
+        {
+          "name": "Black tea",
+          "status": "red"
+        },
+        {
+          "name": "Coffee",
+          "status": "red"
+        },
+        {
+          "name": "Alcohol",
+          "status": "red"
+        },
+        {
+          "name": "Soda",
+          "status": "red"
+        },
+        {
+          "name": "Fruit juice",
+          "status": "red"
+        },
+        {
+          "name": "Tomato juice",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Sweeteners & Flavor Additions",
+      "items": [
+        {
+          "name": "Honey",
+          "status": "green"
+        },
+        {
+          "name": "Maple syrup",
+          "status": "green"
+        },
+        {
+          "name": "White sugar",
+          "status": "green"
+        },
+        {
+          "name": "Salt",
+          "status": "green"
+        },
+        {
+          "name": "Rosemary",
+          "status": "green"
+        },
+        {
+          "name": "Thyme",
+          "status": "green"
+        },
+        {
+          "name": "Parsley",
+          "status": "green"
+        },
+        {
+          "name": "Basil",
+          "status": "green"
+        },
+        {
+          "name": "Oregano",
+          "status": "green"
+        },
+        {
+          "name": "Sage",
+          "status": "green"
+        },
+        {
+          "name": "Turmeric",
+          "status": "yellow"
+        },
+        {
+          "name": "Cumin",
+          "status": "yellow"
+        },
+        {
+          "name": "Coriander",
+          "status": "yellow"
+        },
+        {
+          "name": "Cinnamon",
+          "status": "yellow"
+        },
+        {
+          "name": "Nutmeg",
+          "status": "yellow"
+        },
+        {
+          "name": "Black pepper",
+          "status": "red"
+        },
+        {
+          "name": "Chili / cayenne",
+          "status": "red"
+        },
+        {
+          "name": "Curry powder",
+          "status": "red"
+        },
+        {
+          "name": "Garlic (cooked)",
+          "status": "yellow"
+        },
+        {
+          "name": "Onion (cooked)",
+          "status": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Fats & Oils",
+      "items": [
+        {
+          "name": "All cooking oils",
+          "status": "red"
+        },
+        {
+          "name": "Ghee",
+          "status": "red"
+        },
+        {
+          "name": "Margarine",
+          "status": "red"
+        },
+        {
+          "name": "Olive oil",
+          "status": "red"
+        },
+        {
+          "name": "Coconut oil",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Legumes",
+      "items": [
+        {
+          "name": "All beans",
+          "status": "red"
+        },
+        {
+          "name": "All lentils",
+          "status": "red"
+        },
+        {
+          "name": "Chickpeas / hummus",
+          "status": "red"
+        },
+        {
+          "name": "Soybeans / edamame",
+          "status": "red"
+        },
+        {
+          "name": "Peanuts / peanut butter",
+          "status": "red"
+        },
+        {
+          "name": "Tofu / tempeh",
+          "status": "red"
+        }
+      ]
+    },
+    {
+      "name": "Nuts & Seeds",
+      "items": [
+        {
+          "name": "All nuts",
+          "status": "red"
+        },
+        {
+          "name": "All seeds",
+          "status": "red"
+        },
+        {
+          "name": "Nut butters",
+          "status": "red"
+        }
+      ]
+    }
+  ]
+}

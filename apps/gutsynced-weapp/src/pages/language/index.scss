@@ -1,0 +1,137 @@
+@import "../../app.scss";
+
+.language-screen {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  &__header {
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  &__subtitle {
+    font-size: 15px;
+    color: var(--color-muted);
+    line-height: 1.5;
+    display: block;
+  }
+
+  &__list {
+    flex: 1;
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:active {
+      background-color: var(--color-background);
+    }
+
+    &--selected {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface)5F5;
+    }
+  }
+
+  &__language-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__flag {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  &__language-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__language-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  &__language-native {
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+
+  &__checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 56px;
+
+    &--primary {
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+
+      &:active {
+        background-color: var(--color-primary);
+      }
+    }
+
+    &--ghost {
+      background-color: transparent;
+      color: var(--color-primary);
+
+      &:active {
+        background-color: rgba(255, 79, 33, 0.1);
+      }
+    }
+  }
+
+  &__btn-text {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+}

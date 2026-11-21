@@ -13,6 +13,12 @@ Four standalone repositories were imported into this monorepo with their histori
 
 Totals: 37 original commits, 3 snapshot commits, 40 application commits, 4 import merge commits, 1 root scaffold commit, and 1 workspace finalization commit.
 
+`focusboard-weapp` was renamed to `minimalcove-weapp` after import. The source repository and the import history keep the original name.
+
+`omnieat-weapp` was renamed to `gutsynced-weapp` after import. The source repository and the import history keep the original name.
+
+After the rename, `gutsynced-weapp` was reworked from the imported Dapoer recipe app into the GutSynced SIBO flow: four diet data sets, food search and status filters, favorites, food detail, account, and light/dark theme. The legacy recipe pages remain in the app but are no longer in the tab bar.
+
 `ecom-mini-weapp` had 92 worktree paths with CRLF-only changes. Those line-ending-only differences were not imported. Its only substantive uncommitted change was the deletion of `miniprogram/rebuild.bat`, which is in the snapshot commit.
 
 ## Tags
@@ -28,7 +34,7 @@ No other source repository had tags.
 
 ## Excluded from the monorepo
 
-The source repository tracked a Windows SWC build-cache binary at `apps/xingqiba-orchard-weapp/miniprogram/.swc/`. It was removed after import; the cache is generated, not source.
+The source repository tracked a Windows SWC build-cache binary at `apps/fruit-store-weapp/miniprogram/.swc/`. It was removed after import; the cache is generated, not source.
 
 - `node_modules/`
 - `dist/`
@@ -36,7 +42,7 @@ The source repository tracked a Windows SWC build-cache binary at `apps/xingqiba
 - `.swc/`
 - `.codegraph/`
 - `.layout/` duplicates; one copy is preserved at `shared/brand-apps/`
-- `omnieat-weapp/.env` (contains local Google and WeChat credentials)
+- `gutsynced-weapp/.env` (contains local Google and WeChat credentials)
 - generated output and caches
 
 ## Backup
@@ -47,7 +53,7 @@ Full pre-migration backup:
 /mnt/data/Liberary/development/mini-apps-pre-monorepo-20261121-043451.tar.gz
 ```
 
-The backup excludes `node_modules`, `dist`, `.next`, `.swc`, and `.codegraph`. It includes the original `.git` directories, source working trees, and the local `omnieat-weapp/.env`.
+The backup excludes `node_modules`, `dist`, `.next`, `.swc`, and `.codegraph`. It includes the original `.git` directories, source working trees, and the local `gutsynced-weapp/.env`.
 
 ## Recovery
 
@@ -66,16 +72,16 @@ tar -xzf mini-apps-pre-monorepo-20261121-043451.tar.gz
 
 ## Build smoke tests
 
-- `ecom-mini-weapp`: `pnpm --filter taro-whitelabel-framework build:weapp` passed.
-- `focusboard-weapp`: `pnpm --filter focusboard-weapp build:weapp` passed.
-- `omnieat-weapp`: `pnpm --filter omnieat-weapp build:weapp` passed.
-- `omnieat-weapp/backend`: `pnpm --filter dapoer-backend build` passed with Prisma generate and Next.js 14 production build.
-- `xingqiba-orchard-weapp`: `pnpm --filter xingqiba-orchard build:weapp` passed.
+- `promptmarket-weapp` (then `ecom-mini-weapp`): `pnpm --filter promptmarket-weapp build:weapp` passed.
+- `minimalcove-weapp` (then `focusboard-weapp`): `pnpm --filter minimalcove-weapp build:weapp` passed.
+- `gutsynced-weapp`: `pnpm --filter gutsynced-weapp build:weapp` passed.
+- `gutsynced-weapp/backend`: `pnpm --filter gutsynced-backend build` passed with Prisma generate and Next.js 14 production build.
+- `fruit-store-weapp` (then `xingqiba-orchard-weapp`): `pnpm --filter fruit-store-weapp build:weapp` passed.
 
 Two Linux portability fixes were required after import:
 
-- `focusboard-weapp` and `xingqiba-orchard-weapp` used `src/App.tsx`; it was renamed to `src/app.tsx` because Taro looks for a lowercase app entry on case-sensitive filesystems.
-- `omnieat-weapp/backend/tsconfig.json` now sets `"types": ["node"]`. Without it, hoisted `@types/minimatch@6.0.0` is a stub package and Next.js type checking fails.
+- `focusboard-weapp` and `fruit-store-weapp` used `src/App.tsx`; it was renamed to `src/app.tsx` because Taro looks for a lowercase app entry on case-sensitive filesystems.
+- `gutsynced-weapp/backend/tsconfig.json` now sets `"types": ["node"]`. Without it, hoisted `@types/minimatch@6.0.0` is a stub package and Next.js type checking fails.
 
 ## Verification
 

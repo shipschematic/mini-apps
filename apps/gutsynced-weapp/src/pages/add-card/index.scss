@@ -1,0 +1,57 @@
+@import "../../app.scss";
+
+.add-card {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    padding: 32px 24px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &--half {
+      flex: 1;
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  &__input {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 16px;
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__submit {
+    margin-top: 16px;
+  }
+}

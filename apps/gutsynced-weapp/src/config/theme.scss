@@ -1,0 +1,224 @@
+page, #app, body {
+  --color-primary: #6750A4;
+  --color-primary-soft: #9C82C4;
+  --color-primary-container: #6750A4;
+  --color-background: #F5F5F5;
+  --color-surface: #FFFFFF;
+  --color-text: #1B1B1C;
+  --color-muted: #6C757D;
+  --color-outline: #E5E5E5;
+  --color-danger: #EF4444;
+  --color-warning: #FBBF24;
+  --color-success: #16A34A;
+
+  --colors-primary: #6750A4;
+  --colors-primary-light: #9C82C4;
+  --colors-primary-dark: #4F378B;
+
+  --colors-secondary: #9C82C4;
+  --colors-secondary-light: #B9A5D9;
+  --colors-secondary-dark: #7E67B3;
+
+  --colors-neutral-50: #FFFFFF;
+  --colors-neutral-100: #F5F5F5;
+  --colors-neutral-200: #E5E5E5;
+  --colors-neutral-300: #D1D1D6;
+  --colors-neutral-400: #C7C7CC;
+  --colors-neutral-500: #9E9E9E;
+  --colors-neutral-600: #6C757D;
+  --colors-neutral-700: #515154;
+  --colors-neutral-800: #3A3A3C;
+  --colors-neutral-900: #1B1B1C;
+
+  --colors-text-primary: #1B1B1C;
+  --colors-text-secondary: #6C757D;
+  --colors-text-disabled: #C7C7CC;
+  --colors-text-inverse: #FFFFFF;
+
+  --colors-background-default: #F5F5F5;
+  --colors-background-paper: #FFFFFF;
+  --colors-background-overlay: rgba(0, 0, 0, 0.5);
+
+  --colors-success: #16A34A;
+  --colors-warning: #FBBF24;
+  --colors-error: #EF4444;
+  --colors-info: #275AC5;
+
+  --typography-font-family-regular: System;
+  --typography-font-family-medium: System;
+  --typography-font-family-semi-bold: System;
+  --typography-font-family-bold: System;
+
+  --typography-font-size-xs: 10px;
+  --typography-font-size-sm: 12px;
+  --typography-font-size-md: 14px;
+  --typography-font-size-lg: 16px;
+  --typography-font-size-xl: 18px;
+  --typography-font-size-xxl: 20px;
+  --typography-font-size-xxxl: 24px;
+  --typography-font-size-display: 32px;
+
+  --typography-line-height-tight: 1.2;
+  --typography-line-height-normal: 1.5;
+  --typography-line-height-relaxed: 1.75;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-xxl: 24px;
+  --border-radius-full: 9999px;
+
+  --shadows-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadows-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadows-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadows-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  page, #app, body {
+    --color-primary: #9C82C4;
+    --color-primary-soft: #B9A5D9;
+    --color-primary-container: #6750A4;
+    --color-background: #262729;
+    --color-surface: #1B1B1C;
+    --color-text: #FFFFFF;
+    --color-muted: #D7D7D7;
+    --color-outline: #393A41;
+    --color-danger: #F87171;
+    --color-warning: #FBBF24;
+    --color-success: #4ADE80;
+
+    --colors-primary: #9C82C4;
+    --colors-primary-light: #B9A5D9;
+    --colors-primary-dark: #6750A4;
+    --colors-secondary: #B9A5D9;
+    --colors-secondary-light: #D0BFE4;
+    --colors-secondary-dark: #9C82C4;
+    --colors-neutral-50: #1B1B1C;
+    --colors-neutral-100: #262729;
+    --colors-neutral-200: #2C2C2E;
+    --colors-neutral-300: #3A3A3C;
+    --colors-neutral-400: #515154;
+    --colors-neutral-500: #8E8E93;
+    --colors-neutral-600: #D7D7D7;
+    --colors-neutral-700: #E5E5E5;
+    --colors-neutral-800: #F2F2F7;
+    --colors-neutral-900: #FFFFFF;
+    --colors-text-primary: #FFFFFF;
+    --colors-text-secondary: #D7D7D7;
+    --colors-text-disabled: #8E8E93;
+    --colors-background-default: #262729;
+    --colors-background-paper: #1B1B1C;
+    --colors-success: #4ADE80;
+    --colors-warning: #FBBF24;
+    --colors-error: #F87171;
+    --colors-info: #9C82C4;
+  }
+}
+
+$colors-primary: var(--colors-primary);
+$colors-primary-light: var(--colors-primary-light);
+$colors-primary-dark: var(--colors-primary-dark);
+
+$colors-secondary: var(--colors-secondary);
+$colors-secondary-light: var(--colors-secondary-light);
+$colors-secondary-dark: var(--colors-secondary-dark);
+
+$colors-neutral-50: var(--colors-neutral-50);
+$colors-neutral-100: var(--colors-neutral-100);
+$colors-white: #FFFFFF;
+$colors-neutral-200: var(--colors-neutral-200);
+$colors-neutral-300: var(--colors-neutral-300);
+$colors-neutral-400: var(--colors-neutral-400);
+$colors-neutral-500: var(--colors-neutral-500);
+$colors-neutral-600: var(--colors-neutral-600);
+$colors-neutral-700: var(--colors-neutral-700);
+$colors-neutral-800: var(--colors-neutral-800);
+$colors-neutral-900: var(--colors-neutral-900);
+
+$colors-text-primary: var(--colors-text-primary);
+$colors-text-secondary: var(--colors-text-secondary);
+$colors-text-disabled: var(--colors-text-disabled);
+$colors-text-inverse: var(--colors-text-inverse);
+
+$colors-background-default: var(--colors-background-default);
+$colors-background-paper: var(--colors-background-paper);
+$colors-background-overlay: var(--colors-background-overlay);
+$colors-background-subtle: var(--color-background);
+
+$colors-success: var(--colors-success);
+$colors-warning: var(--colors-warning);
+$colors-error: var(--colors-error);
+$colors-info: var(--colors-info);
+
+$typography-font-family-regular: var(--typography-font-family-regular);
+$typography-font-family-medium: var(--typography-font-family-medium);
+$typography-font-family-semi-bold: var(--typography-font-family-semi-bold);
+$typography-font-family-bold: var(--typography-font-family-bold);
+
+$typography-font-size-xs: var(--typography-font-size-xs);
+$typography-font-size-sm: var(--typography-font-size-sm);
+$typography-font-size-md: var(--typography-font-size-md);
+$typography-font-size-lg: var(--typography-font-size-lg);
+$typography-font-size-xl: var(--typography-font-size-xl);
+$typography-font-size-xxl: var(--typography-font-size-xxl);
+$typography-font-size-xxxl: var(--typography-font-size-xxxl);
+$typography-font-size-display: var(--typography-font-size-display);
+
+$typography-line-height-tight: var(--typography-line-height-tight);
+$typography-line-height-normal: var(--typography-line-height-normal);
+$typography-line-height-relaxed: var(--typography-line-height-relaxed);
+
+$spacing-xs: var(--spacing-xs);
+$spacing-sm: var(--spacing-sm);
+$spacing-md: var(--spacing-md);
+$spacing-lg: var(--spacing-lg);
+$spacing-xl: var(--spacing-xl);
+$spacing-xxl: var(--spacing-xxl);
+$spacing-xxxl: var(--spacing-xxxl);
+
+$border-radius-sm: var(--border-radius-sm);
+$border-radius-md: var(--border-radius-md);
+$border-radius-lg: var(--border-radius-lg);
+$border-radius-xl: var(--border-radius-xl);
+$border-radius-xxl: var(--border-radius-xxl);
+$border-radius-full: var(--border-radius-full);
+
+$shadows-sm: var(--shadows-sm);
+$shadows-md: var(--shadows-md);
+$shadows-lg: var(--shadows-lg);
+$shadows-xl: var(--shadows-xl);
+
+// Spacing function for programmatic access
+@function spacing($multiplier) {
+  @if $multiplier == 1 { @return var(--spacing-sm); }
+  @if $multiplier == 2 { @return var(--spacing-md); }
+  @if $multiplier == 3 { @return var(--spacing-lg); }
+  @if $multiplier == 4 { @return var(--spacing-xl); }
+  @if $multiplier == 5 { @return var(--spacing-xxl); }
+  @if $multiplier == 6 { @return var(--spacing-xxxl); }
+  @if $multiplier == 7 { @return calc(var(--spacing-xxxl) * 1.25); }
+  @if $multiplier == 8 { @return calc(var(--spacing-xxxl) * 1.5); }
+  @if $multiplier == 9 { @return calc(var(--spacing-xxxl) * 1.75); }
+  @if $multiplier == 10 { @return calc(var(--spacing-xxxl) * 2); }
+  @if $multiplier == 11 { @return calc(var(--spacing-xxxl) * 2.25); }
+  @if $multiplier == 12 { @return calc(var(--spacing-xxxl) * 2.5); }
+  @if $multiplier == 13 { @return calc(var(--spacing-xxxl) * 2.75); }
+  @if $multiplier == 14 { @return calc(var(--spacing-xxxl) * 3); }
+  @if $multiplier == 15 { @return calc(var(--spacing-xxxl) * 3.25); }
+  @if $multiplier == 16 { @return calc(var(--spacing-xxxl) * 3.5); }
+  @if $multiplier == 17 { @return calc(var(--spacing-xxxl) * 3.75); }
+  @if $multiplier == 18 { @return calc(var(--spacing-xxxl) * 4); }
+  @if $multiplier == 19 { @return calc(var(--spacing-xxxl) * 4.25); }
+  @if $multiplier == 20 { @return calc(var(--spacing-xxxl) * 4.5); }
+  @return calc(var(--spacing-sm) * $multiplier);
+}

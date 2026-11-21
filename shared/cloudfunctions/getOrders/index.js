@@ -14,7 +14,8 @@ exports.main = async (event, context) => {
 
   try {
     let query = db.collection('orders').where({
-      userId: OPENID
+      userId: OPENID,
+      enabled: true
     })
 
     if (status) {

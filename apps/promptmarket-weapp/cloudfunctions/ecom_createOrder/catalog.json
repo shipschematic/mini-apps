@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "title": "Digital Productivity Suite",
+      "price": 99,
+      "status": "published"
+    },
+    {
+      "id": "prod-002",
+      "title": "Health Tracker Pro",
+      "price": 49,
+      "status": "published"
+    },
+    {
+      "id": "prod-003",
+      "title": "E-Book Bundle: Complete Collection",
+      "price": 29,
+      "status": "published"
+    },
+    {
+      "id": "prod-004",
+      "title": "Premium Icon Pack",
+      "price": 19,
+      "status": "published"
+    }
+  ]
+}

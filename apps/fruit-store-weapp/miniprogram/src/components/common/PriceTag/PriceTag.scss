@@ -1,0 +1,43 @@
+.price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+
+  &__current {
+    color: var(--color-price);
+    font-weight: 600;
+  }
+
+  &__original {
+    color: var(--color-subtle);
+    text-decoration: line-through;
+    font-size: 0.85em;
+  }
+
+  &--small {
+    .price-tag__current {
+      font-size: 24px;
+    }
+    .price-tag__original {
+      font-size: 20px;
+    }
+  }
+
+  &--medium {
+    .price-tag__current {
+      font-size: 32px;
+    }
+    .price-tag__original {
+      font-size: 26px;
+    }
+  }
+
+  &--large {
+    .price-tag__current {
+      font-size: 40px;
+    }
+    .price-tag__original {
+      font-size: 32px;
+    }
+  }
+}

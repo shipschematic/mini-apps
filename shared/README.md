@@ -5,7 +5,7 @@
 Canonical CloudBase function source for the commerce apps.
 
 - Edit functions here.
-- Run `pnpm sync:cloudfunctions` to update `apps/ecom-mini-weapp/cloudfunctions` and `apps/xingqiba-orchard-weapp/cloudfunctions`.
+- Run `pnpm sync:cloudfunctions` to update `apps/promptmarket-weapp/cloudfunctions` and `apps/fruit-store-weapp/cloudfunctions`.
 - App copies are generated with the app prefix; do not edit them directly.
 - CloudBase needs a self-contained `node_modules` inside each function at upload time.
 

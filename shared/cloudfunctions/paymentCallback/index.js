@@ -9,34 +9,28 @@ const db = cloud.database()
 
 /**
  * Payment Callback Cloud Function
- * 
- * This function receives payment result notifications from WeChat Pay.
- * It is specified in the createPayment function's `functionName` parameter.
- * 
- * IMPORTANT: This function MUST return { errcode: 0 } on success,
- * otherwise WeChat will keep sending callbacks.
- * 
+ *
+ * Receives payment result notifications from WeChat Pay.
+ * Must return { errcode: 0 } on success, otherwise WeChat retries.
+ *
  * @see https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/open/pay/paymentCallback.html
  */
 exports.main = async (event) => {
-  // Extract payment result from callback
-  const { outTradeNo, resultCode, openid, totalFee, transactionId } = event
+  const { outTradeNo, resultCode, totalFee, transactionId } = event
 
   try {
-    // Find the payment record by outTradeNo
     const paymentRes = await db.collection('payments')
       .where({ outTradeNo: outTradeNo })
       .get()
 
     if (paymentRes.data.length === 0) {
       console.error('Payment record not found:', outTradeNo)
-      return { errcode: 0 }  // Still return success to stop retries
+      return { errcode: 0 }
     }
 
     const payment = paymentRes.data[0]
     const isPaid = resultCode === 'SUCCESS'
 
-    // Update payment record
     await db.collection('payments').doc(payment._id).update({
       data: {
         status: isPaid ? 'paid' : 'failed',
@@ -46,10 +40,12 @@ exports.main = async (event) => {
       }
     })
 
-    // Update order status
     if (payment.orderId) {
+      const orderStatus = isPaid ? 'COMPLETED' : 'LOCKED'
       await db.collection('orders').doc(payment.orderId).update({
         data: {
+          status: orderStatus,
+          payTime: isPaid ? new Date().toISOString() : null,
           'payment.status': isPaid ? 'paid' : 'failed',
           'payment.transactionId': transactionId || null,
           'payment.paidAt': isPaid ? db.serverDate() : null,
@@ -59,11 +55,9 @@ exports.main = async (event) => {
       })
     }
 
-    // MUST return { errcode: 0 } to acknowledge receipt
     return { errcode: 0 }
   } catch (error) {
     console.error('Payment callback error:', error)
-    // Return error to trigger retry
     return { errcode: -1, errmsg: error.message }
   }
 }

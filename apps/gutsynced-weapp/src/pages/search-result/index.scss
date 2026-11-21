@@ -1,0 +1,91 @@
+@import "../../app.scss";
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-background);
+
+  &__search-bar {
+    padding: spacing(2);
+    background-color: $colors-white;
+    border-bottom: 1px solid $colors-neutral-300;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    padding: spacing(2) spacing(3);
+    background-color: $colors-background-subtle;
+    border-radius: $border-radius-lg;
+  }
+
+  &__input {
+    flex: 1;
+    font-size: $typography-font-size-md;
+    background: transparent;
+  }
+
+  &__content {
+    flex: 1;
+    padding: spacing(3);
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: $colors-text-secondary;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: spacing(8);
+    text-align: center;
+
+    &-icon {
+      font-size: 64px;
+      margin-bottom: spacing(3);
+    }
+
+    &-title {
+      font-size: $typography-font-size-xl;
+      font-weight: 600;
+      color: $colors-text-primary;
+      margin-bottom: spacing(2);
+    }
+
+    &-text {
+      font-size: $typography-font-size-md;
+      color: $colors-text-secondary;
+    }
+  }
+
+  &__header {
+    margin-bottom: spacing(3);
+  }
+
+  &__count {
+    font-size: $typography-font-size-sm;
+    color: $colors-text-secondary;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(3);
+  }
+
+  &__item {
+    position: relative;
+  }
+}
+
+
+
+

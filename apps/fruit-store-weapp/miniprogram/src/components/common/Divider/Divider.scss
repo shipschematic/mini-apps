@@ -1,0 +1,31 @@
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &--small {
+    padding: 16px 0;
+  }
+
+  &--medium {
+    padding: 24px 0;
+  }
+
+  &--large {
+    padding: 32px 0;
+  }
+
+  &__line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-outline);
+  }
+
+  &--with-text {
+    .divider__text {
+      padding: 0 24px;
+      font-size: 24px;
+      color: var(--color-subtle);
+    }
+  }
+}

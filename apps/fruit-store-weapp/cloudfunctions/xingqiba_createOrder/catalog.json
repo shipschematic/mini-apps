@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "title": "Organic Apple Box (5kg)",
+      "price": 68,
+      "status": "published"
+    },
+    {
+      "id": "prod-002",
+      "title": "Family Orchard Day Pass",
+      "price": 128,
+      "status": "published"
+    },
+    {
+      "id": "prod-003",
+      "title": "Fresh Orange Gift Box (3kg)",
+      "price": 45,
+      "status": "published"
+    },
+    {
+      "id": "prod-004",
+      "title": "Fruit Tree Planting Experience",
+      "price": 298,
+      "status": "published"
+    },
+    {
+      "id": "prod-005",
+      "title": "Seasonal Fruit Basket (Weekly)",
+      "price": 58,
+      "status": "published"
+    },
+    {
+      "id": "prod-006",
+      "title": "Kids Orchard Adventure",
+      "price": 88,
+      "status": "published"
+    }
+  ]
+}
