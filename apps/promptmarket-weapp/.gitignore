@@ -43,3 +43,6 @@ cloudbase-*.log
 # Temporary files
 tmp/
 temp/
+
+# Local WeChat project identity (contains the real AppID)
+/project.config.json

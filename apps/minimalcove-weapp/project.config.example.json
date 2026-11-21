@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "minimalcove-weapp",
   "description": "MinimalCove - Kanban & Eisenhower Matrix Task Manager",
-  "appid": "wx2ae5d48a13601dac",
+  "appid": "wx0000000000000000",
   "setting": {
     "urlCheck": false,
     "es6": true,

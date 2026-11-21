@@ -3,3 +3,6 @@ dist/
 .swc/
 *.log
 project.private.config.json
+
+# Local WeChat project identity (contains the real AppID)
+/project.config.json

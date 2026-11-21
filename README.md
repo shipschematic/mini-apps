@@ -62,14 +62,15 @@ Build the app first. Then import the app directory listed below:
 | `gutsynced-weapp` | `apps/gutsynced-weapp` | `dist` |
 | `fruit-store-weapp` | `apps/fruit-store-weapp` | `miniprogram/dist` |
 
-Each app has its own WeChat project configuration. Set your own AppID in `project.config.json` before uploading. For GutSynced, copy the example first:
+Each app ships a `project.config.example.json`. Copy it and set your own AppID:
 
 ```bash
-cp apps/gutsynced-weapp/project.config.example.json \
-   apps/gutsynced-weapp/project.config.json
+for app in minimalcove-weapp gutsynced-weapp promptmarket-weapp fruit-store-weapp; do
+  cp "apps/$app/project.config.example.json" "apps/$app/project.config.json"
+done
 ```
 
-The local project config is ignored because it contains account-specific identifiers.
+The real project config is ignored because it contains account-specific identifiers.
 
 ## Repository layout
 
