@@ -38,9 +38,7 @@ Open `apps/fruit-store-weapp` in WeChat DevTools. Taro writes the mini program t
 
 - Storefront identity and products: `miniprogram/public/config/app.json`
 - Cloud environment: `cloud1-d4gc2e7w9638ce590`
-- AppID: `wx2ae5d48a13601dac` (WeChat test account, preview only)
 
-The test AppID cannot be uploaded for review or published. Register a real mini program and replace the AppID before release.
 
 ## CloudBase
 
@@ -82,6 +80,3 @@ The payment function reads `totalPrice` (or `total`) from the stored order and i
 - Legacy cloud functions and collections keep the `xingqiba_` prefix.
 - TypeScript reports legacy page errors, but production builds pass.
 
-## App ID
-
-`wx2ae5d48a13601dac` is a WeChat test account. Replace it with a registered AppID before publishing.

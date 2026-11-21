@@ -44,4 +44,4 @@ Only `.env.example` files belong in Git. Real credentials stay in local or host 
 
 ## Secrets review
 
-Before making the repository public, re-scan for app IDs, API URLs, CloudBase environment IDs, and any personal data. App IDs and CloudBase environment IDs are not secret, but they identify production resources.
+Before making the repository public, re-scan for secrets, account-specific identifiers, API URLs, CloudBase environment IDs, and personal data.

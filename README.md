@@ -1,67 +1,39 @@
-# Mini apps
+# Mini Apps
 
-One repository for the WeChat/Taro mini apps and their shared CloudBase functions.
+A pnpm monorepo for four WeChat mini apps built with Taro and React. Two apps also include CloudBase cloud functions, and one includes a Next.js backend.
 
 ## Apps
 
-| App | Package | Stack | Backend | WeChat app ID |
-| --- | --- | --- | --- | --- |
-| `promptmarket-weapp` | `promptmarket-weapp` | Taro 4.1 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
-| `minimalcove-weapp` | `minimalcove-weapp` | Taro 4.2 + React | None | `wx2ae5d48a13601dac` (test account, preview only) |
-| `gutsynced-weapp` | `gutsynced-weapp` | Taro 4.2 + React | Next.js 14 in `backend/` | Real AppID kept local (not public) |
-| `fruit-store-weapp` | `fruit-store-weapp` | Taro 4.2 + React | CloudBase functions | `wx2ae5d48a13601dac` (test account, preview only) |
+| App | What it does | Backend |
+| --- | --- | --- |
+| `promptmarket-weapp` | Digital product store with catalog, cart, orders, library, and admin screens | CloudBase |
+| `minimalcove-weapp` | Kanban board, Eisenhower matrix, and productivity analytics | Local storage |
+| `gutsynced-weapp` | SIBO diet companion with food search, status filters, favorites, and four diet datasets | Local data; optional Next.js backend |
+| `fruit-store-weapp` | Fruit store with products, reservations, orders, and payments | CloudBase |
 
-`gutsynced-weapp` now implements the GutSynced SIBO food-status flow from the Flutter app: four diets, food search and status filters, favorites, and account settings. The imported recipe pages remain in the app but are no longer in the tab bar.
+## Requirements
 
-### App IDs and test accounts
+- Node.js 20 or newer
+- pnpm 9 or newer
+- WeChat DevTools for previewing and publishing mini programs
 
-Only one real AppID exists in this workspace:
-
-`gutsynced-weapp` is the only release app. Its real AppID is stored only in the local, ignored `apps/gutsynced-weapp/project.config.json`. The public example file uses a placeholder.
-
-The test account AppID `wx2ae5d48a13601dac` is used by `promptmarket-weapp`, `minimalcove-weapp`, and `fruit-store-weapp`.
-
-Each WeChat account includes two test accounts: one mini program test account and one mini game test account. Use the mini program test account for development.
-
-Rules:
-
-- Keep exactly one real AppID, assigned to `gutsynced-weapp`.
-- All other local projects use the test AppID `wx2ae5d48a13601dac`.
-- A test AppID supports preview only. It cannot upload a production version, submit for review, or publish.
-- Never submit `wx2ae5d48a13601dac` for review as a registered mini program.
-- To release an app, register it at <https://mp.weixin.qq.com>, get its own real AppID, then replace the test AppID in `project.config.json`.
-- Do not assign the real AppID to PromptMarket, MinimalCove, or Fruit Store.
-
-## Layout
-
-```text
-apps/
-  promptmarket-weapp/
-    miniprogram/              Taro source
-    cloudfunctions/           generated CloudBase copies
-  minimalcove-weapp/         Taro app at app root
-  gutsynced-weapp/
-    backend/                  Next.js backend
-  fruit-store-weapp/
-    miniprogram/              Taro source
-    cloudfunctions/           generated CloudBase copies
-shared/
-  cloudfunctions/             canonical CloudBase function source
-  brand-apps/                 shared design tokens from .layout
-packages/                     shared JavaScript packages when needed
-scripts/                      repository tooling
-docs/                         catalog, deploy notes, conventions, migration history
-```
-
-## Commands
+## Setup
 
 ```bash
 pnpm install
-pnpm list
-pnpm build:weapp
-pnpm typecheck
-pnpm sync:cloudfunctions
-pnpm check:cloudfunctions
+```
+
+Copy any `.env.example` file to `.env` and fill in your own local values. Never commit `.env` files.
+
+## Development
+
+Run one app:
+
+```bash
+pnpm --filter minimalcove-weapp dev:weapp
+pnpm --filter gutsynced-weapp dev:weapp
+pnpm --filter promptmarket-weapp dev:weapp
+pnpm --filter fruit-store-weapp dev:weapp
 ```
 
 Build one app:
@@ -73,26 +45,88 @@ pnpm --filter promptmarket-weapp build:weapp
 pnpm --filter fruit-store-weapp build:weapp
 ```
 
+Build every app:
+
+```bash
+pnpm build:weapp
+```
+
+## Open in WeChat DevTools
+
+Build the app first. Then import the app directory listed below:
+
+| App | Import directory | Build output |
+| --- | --- | --- |
+| `promptmarket-weapp` | `apps/promptmarket-weapp` | `miniprogram/dist` |
+| `minimalcove-weapp` | `apps/minimalcove-weapp` | `dist` |
+| `gutsynced-weapp` | `apps/gutsynced-weapp` | `dist` |
+| `fruit-store-weapp` | `apps/fruit-store-weapp` | `miniprogram/dist` |
+
+Each app has its own WeChat project configuration. Set your own AppID in `project.config.json` before uploading. For GutSynced, copy the example first:
+
+```bash
+cp apps/gutsynced-weapp/project.config.example.json \
+   apps/gutsynced-weapp/project.config.json
+```
+
+The local project config is ignored because it contains account-specific identifiers.
+
+## Repository layout
+
+```text
+apps/
+  promptmarket-weapp/
+    miniprogram/              Taro source
+    cloudfunctions/           generated CloudBase copies
+  minimalcove-weapp/          Taro app at app root
+  gutsynced-weapp/
+    backend/                  optional Next.js backend
+    src/                      Taro source
+  fruit-store-weapp/
+    miniprogram/              Taro source
+    cloudfunctions/           generated CloudBase copies
+shared/
+  cloudfunctions/             canonical CloudBase function source
+  brand-apps/                 shared design tokens
+packages/                     shared JavaScript packages when needed
+scripts/                      repository tooling
+docs/                         catalog, deployment, conventions, migration history
+```
+
 ## Cloud functions
 
-`shared/cloudfunctions` is the canonical source. Do not edit the generated copies directly. The sync script copies each function into the app with its prefix and rewrites internal callback names.
+`shared/cloudfunctions` is the canonical source. Do not edit generated app copies.
 
-CloudBase uploads each function directory. Install production dependencies inside each function before deployment:
+```bash
+pnpm sync:cloudfunctions
+pnpm check:cloudfunctions
+```
+
+The sync script copies each function into the app with its prefix and rewrites internal callback names. CloudBase needs self-contained function folders, so do not symlink them into the workspace.
+
+After syncing, upload the generated function folders from:
+
+- `apps/promptmarket-weapp/cloudfunctions`
+- `apps/fruit-store-weapp/cloudfunctions`
+
+Install production dependencies inside each function before deployment:
 
 ```bash
 npm install --omit=dev
 ```
 
-Do not symlink cloud-function directories into the pnpm workspace. CloudBase must receive self-contained function folders.
+## Checks
 
-## Secrets
-
-Commit `.env.example` files only. Keep real secrets in `.env` or `.env.local`, both ignored. `apps/gutsynced-weapp/.env` contains local Google and WeChat credentials and is intentionally untracked.
+```bash
+pnpm list
+pnpm typecheck
+pnpm check:cloudfunctions
+```
 
 ## Documentation
 
-- `docs/catalog.md` — app inventory.
-- `docs/deploy.md` — WeChat DevTools and CloudBase notes.
+- `docs/catalog.md` — app inventory and status.
+- `docs/deploy.md` — WeChat DevTools and CloudBase deployment notes.
 - `docs/conventions.md` — repository rules.
 - `docs/migration.md` — import history and excluded paths.
 - `docs/sources.tsv` — source repositories and heads.

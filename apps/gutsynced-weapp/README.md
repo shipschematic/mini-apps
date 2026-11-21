@@ -35,9 +35,6 @@ pnpm --filter gutsynced-weapp build:h5
 
 Copy `project.config.example.json` to `project.config.json` and set your real AppID. Then import `apps/gutsynced-weapp` in WeChat DevTools. Taro writes the mini-program output to `dist/` as configured in `project.config.json`.
 
-## App ID
-
-GutSynced is the only release app. Its real AppID is stored in the local, ignored `project.config.json` and is not committed. Copy `project.config.example.json` to `project.config.json`, then set your real AppID. The other three apps use the test account AppID `wx2ae5d48a13601dac` for preview only.
 
 ## Local Data
 
